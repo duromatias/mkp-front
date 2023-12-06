@@ -1,0 +1,25 @@
+.contenedor{
+    height: 215.509033203125px;
+    width: 328px;
+    left: 629px;
+    top: 311px;
+    border-radius: 4.736461639404297px;
+    
+}
+
+.titulo{
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 35px;
+    text-align: center;
+    letter-spacing: 1.0176px;
+    color: #000000;
+}
+
+::ng-deep .button{
+    .mat-flat-button.mat-primary, .mat-raised-button.mat-primary, .mat-fab.mat-primary, .mat-mini-fab.mat-primary {
+        background-color: #1E85E5;
+    }
+}

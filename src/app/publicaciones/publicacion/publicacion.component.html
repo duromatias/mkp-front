@@ -1,0 +1,163 @@
+<mat-card  class="example-card">
+    <div *ngIf="showOportunidad" class="oportunidad">
+        <publicaciones-oportunidad *ngIf="publicacion.es_oportunidad" style="
+        position: absolute;
+        width: 100%;
+    "
+        [ngStyle]="{'padding-top.px': pTop, 'padding-left.px' : pLeft, 'margin-left.px': mLeft, 'margin-top.px' : mLeft}"
+    ></publicaciones-oportunidad>
+    </div>
+    <mat-card-content carousel-wrapper (click)="clickCarousel()" >
+        <carousel #carouselChico
+            [es_oportunidad] = publicacion.es_oportunidad
+            [items]          = multimedia
+        ></carousel>
+    </mat-card-content>
+    <mat-card-content>
+        <div layout-row-1>
+            <div layout-col-1>
+                <span *ngIf="publicacion.kilometros === ''" class="info anio-kms">{{publicacion.anio}} | 0 km</span>
+                <span *ngIf="publicacion.kilometros !== ''" class="info anio-kms">{{publicacion.anio}} | {{kilometros}} km</span>
+                <span class="info marca-modelo">{{publicacion.marca}} {{publicacion.modelo}}</span>
+                <span class="info precio">{{simboloMoneda}} {{precio}}</span>
+                <div *ngIf="publicacion.financiacion" class="textoRecuadroAzul financiacionDisponible">
+                    <span>Financiación disponible</span>
+                </div>
+                <div *ngIf="deviceService.isMobile">
+                    <banner-simular-credito *ngIf="publicacion.financiacion" [publicacion]="publicacion"></banner-simular-credito>
+                    <publicaciones-form-consulta [publicacion]="publicacion" style="margin-top: 40px;"></publicaciones-form-consulta>
+                </div>
+                <publicaciones-wp-button style="margin-top: 20px;" mobile [publicacion]="publicacion" class="wspButton"></publicaciones-wp-button>
+                <banner-simular-credito    *ngIf="publicacion.financiacion && environment.name === 'local'" [publicacion]="publicacion" mobile></banner-simular-credito>
+
+                <div class="divider"></div>
+
+                <div class="contacto">
+                    <p class="info titulo">Información del vendedor</p>
+                    <div class="info vendedor">
+                        <b *ngIf="publicacion.usuario.rol_id === 2">Agencia: </b>
+                        <span>{{ publicacion.nombreVendedor }}</span>
+                    </div>
+                    <div class="info">
+                        <div class="campo-titulo">Ubicación</div>
+                        <div *ngIf="mostrarDireccionCompleta" class="campo-valor">{{ publicacion.direccionCompleta }}</div>
+                        <div *ngIf="!mostrarDireccionCompleta" class="campo-valor">{{ publicacion.direccionParcial }}</div>
+                    </div>
+                    <div class="info" *ngIf="mostrarTelefono">
+                        <div class="campo-titulo">Contacto</div>
+                        <div class="campo-valor">{{ publicacion.telefonoContacto }}</div>
+                    </div>
+                </div>
+
+
+
+                <div *ngIf="publicacion.ofertas_ultima_oferta && subastaTerminada" class="contacto">
+                    <p class="info titulo">Información del comprador</p>
+                    <div class="info">
+                        <div class="campo-titulo">Nombre</div>
+                        <div class="campo-valor">{{publicacion.ofertas_ultima_oferta.usuario.onboarding_user.user_personal_data.first_name + ' ' + publicacion.ofertas_ultima_oferta.usuario.onboarding_user.user_personal_data.last_name}}</div>
+
+                    </div>
+                    <div class="info">
+                        <div class="campo-titulo">Contacto</div>
+                        <div class="campo-valor">{{ publicacion.ofertas_ultima_oferta.usuario.telefonoContacto }}</div>
+                        <div class="campo-valor-email"><a type="email" [href]="'mailto:'+publicacion.ofertas_ultima_oferta.usuario.email">{{publicacion.ofertas_ultima_oferta.usuario.email}}</a></div>
+                    </div>
+
+                    <div *ngIf="publicacion.venta_realizada" class="textoRecuadroAzul">
+                        <span>Venta concretada</span>
+                    </div>
+                </div>
+
+                <div *ngIf="publicacion.descripcion" class="divider"></div>
+
+                <div *ngIf="publicacion.descripcion" class="descripcion">
+                    <p class="info titulo">Descripción</p>
+                    <div class="info texto" [innerHTML]="descripcion"></div>
+                </div>
+
+            </div>
+            <div layout-col-2>
+                <ng-container *ngIf="subastaEnOferta || subastaTerminada">
+                    <div class="divider" mobile></div>
+                    <p class="titulo">Información de la subasta</p>
+                    <p style="font-size: 18px; font-family: Open Sans;">Fecha de finalización</p>
+                    <div class="fechaSubasta">
+                        <span>{{fechaFinSubasta}}</span>
+                    </div>
+                    <div class="ultimaOferta">
+                        <span *ngIf="montoUltimaOferta">Última oferta: {{simboloMoneda}}{{utils.formatNumero(montoUltimaOferta.toString())}}</span>
+                        <span *ngIf="!montoUltimaOferta">Precio base: {{simboloMoneda}}{{utils.formatNumero(precioBase.toString())}}</span>
+                        <button mat-raised-button class="borderRadius" *ngIf="cantidadOfertas > 1 && showOfertas !== 'flex' && publicacionPropia" (click)="verOfertas()"><mat-icon>add</mat-icon>Ver ofertas</button>
+                    </div>
+                    <div *ngIf="cantidadOfertas > 1" class="cantidadOfertas">
+                        <div class="avatares">
+                            <img src="assets/images/Avatar 1.svg" >
+                            <img src="assets/images/Avatar 2.svg" style="margin-left: -5px;">
+                            <img src="assets/images/Avatar 3.svg" style="margin-left: -5px;">
+                        </div>
+                        <span>+ {{cantidadOfertas - 1}}</span>
+                    </div>
+                    <div class="listadoOfertas" [ngStyle]="{'height.%': 0 + heightListadoOfertas, display : showOfertas}">
+                        <ng-container *ngFor="let oferta of ofertas">
+                            <span *ngIf="publicacion.precio <= oferta.precio_ofertado" class="superaPrecio">{{utils.formatFecha(oferta.created_at.split('T')[0])}} - ${{utils.formatNumero(oferta.precio_ofertado.toString())}}</span>
+                            <span *ngIf="publicacion.precio > oferta.precio_ofertado" class="noSuperaPrecio">{{utils.formatFecha(oferta.created_at.split('T')[0])}} - ${{utils.formatNumero(oferta.precio_ofertado.toString())}}</span>
+                        </ng-container>
+                    </div>
+                    <ng-container *ngIf="!publicacionPropia && !subastaTerminada">
+                        <div class="oferta">
+                            <div class="contenedorBoton" (click)="disminuirPuja()">
+                                <mat-icon>remove_circle_outline</mat-icon>
+                            </div>
+                            <span>{{simboloMoneda}}{{this.utils.formatNumero(montoPuja.toString())}}</span>
+                            <div class="contenedorBoton" (click)="aumentarPuja()">
+                                <mat-icon>add_circle_outline</mat-icon>
+                            </div>
+                        </div>
+                        <div class="divider"></div>
+                        <div class="botonOfertar">
+                            <button mat-raised-button class="borderRadius" color="primary" [disabled]="ultimaOfertaPropia" (click)="clickOfertar()">
+                                <!-- img class="gavel-hit" src="assets/images/gavel.svg" /-->
+                                Ofertar</button>
+                        </div>
+                    </ng-container>
+                </ng-container>
+                <div class="divider" *ngIf="(!subastaEnOferta && deviceService.isMobile) || publicacionPropia && subastaEnOferta || subastaTerminada"></div>
+                <p class="titulo">Características principales</p>
+                <app-data-sheet [rsData]="caracteristicas"></app-data-sheet>
+            </div>
+        </div>
+    </mat-card-content>
+</mat-card>
+
+<div *ngIf="ampliarCarousel" class="fondoCarousel">
+    <div class="crossClose" (click)="closeCarousel()" >
+        <mat-icon>close</mat-icon>
+    </div>
+    <div class="carouselAmpliado" carousel-wrapper >
+        <carousel
+        #carouselAmpliadoElement
+        [es_oportunidad]  = publicacion.es_oportunidad
+        [items]           = multimedia
+        [currentPosition] = currentPosition
+        [showArrows]      = false
+        ></carousel>
+
+        <div *ngIf="carouseChico.items.length > 1 && deviceService.isMobile" class="arrow arrowRight" [ngStyle]="{'height.px': alturaCarouselAmpliado}" (click)="clickRightArrow()">
+            <mat-icon>arrow_forward_ios</mat-icon>
+        </div>
+        <div *ngIf="carouseChico.items.length > 1 && deviceService.isMobile" class="arrow arrowLeft" [ngStyle]="{'height.px': alturaCarouselAmpliado}" (click)="clickLeftArrow()">
+            <mat-icon>arrow_back_ios</mat-icon>
+        </div>
+
+        <div *ngIf="carouseChico.items.length > 1 && deviceService.isDesktop" (click)="clickRightArrow()" class="arrowDesktop" [ngStyle]="{'right.px':arrowSpace/2}">
+            <mat-icon class="right">arrow_forward_ios</mat-icon>
+        </div>
+        <div *ngIf="carouseChico.items.length > 1 && deviceService.isDesktop" (click)="clickLeftArrow()" class="arrowDesktop" [ngStyle]="{'left.px':arrowSpace/2}">
+            <mat-icon class="left">arrow_back_ios</mat-icon>
+        </div>
+
+    </div>
+</div>
+
+

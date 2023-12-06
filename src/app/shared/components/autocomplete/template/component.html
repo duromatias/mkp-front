@@ -1,0 +1,33 @@
+<div fxLayout="column" fxLayoutAlign="start stretch"  [class.error]="error !== '' && error !== null" >
+    <mat-form-field appearance="outline">
+        <mat-label>{{label}}</mat-label>
+        <input type="text"
+            (click)="inputClick()"
+            placeholder="{{placeholder}}"
+            matInput
+            [(ngModel)]="value"
+            [matAutocomplete]="auto"
+            (keydown)="keydown($event)"
+            (keyup)="keyup($event)"
+            [required]=required
+            [disabled]="disabled"
+            (change)="inputChange()"
+            (focus)="onFocus()"
+            matAutocompletePosition="below"
+        >
+        <mat-progress-spinner *ngIf="showSpinner" matSuffix mode="indeterminate" diameter="32" color="primary"></mat-progress-spinner>
+        <mat-autocomplete #auto="matAutocomplete" 
+            (optionSelected)="onOptionActivated($event)"
+            (optionActivated)="onOptionActivated($event)" 
+            [displayWith]="displayWithFn" 
+            [autoActiveFirstOption]="true"
+            (closed)="onPanelClosed()"
+            (opened)="onPanelOpened()"
+        >
+            <mat-option *ngIf="labelForAll" value="">{{labelForAll}}</mat-option>
+            <mat-option *ngFor="let row of getFilteredData()" [value]="row[valueColumn]"><mat-icon *ngIf="hasIcon">{{getIcon(row)}}</mat-icon>{{row[labelColumn]}}</mat-option>
+        </mat-autocomplete>
+        <mat-error *ngIf="required && ( value === '' || value === null) && !customErrors">Obligatorio{{value}}</mat-error>
+    </mat-form-field>
+    <div error *ngIf="error && customErrors">{{error}}</div>
+</div>

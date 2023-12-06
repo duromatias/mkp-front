@@ -1,0 +1,89 @@
+<app-layout-general>
+    <contenido>
+        <mat-card class="card">
+            <h1 class="main-title">Ingresa tus datos personales y de contacto</h1>
+
+            <div class="subtitle-container">
+                <h2 class="subtitle">Completa tus datos personales para poder avanzar con la financiación.</h2>
+            </div>
+
+            <form [formGroup]="form" (ngSubmit)="submit()" autocomplete="false"> 
+                <mat-form-field *ngIf="form.get('dni')!.value" class="form-field"  appearance="outline">
+                    <mat-label>DNI</mat-label>
+                    <input formControlName="dni" matInput type="number" readonly="currentUser.dni">
+                    <mat-error *ngIf="error('dni')">{{ error('dni') }}</mat-error>
+                </mat-form-field>
+
+                <app-server-autocomplete
+                    *ngIf="!form.get('dni')!.value"
+                    #campoDni
+                    class        = "form-field"
+                    [required]   = "true"
+                    label        = "DNI"
+                    [dataUrl]    = "'/financiacion/solicitud/' + publicacionId + '/personas-por-documento'"
+                    valueColumn  = "taxCode"
+                    labelColumn  = "fullName"
+                    [error]      = "error('dni')"
+                    searchParam  = "documento"
+                    searchPrefix = ""
+                    [preventCallWithEmptyValue]="true"
+                    [debounceTime]="1000"
+                    (optionSelected)="personaElegida($event)"
+                ></app-server-autocomplete>
+
+                <mat-form-field class="form-field" appearance="outline" *ngIf="form.get('titular')!.value">
+                    <mat-label>Titular</mat-label>
+                    <input formControlName="titular" matInput readonly>
+                    <mat-error *ngIf="error('titular')">{{ error('titular') }}</mat-error>
+                </mat-form-field>
+
+                <div class="form-field" fxLayayout="row">
+                    <mat-form-field  appearance="outline" class="prefixed">
+                        <mat-label>Teléfono</mat-label>
+                        <span class="custom-prefix">+549 &nbsp;</span>
+                        <input formControlName="telefono" matInput type="number" class="inputcustom" placeholder="Escribe tu número de teléfono" required>
+                        <mat-error *ngIf="error('telefono')">{{ error('telefono') }}</mat-error>
+                    </mat-form-field>
+                </div>
+
+                <mat-form-field class="form-field" appearance="outline">
+                    <mat-label>Estado civil</mat-label>
+                    <mat-select formControlName="estado_civil_id" placeholder="Selecciona..." required (opened)="scrollDownDropBox()" disableOptionCentering panelClass="panelClass">
+                        <mat-option *ngFor="let estadoCivil of estadosCiviles" [value]="estadoCivil.Codigo">
+                            {{estadoCivil.Nombre}}
+                        </mat-option>
+                    </mat-select>
+                    <mat-error *ngIf="error('estado_civil_id')">{{error('estado_civil_id')}}</mat-error>
+                </mat-form-field>
+
+                <app-server-autocomplete
+                    #campoCodigoPostal
+                    class="form-field"
+                    [caracteresMinimos]="4"
+                    [searchLimit]="0"
+                    [form]="form"
+                    fieldName="codigo_postal"
+                    label="Buscá tu CP, barrio o localidad"
+                    [dataUrl] = "'/financiacion/solicitud/datos-financiacion/localidades'"
+                    valueColumn  = "id"
+                    labelColumn  = "codigo_postal_localidad_provincia"
+                    (optionSelected)="asignarCodigoPostal($event)"
+                >
+                </app-server-autocomplete>
+
+                <mat-form-field class="form-field" appearance="outline">
+                    <mat-label>Uso del vehículo</mat-label>
+                    <mat-select formControlName="uso_vehiculo" placeholder="Selecciona..." (opened)="scrollDownDropBox()" disableOptionCentering panelClass="panelClass">
+                        <mat-option *ngFor="let usoVehiculo of usosVehiculo" [value]="usoVehiculo.id">
+                            {{usoVehiculo.name}}
+                        </mat-option>
+                    </mat-select>
+                    <mat-error *ngIf="error('uso_vehiculo')">{{error('uso_vehiculo')}}</mat-error>
+                </mat-form-field>
+
+                <button mat-raised-button type="submit" color="primary">Continuar</button>
+            </form>
+        </mat-card>
+
+    </contenido>
+</app-layout-general>

@@ -1,0 +1,16 @@
+<div class="bluredBackground">
+    <mat-card>
+        <mat-card-title>
+            <span class="titulo">{{title}}</span>
+            <button mat-icon-button matSuffix class="clearButton" (click)="onCloseBoton($event)">
+                <mat-icon style="font-size: 30px;">clear</mat-icon>
+            </button>
+        </mat-card-title>
+        <ng-content class="contenido"  select="contenido"></ng-content>
+        <mat-divider></mat-divider>
+        <mat-card-actions style="gap: 8px;" align="end">
+            <ng-content select="botones"></ng-content>
+            <button mat-raised-button class="borderRadius" color="primary" (click)="onClickBoton($event)" >{{textButton}}</button>
+        </mat-card-actions>
+    </mat-card>
+</div>

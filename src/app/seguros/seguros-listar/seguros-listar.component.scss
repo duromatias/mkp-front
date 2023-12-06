@@ -1,0 +1,91 @@
+@import "/src/assets/scss/variables.scss";
+
+.main {
+    min-height: calc(100vh - 103px);
+    padding: 16px;
+    @media(max-width: $responsive-mobile){
+        padding:0;
+    }
+
+    .card {
+        padding: 32px;
+        margin: 20px;
+        width: 100%;
+        max-width: 691px;
+        padding-top: 53px;
+        padding-bottom: 47px;
+        box-sizing: border-box;
+
+        @media(max-width: $responsive-mobile){
+            padding: 24px 16px;
+            padding-bottom: 55px;
+            margin: 0;
+            box-shadow: none;
+            background-color: #fafafa;
+        }
+
+        .titulo{
+            display: flex;
+            align-content: center;
+            column-gap: 8px;
+
+            span{
+                font-family: 'Nunito Sans';
+                font-style: normal;
+                font-weight: 700;
+                font-size: 20px;
+                line-height: 27px;
+                color: #6D6D6D;
+            }
+        }
+
+        .texto{
+            margin-top: 40px;
+            max-width: 333px;
+            display: flex;
+
+            @media(max-width: $responsive-mobile){
+                margin-top: 20px;
+            }
+
+            span{
+                font-family: 'Nunito Sans';
+                font-style: normal;
+                font-weight: 400;
+                font-size: 16px;
+                line-height: 24px;
+                text-align: justify;
+                color: #696969;
+            }
+        }
+
+        .select{
+            margin-top: 16px;
+            max-width: 370px;
+            width: 100%;
+            
+            mat-form-field{
+                width: 100%;
+            }
+        }
+
+        .lista{
+            display: flex;
+            flex-direction: column;
+            row-gap: 15px;
+
+            .contenedor-mensaje{
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                row-gap: 10px;
+                margin-top: 20px;
+
+                .texto-error{
+
+                }
+            }
+        }
+
+    }
+}

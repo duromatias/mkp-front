@@ -1,0 +1,102 @@
+<app-layout-listado [dataSource]="dataSource" >
+    <filtros  fxLayout="column" >
+
+        <mat-form-field appearance="outline" fxFlex="100" style="width: 100%;">
+            <mat-label >Rol</mat-label>
+            <mat-select  [(ngModel)]="dataSource.filtros.rol_id" (selectionChange)="dataSource.refreshData(0)" >
+                <mat-option value="">Todos</mat-option>
+                <mat-option value=1 >Administrador</mat-option>
+                <mat-option value=3 >Particular</mat-option>
+                <mat-option value=2 >Agencia</mat-option>
+            </mat-select>
+        </mat-form-field>
+
+        <app-search-input fxFlex="100" [(value)]="dataSource.filtros.email_like" (change)="dataSource.refreshData(0)" (click)="$event.stopPropagation()"
+            label = "Email"
+        ></app-search-input>
+
+
+        <app-search-input fxFlex="100" [(value)]="dataSource.filtros.dni" (change)="dataSource.refreshData(0)" (click)="$event.stopPropagation()"
+        label = "Número de documento"
+        ></app-search-input>
+
+
+        <app-search-input fxFlex="100" [(value)]="dataSource.filtros.nombre" (change)="dataSource.refreshData(0)" (click)="$event.stopPropagation()"
+            label = "Nombre y apellido"
+        ></app-search-input>
+
+        <app-search-input fxFlex="100" [(value)]="dataSource.filtros.onboarding_business_name" (change)="dataSource.refreshData(0)" (click)="$event.stopPropagation()"
+            label = "Razón social"
+        ></app-search-input>
+
+        <mat-form-field appearance="outline" style="width: 100%;">
+            <mat-label>Estado</mat-label>
+            <mat-select [(ngModel)]="dataSource.filtros.estado" (selectionChange)="dataSource.refreshData(0)">
+                <mat-option value="">Todos</mat-option>
+                <mat-option value="habilitado">Habilitados</mat-option>
+                <mat-option value="deshabilitado">Deshabilitados</mat-option>
+            </mat-select>
+        </mat-form-field>
+    </filtros>
+    <contenido>
+
+        <mat-card-title *ngIf="!isMobile" style=" margin-left: 20px; margin-top: 20px;flex: auto;">
+            <h2 >Usuarios</h2>
+        </mat-card-title>
+
+        <div style="min-height:900px">
+            <div class="table-sticky-wrapper">
+                <table mat-table class="full-width-table" matSort aria-label="Elements" [dataSource]="dataSource" matSort>
+
+                    <ng-container *ngFor="let column of columns" matColumnDef="{{column.name}}" [stickyEnd]="column.type==='menu'">
+                        <th
+                            mat-header-cell
+                            *matHeaderCellDef
+                            mat-sort-header
+                            [ngStyle]="{'text-align': column.align, width: column.width}"
+                        >{{column.title}}</th>
+                        <td mat-cell *matCellDef="let row" [ngStyle]="{'text-align': column.align}">
+                            <ng-container *ngIf="column.type==='text'||column.type===undefined">
+                                {{column.valueFn(row) || row[column.name]  || null}}
+                            </ng-container>
+                            <ng-container *ngIf="column.type==='menu'">
+                                <button mat-icon-button color="primary" [matMenuTriggerFor]="menu" [matMenuTriggerData]="{row:row}" >
+                                    <mat-icon aria-hidden="false">more_vert</mat-icon>
+                                </button>
+                            </ng-container>
+                        </td>
+                    </ng-container>
+
+                    <tr mat-header-row *matHeaderRowDef="columnsToShow"></tr>
+                    <tr mat-row *matRowDef="let row; columns: columnsToShow;"></tr>
+                </table>
+            </div>
+            <mat-paginator
+                itemsPerPageLabel='hola'
+                [length]="dataSource.total"
+                [pageSize]="dataSource.limit"
+                [pageIndex]="dataSource.pageIndex"
+                [pageSizeOptions]="[10 , 20, 30]"
+                (page)="dataSource.setPageIndex($event.pageIndex, $event.pageSize)"
+                >
+            </mat-paginator>
+
+            <mat-menu #menu="matMenu">
+                <ng-template matMenuContent let-aliasMenuItems="row">
+                    <button mat-menu-item routerLink="/usuarios/{{aliasMenuItems.id}}">Editar</button>
+                    <ng-container *ngIf="aliasMenuItems.estado === 'HABILITADO'">
+                        <button mat-menu-item (click)="deshabilitarUsuario(aliasMenuItems.email, aliasMenuItems.id)">Deshabilitar</button>
+                    </ng-container>
+                    <ng-container *ngIf="aliasMenuItems.estado === 'DESHABILITADO'">
+                        <button mat-menu-item (click)="habilitarUsuario(aliasMenuItems.email, aliasMenuItems.id)">Habilitar</button>
+                    </ng-container>
+                    <!--
+
+                        <button mat-menu-item (click)="eliminar(aliasMenuItems)">{{getDeshabilitarButtonText(aliasMenuItems)}}</button>
+                    -->
+                </ng-template>
+            </mat-menu>
+        </div>
+
+    </contenido>
+</app-layout-listado>

@@ -1,0 +1,491 @@
+<html>
+	<meta name="viewport" content="width=device-width, user-scalable=no" />
+    <head>
+        <style>
+
+body {
+    transform         : scale(0.7);
+    -moz-transform    : scale(0.7);
+    -o-transform      : scale(0.7);
+    -webkit-transform : scale(0.7);
+}
+
+            footer {
+	padding: 100px;
+	text-align: center;
+}
+/* Animate */
+.logo-footer {
+	width: 200px;
+	height: 80px;
+	position: relative;
+	display: inline-block;
+	line-height: 1;
+}
+
+.logo-footer:before {
+	line-height: 1;
+	display: block;
+	content: '';
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	width: 6px;
+	height: 33px;
+	background: #5B646E;
+	z-index: 2;
+	-webkit-transition: all 0.5s ease;
+	-moz-transition: all 0.5s ease;
+	-o-transition: all 0.5s ease;
+	transition: all 0.5s ease;
+	-ms-transform: translate(10px, 30px);
+	-webkit-transform: translate(10px, 30px);
+	-moz-transform: translate(10px, 30px);
+	-o-transform: translate(10px, 30px);
+	transform: translate(10px, 30px);
+}
+
+.logo-footer svg {
+	-webkit-transform: translateZ(0);
+	-moz-transform: translateZ(0);
+	-ms-transform: translateZ(0);
+	-o-transform: translateZ(0);
+	transform: translateZ(0);
+	position: relative;
+	z-index: 2;
+	width: 200px;
+}
+
+.logo-footer svg .hover-content path {
+	fill: #fff;
+}
+
+.logo-footer svg path {
+	z-index: 1;
+}
+
+.logo-footer svg path,
+.logo-footer svg rect {
+	position: relative;
+	fill: #5B646E;
+	-webkit-transition: all 0.5s ease;
+	-moz-transition: all 0.5s ease;
+	-o-transition: all 0.5s ease;
+	transition: all 0.5s ease;
+}
+
+.logo-footer svg g {
+	position: relative;
+	-webkit-transition: all 0.25s ease;
+	-moz-transition: all 0.25s ease;
+	-o-transition: all 0.25s ease;
+	transition: all 0.25s ease;
+	-ms-transform: translateY(0px);
+	-webkit-transform: translateY(0px);
+	-moz-transform: translateY(0px);
+	-o-transform: translateY(0px);
+	transform: translateY(0px);
+}
+
+.logo-footer svg polygon {
+	position: relative;
+	fill: #5B646E;
+	-webkit-transition: all 0.5s ease;
+	-moz-transition: all 0.5s ease;
+	-o-transition: all 0.5s ease;
+	transition: all 0.5s ease;
+	animation-delay: 2s;
+}
+
+.logo-footer:hover path,
+.logo-footer:hover rect {
+	fill: #fff;
+	-ms-transform: translateY(-19px);
+	-webkit-transform: translateY(-19px);
+	-moz-transform: translateY(-19px);
+	-o-transform: translateY(-19px);
+	transform: translateY(-19px);
+}
+
+.logo-footer:hover g {
+	-ms-transform: translateY(35px);
+	-webkit-transform: translateY(35px);
+	-moz-transform: translateY(35px);
+	-o-transform: translateY(35px);
+	transform: translateY(35px);
+}
+
+.logo-footer:hover g path {
+	-ms-transform: translateY(0px);
+	-webkit-transform: translateY(0px);
+	-moz-transform: translateY(0px);
+	-o-transform: translateY(0px);
+	transform: translateY(0px);
+}
+
+.logo-footer:hover g.developed-by {
+	-ms-transform: translateY(-40px);
+	-webkit-transform: translateY(-40px);
+	-moz-transform: translateY(-40px);
+	-o-transform: translateY(-40px);
+	transform: translateY(-40px);
+	-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=@ie)";
+	filter: alpha(opacity=0);
+	-moz-opacity: 0;
+	-khtml-opacity: 0;
+	opacity: 0;
+	fill: #7c8896;
+}
+
+.logo-footer:hover g.hover-content {
+	-ms-transform: translateY(-50px);
+	-webkit-transform: translateY(-50px);
+	-moz-transform: translateY(-50px);
+	-o-transform: translateY(-50px);
+	transform: translateY(-50px);
+	-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=@ie)";
+	filter: alpha(opacity=100);
+	-moz-opacity: 1;
+	-khtml-opacity: 1;
+	opacity: 1;
+}
+
+.logo-footer:hover g.hover-content path {
+	fill: #5B646E;
+}
+
+.logo-footer:hover:before {
+	height: 45px !important;
+	-ms-transform: translate(5px, 2px);
+	-webkit-transform: translate(5px, 2px);
+	-moz-transform: translate(5px, 2px);
+	-o-transform: translate(5px, 2px);
+	transform: translate(5px, 2px);
+	width: 190px !important;
+	fill: #7c8896;
+	-webkit-animation: bgs 2s infinite;
+	-moz-animation: bgs 2s infinite;
+	-o-animation: bgs 2s infinite;
+	animation: bgs 2s infinite;
+}
+
+.logo-footer:hover rect {
+	display: block;
+}
+
+.logo-footer:hover rect.line-box {
+	-webkit-animation: k 1s infinite;
+	-moz-animation: k 1s infinite;
+	-o-animation: k 1s infinite;
+	animation: k 1s infinite;
+}
+
+.logo-footer:hover polygon {
+	-ms-transform: translateY(-19px);
+	-webkit-transform: translateY(-19px);
+	-moz-transform: translateY(-19px);
+	-o-transform: translateY(-19px);
+	transform: translateY(-19px);
+	fill: #E9BE00;
+}
+
+@-webkit-keyframes bgs {
+	0% {
+		fill: #7c8896;
+	}
+
+	75% {
+		fill: #5B646E;
+	}
+
+	100% {
+		fill: #7c8896;
+	}
+}
+
+@-moz-keyframes bgs {
+	0% {
+		fill: #7c8896;
+	}
+
+	75% {
+		fill: #5B646E;
+	}
+
+	100% {
+		fill: #7c8896;
+	}
+}
+
+@-o-keyframes bgs {
+	0% {
+		fill: #7c8896;
+	}
+
+	75% {
+		fill: #5B646E;
+	}
+
+	100% {
+		fill: #7c8896;
+	}
+}
+
+@keyframes bgs {
+	0% {
+		fill: #7c8896;
+	}
+
+	75% {
+		fill: #5B646E;
+	}
+
+	75% {
+		fill: #5B646E;
+	}
+
+	100% {
+		fill: #7c8896;
+	}
+}
+
+@-webkit-keyframes k {
+	0% {
+		-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=@ie)";
+		filter: alpha(opacity=0);
+		-moz-opacity: 0;
+		-khtml-opacity: 0;
+		opacity: 0;
+	}
+
+	25% {
+		-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=@ie)";
+		filter: alpha(opacity=100);
+		-moz-opacity: 1;
+		-khtml-opacity: 1;
+		opacity: 1;
+	}
+
+	50% {
+		-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=@ie)";
+		filter: alpha(opacity=25);
+		-moz-opacity: 0.25;
+		-khtml-opacity: 0.25;
+		opacity: 0.25;
+	}
+
+	50% {
+		-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=@ie)";
+		filter: alpha(opacity=100);
+		-moz-opacity: 1;
+		-khtml-opacity: 1;
+		opacity: 1;
+	}
+}
+
+@-moz-keyframes k {
+	0% {
+		-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=@ie)";
+		filter: alpha(opacity=0);
+		-moz-opacity: 0;
+		-khtml-opacity: 0;
+		opacity: 0;
+	}
+
+	25% {
+		-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=@ie)";
+		filter: alpha(opacity=100);
+		-moz-opacity: 1;
+		-khtml-opacity: 1;
+		opacity: 1;
+	}
+
+	50% {
+		-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=@ie)";
+		filter: alpha(opacity=25);
+		-moz-opacity: 0.25;
+		-khtml-opacity: 0.25;
+		opacity: 0.25;
+	}
+
+	50% {
+		-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=@ie)";
+		filter: alpha(opacity=100);
+		-moz-opacity: 1;
+		-khtml-opacity: 1;
+		opacity: 1;
+	}
+}
+
+@-o-keyframes k {
+	0% {
+		-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=@ie)";
+		filter: alpha(opacity=0);
+		-moz-opacity: 0;
+		-khtml-opacity: 0;
+		opacity: 0;
+	}
+
+	25% {
+		-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=@ie)";
+		filter: alpha(opacity=100);
+		-moz-opacity: 1;
+		-khtml-opacity: 1;
+		opacity: 1;
+	}
+
+	50% {
+		-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=@ie)";
+		filter: alpha(opacity=25);
+		-moz-opacity: 0.25;
+		-khtml-opacity: 0.25;
+		opacity: 0.25;
+	}
+
+	50% {
+		-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=@ie)";
+		filter: alpha(opacity=100);
+		-moz-opacity: 1;
+		-khtml-opacity: 1;
+		opacity: 1;
+	}
+}
+
+@keyframes k {
+	0% {
+		-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=@ie)";
+		filter: alpha(opacity=0);
+		-moz-opacity: 0;
+		-khtml-opacity: 0;
+		opacity: 0;
+	}
+
+	25% {
+		-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=@ie)";
+		filter: alpha(opacity=100);
+		-moz-opacity: 1;
+		-khtml-opacity: 1;
+		opacity: 1;
+	}
+
+	50% {
+		-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=@ie)";
+		filter: alpha(opacity=25);
+		-moz-opacity: 0.25;
+		-khtml-opacity: 0.25;
+		opacity: 0.25;
+	}
+
+	50% {
+		-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=@ie)";
+		filter: alpha(opacity=100);
+		-moz-opacity: 1;
+		-khtml-opacity: 1;
+		opacity: 1;
+	}
+}
+
+@supports (-ms-ime-align:auto) {
+	.logo-footer:hover:before {
+		-ms-transform: translate(5px, 22px);
+		-webkit-transform: translate(5px, 22px);
+		-moz-transform: translate(5px, 22px);
+		-o-transform: translate(5px, 22px);
+		transform: translate(5px, 22px);
+	}
+}
+
+@media all and (-ms-high-contrast: none) {
+	.logo-footer:before {
+		-ms-transform: translate(19px, 27px);
+		-webkit-transform: translate(19px, 27px);
+		-moz-transform: translate(19px, 27px);
+		-o-transform: translate(19px, 27px);
+		transform: translate(19px, 27px);
+		width: 4px;
+		height: 30px;
+	}
+
+	.logo-footer:hover:before {
+		-ms-transform: translate(6px, 17px);
+		-webkit-transform: translate(6px, 17px);
+		-moz-transform: translate(6px, 17px);
+		-o-transform: translate(6px, 17px);
+		transform: translate(6px, 17px);
+	}
+}
+        </style>
+    </head>
+    <body>
+        <a href="http://kodear.net" target="_blank" class="logo-footer">
+      
+            <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                 viewBox="0 0 172.9 76.3" style="enable-background:new 0 0 172.9 76.3;" xml:space="preserve">
+                
+                
+                <rect class="line-box" x="9.1" y="26.4" width="4.3" height="26.8"/>	                        
+              <g class="developed-by">
+                <path d="M13.7,9.7c2.8,0,4.8,1.9,4.8,4.6c0,2.7-2,4.6-4.8,4.6H9.9V9.7H13.7z M11.4,17.5h2.3c1.8,0,3.2-1.3,3.2-3.2 c0-1.9-1.4-3.2-3.2-3.2h-2.2V17.5z"/>
+                <path d="M22.4,11.1v2.5h4.5V15h-4.5v2.5h5.2v1.4h-6.7V9.7h6.6v1.4H22.4z"/>
+                <path d="M36.5,10.6L35.9,12c-1-0.6-2-0.9-2.7-0.9c-0.9,0-1.5,0.3-1.5,1c0,2,5,0.9,5,4.2c0,1.6-1.4,2.7-3.5,2.7 c-1.4,0-2.8-0.6-3.8-1.5l0.7-1.3c0.9,0.9,2.1,1.3,3.1,1.3c1.1,0,1.7-0.4,1.7-1.1c0-2.1-5-0.9-5-4.2c0-1.6,1.4-2.6,3.4-2.6 C34.5,9.7,35.7,10,36.5,10.6z"/>
+                <path d="M40.5,16.9l-0.9,2.1H38l4.1-9.2h1.6l4,9.2H46l-0.9-2.1H40.5z M42.8,11.4l-1.7,4.1h3.5L42.8,11.4z"/>
+                <path d="M53.9,16.2c-0.1,0-0.3,0-0.4,0h-2.2v2.8h-1.6V9.7h3.7c2.4,0,3.7,1.1,3.7,3.1c0,1.5-0.7,2.5-1.9,3l2.1,3.1h-1.8 L53.9,16.2z M53.4,14.8c1.4,0,2.2-0.6,2.2-1.9c0-1.2-0.8-1.8-2.2-1.8h-2.2v3.6H53.4z"/>
+                <path d="M64.2,16.2c-0.1,0-0.3,0-0.4,0h-2.2v2.8H60V9.7h3.7c2.4,0,3.7,1.1,3.7,3.1c0,1.5-0.7,2.5-1.9,3l2.1,3.1h-1.8 L64.2,16.2z M63.7,14.8c1.4,0,2.2-0.6,2.2-1.9c0-1.2-0.8-1.8-2.2-1.8h-2.2v3.6H63.7z"/>
+                <path d="M79.3,14.3c0,2.6-2.1,4.7-4.9,4.7s-4.9-2-4.9-4.7c0-2.6,2.1-4.6,4.9-4.6S79.3,11.7,79.3,14.3z M71.1,14.3 c0,1.8,1.5,3.3,3.3,3.3c1.8,0,3.3-1.4,3.3-3.3s-1.5-3.2-3.3-3.2C72.6,11.1,71.1,12.5,71.1,14.3z"/>
+                <path d="M87.3,17.5v1.4h-5.5V9.7h1.6v7.8H87.3z"/>
+                <path d="M95.1,17.5v1.4h-5.5V9.7h1.6v7.8H95.1z"/>
+                <path d="M98.8,16.9l-0.9,2.1h-1.6l4.1-9.2h1.6l4,9.2h-1.7l-0.9-2.1H98.8z M101.1,11.4l-1.7,4.1h3.5L101.1,11.4z"/>
+                <path d="M111.7,9.7c2.8,0,4.8,1.9,4.8,4.6c0,2.7-2,4.6-4.8,4.6H108V9.7H111.7z M109.5,17.5h2.3c1.8,0,3.2-1.3,3.2-3.2 c0-1.9-1.4-3.2-3.2-3.2h-2.2V17.5z"/>
+                <path d="M127.6,14.3c0,2.6-2.1,4.7-4.9,4.7c-2.8,0-4.9-2-4.9-4.7c0-2.6,2.1-4.6,4.9-4.6 C125.4,9.7,127.6,11.7,127.6,14.3z M119.4,14.3c0,1.8,1.5,3.3,3.3,3.3c1.8,0,3.3-1.4,3.3-3.3s-1.5-3.2-3.3-3.2 C120.9,11.1,119.4,12.5,119.4,14.3z"/>
+                <path d="M137.9,9.7c2.3,0,3.6,1.1,3.6,3.1c0,2.1-1.3,3.3-3.6,3.3h-2.1v2.8h-1.6V9.7H137.9z M135.8,14.8h2.1 c1.4,0,2.2-0.6,2.2-1.9c0-1.2-0.8-1.8-2.2-1.8h-2.1V14.8z"/>
+                <path d="M152.8,14.3c0,2.6-2.1,4.7-4.9,4.7c-2.8,0-4.9-2-4.9-4.7c0-2.6,2.1-4.6,4.9-4.6 C150.7,9.7,152.8,11.7,152.8,14.3z M144.7,14.3c0,1.8,1.5,3.3,3.3,3.3c1.8,0,3.3-1.4,3.3-3.3s-1.5-3.2-3.3-3.2 C146.2,11.1,144.7,12.5,144.7,14.3z"/>
+                <path  d="M159.5,16.2c-0.1,0-0.3,0-0.4,0h-2.2v2.8h-1.6V9.7h3.7c2.4,0,3.7,1.1,3.7,3.1c0,1.5-0.7,2.5-1.9,3l2.1,3.1 h-1.8L159.5,16.2z M159,14.8c1.4,0,2.2-0.6,2.2-1.9c0-1.2-0.8-1.8-2.2-1.8h-2.2v3.6H159z"/>
+            </g>
+                                            <path d="M58.3,40c0,7.2-4.5,13.7-13.5,13.7c-9.4,0-13.5-6.9-13.5-13.7c0-8.2,5.7-13.9,13.7-13.9
+                                                C53.8,26,58.3,32.5,58.3,40z M44.6,49.9c6.7,0,9.6-4.7,9.6-10c0-4.9-2.9-10.2-9.4-10.2c-6.3,0-9.6,4.3-9.6,10.2
+                                                C35.2,44.7,37.9,49.9,44.6,49.9z"/>
+                                            <path d="M71.6,26.4c9.2,0,13.3,6.7,13.3,13.1C85.1,46.4,80.8,53,71.6,53H61.4V26.4H71.6z M66,49.2h5.9
+                                                c6.7,0,9.4-4.9,9.2-9.6c-0.2-4.5-2.9-9-9.2-9H66V49.2z"/>
+                                            <path d="M108.5,53.1H88.7V26.5h19.6v4.1H93v7.2h14.7v3.9H93v7.2h15.5V53.1L108.5,53.1z"/>
+                                            <path d="M132.6,47.6h-14.5l-2.5,5.7h-4.5l12.1-26.8h4.7L140,53.3h-4.5L132.6,47.6L132.6,47.6z M125.3,30.7l-5.7,12.7
+                                                H131L125.3,30.7z"/>
+                                            <path d="M165.5,53.1h-5.1l-8.2-9.4h-5.7v9.4h-4.1V26.5h12.3c6.3,0,9.6,4.3,9.6,8.8c0,3.9-2,7.6-7.2,8.4l8,9L165.5,53.1
+                                                L165.5,53.1z M146.5,30.2V40h8.2c3.5,0,5.1-2.4,5.1-4.9c0-2.4-1.6-4.9-5.1-4.9H146.5z"/>
+                                         
+                                                <polygon  points="19.5,40.7 16.8,43.7 26,53.1 31.5,53.1 31.5,52.9 	"/>
+                                                <polygon  points="30.3,26.6 30.3,26.4 25,26.4 15.4,36.6 15.4,42.1 15.4,42.1 	"/>
+                               <g>
+                <g class="hover-content">
+                    <path class="st0" d="M13.9,61l-0.6,1.2c-0.9-0.5-1.8-0.8-2.4-0.8c-0.8,0-1.3,0.3-1.3,0.8c0,1.8,4.4,0.8,4.4,3.7
+                        c0,1.4-1.3,2.3-3.1,2.3c-1.3,0-2.5-0.5-3.3-1.3l0.6-1.2c0.8,0.8,1.9,1.2,2.7,1.2c0.9,0,1.5-0.4,1.5-1c0-1.8-4.4-0.8-4.4-3.7
+                        c0-1.4,1.2-2.3,2.9-2.3C12.2,60.2,13.2,60.5,13.9,61z"/>
+                <path class="st0" d="M23.6,64.3c0,2.3-1.9,4.1-4.3,4.1c-2.4,0-4.3-1.8-4.3-4.1c0-2.3,1.9-4.1,4.3-4.1C21.7,60.2,23.6,62,23.6,64.3z
+                     M16.4,64.3c0,1.6,1.3,2.9,2.9,2.9s2.9-1.3,2.9-2.9c0-1.6-1.3-2.9-2.9-2.9C17.7,61.4,16.4,62.7,16.4,64.3z"/>
+                <path class="st0" d="M26.4,61.4v2.3h3.7V65h-3.7v3.3H25v-8.1h5.4l0,1.2H26.4z"/>
+                <path class="st0" d="M34.6,61.4v6.9h-1.4v-6.9h-2.6v-1.2h6.5v1.2H34.6z"/>
+                <path class="st0" d="M45.3,68.3L43.4,62l-1.9,6.3H40l-2.7-8.1h1.5l2,6.6l2-6.6l1.3,0l2,6.6l2-6.6h1.4l-2.7,8.1H45.3z"/>
+                <path class="st0" d="M51.5,66.5l-0.8,1.8h-1.4l3.6-8.1h1.4l3.5,8.1h-1.5l-0.8-1.8H51.5z M53.5,61.7L52,65.3h3.1L53.5,61.7z"/>
+                <path class="st0" d="M62.5,65.9c-0.1,0-0.2,0-0.4,0h-1.9v2.4h-1.4v-8.1h3.3c2.1,0,3.3,1,3.3,2.8c0,1.3-0.6,2.2-1.7,2.6l1.8,2.7H64
+                    L62.5,65.9z M62.2,64.7c1.2,0,2-0.5,2-1.6c0-1.1-0.7-1.6-2-1.6h-1.9v3.2H62.2z"/>
+                <path class="st0" d="M68.6,61.4v2.2h4v1.2h-4v2.2h4.6v1.2h-5.9v-8.1H73v1.2H68.6z"/>
+                <path class="st0" d="M81.1,60.2c2.4,0,4.2,1.7,4.2,4c0,2.3-1.8,4-4.2,4h-3.3v-8.1H81.1z M79.2,67.1h2c1.6,0,2.8-1.2,2.8-2.8
+                    c0-1.7-1.2-2.8-2.8-2.8h-1.9V67.1z"/>
+                <path class="st0" d="M88.2,61.4v2.2h4v1.2h-4v2.2h4.6v1.2h-5.9v-8.1h5.8v1.2H88.2z"/>
+                <path class="st0" d="M96.6,68.3l-3.2-8.1h1.5l2.5,6.6l2.5-6.6h1.4L98,68.3H96.6z"/>
+                <path class="st0" d="M103.7,61.4v2.2h4v1.2h-4v2.2h4.6v1.2h-5.9v-8.1h5.8v1.2H103.7z"/>
+                <path class="st0" d="M114.8,67.1v1.2h-4.9v-8.1h1.4v6.9H114.8z"/>
+                <path class="st0" d="M124,64.3c0,2.3-1.9,4.1-4.3,4.1s-4.3-1.8-4.3-4.1c0-2.3,1.9-4.1,4.3-4.1S124,62,124,64.3z M116.8,64.3
+                    c0,1.6,1.3,2.9,2.9,2.9c1.6,0,2.9-1.3,2.9-2.9c0-1.6-1.3-2.9-2.9-2.9C118.2,61.4,116.8,62.7,116.8,64.3z"/>
+                <path class="st0" d="M128.7,60.2c2,0,3.2,1,3.2,2.8c0,1.8-1.2,2.9-3.2,2.9h-1.9v2.4h-1.4v-8.1H128.7z M126.9,64.7h1.8
+                    c1.2,0,2-0.5,2-1.6c0-1.1-0.7-1.6-2-1.6h-1.8V64.7z"/>
+                <path class="st0" d="M140.6,68.3l0-6l-2.6,5.2h-0.9l-2.6-5.2v6h-1.3v-8.1h1.6l2.7,5.4l2.7-5.4h1.6v8.1H140.6z"/>
+                <path class="st0" d="M145.3,61.4v2.2h4v1.2h-4v2.2h4.6v1.2H144v-8.1h5.8v1.2H145.3z"/>
+                <path class="st0" d="M157.2,68.3l-4.3-5.8v5.8h-1.4v-8.1h1.3l4.3,5.8v-5.8h1.3v8.1H157.2z"/>
+                <path class="st0" d="M163.7,61.4v6.9h-1.4v-6.9h-2.6v-1.2h6.5v1.2H163.7z"/>
+            </g>            
+             </svg>
+              
+        </a>
+
+    </body>
+</html>

@@ -1,0 +1,23 @@
+[error] {
+    top: -15px;
+    left: 10px;
+    position: relative;
+    line-height: 1.3;
+    font-size: 10.5px;
+    color: red;
+}
+
+.error{
+    ::ng-deep .mat-form-field-appearance-outline .mat-form-field-outline-thick {
+        opacity: 1 !important;
+        color: #f44336;
+    }
+    mat-label{
+        color: #f44336 !important; 
+    }
+
+}
+
+mat-autocomplete {
+    z-index: 1000;
+}

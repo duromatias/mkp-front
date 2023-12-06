@@ -1,0 +1,24 @@
+<div fxLayout="column" fxLayoutAlign="start" class="card">
+    <span class="titulo">{{titulo}}</span>
+    <span class="subtitulo">{{subtitulo}}</span>
+    <div *ngIf="archivo === undefined && url == null" class="color cargar-imagen" (click)="fileInput.click()">
+        <mat-icon class="material-icons-outlined" color="primary">add_a_photo</mat-icon>
+        <span class="label" class="color">Agregar foto</span>
+        <span class="sublabel" class="color tamanioArchivo">(tamaño máximo 10 MB)</span>
+        <input #fileInput type="file" (change)="onFileChange($event)" style="display:none;" />
+    </div>
+
+    <div *ngIf="archivo != undefined || url != null" class="preview">
+        <div fxLayout="row" fxLayoutAlign="end center" fxLayoutGap="5px">
+            <div class="link color" (click)="eliminarImagen()">Eliminar imagen</div>
+            <div class="link color" (click)="fileInput.click()">
+                Reemplazar imagen
+                <input #fileInput type="file" (change)="onFileChange($event)" style="display:none;" />
+            </div>
+        </div>
+        <div *ngIf="url == null" class="imagen" [style.background-image]="'url(' + archivo!.src + ')'"></div>
+        <div *ngIf="url != null" class="imagen" [style.background-image]="'url(' + url + ')'"></div>
+    </div>
+
+    <div class="error" *ngIf="error">{{ error }}</div>
+</div>

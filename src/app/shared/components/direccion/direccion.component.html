@@ -1,0 +1,66 @@
+<div class="campos" [formGroup]="form">
+
+    <app-direccion-autocomplete
+        #direccionAutocomplete
+        *ngIf="!mostrarCamposUbicacion"
+        class="form-field-full"
+        (ubicacionElegida)="alElegirUbicacion($event)"
+        (ubicacionEliminada)="alEliminarUbicacion()"
+        [titulo]="'Dirección'"
+        [error]="error('direccionCompleta')"
+        [data]="dataDireccion"
+        [value]="direccionCompleta"
+        (focus)="alHacerFoco()"
+        label="Dirección"
+        [customErrors]="true"
+    ></app-direccion-autocomplete>
+    
+    <mat-form-field class="row" appearance="outline" *ngIf="mostrarCamposUbicacion">
+        <mat-label>Calle</mat-label>
+        <input formControlName="calle" matInput required>
+        <mat-error *ngIf="error('calle')">{{error('calle')}}</mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="row" appearance="outline" *ngIf="mostrarCamposUbicacion">
+        <mat-label>Número</mat-label>
+        <input formControlName="numero" matInput required>
+        <mat-error *ngIf="error('numero')">{{error('numero')}}</mat-error>
+    </mat-form-field>
+
+    <app-autocomplete-field
+        #campoProvincia
+        *ngIf="mostrarCamposUbicacion"
+        [form]       = "form"
+        fieldName    = "provincia"
+        class        = "form-field row"
+        [required]   = "true"
+        label        = "Provincia"
+        [data]       = "provincias"
+        valueColumn  = "nombre"
+        labelColumn  = "nombre"
+        [error]      = "error('provincia')"
+        [customErrors]="true"
+        (optionSelected)="alSeleccionarProvincia(true, $event)"
+    ></app-autocomplete-field>
+
+    <app-server-autocomplete-field
+        *ngIf="mostrarCamposUbicacion && ubicacionElegida?.codigo_postal===''"
+        #codigoPostal
+        class="form-field row"
+        [caracteresMinimos]="4"
+        [searchLimit]="0"
+        [form]="form"
+        fieldName="provincia_id"
+        label="Código postal"
+        [dataUrl] = "'/direcciones/localidades'"
+        [dataParams]="parametrosCodigoPostal"
+        valueColumn  = "id"
+        labelColumn  = "localidad_provincia"
+        (optionSelected)="establecerDireccion($event)"
+        [disabled]="deshabilitarCodigoPostal"
+        [required]="true"
+        [error]= "error('codigo_postal')"
+        [customErrors]="true"
+    >
+    </app-server-autocomplete-field>
+</div>

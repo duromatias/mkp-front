@@ -1,0 +1,65 @@
+@import "/src/assets/scss/theme.scss";
+
+.card {
+    margin: 57px 0;
+
+    .main-title {
+        margin-bottom: 73px;
+        margin-top: 35px;
+        text-align: center;
+        font-size: 18px;
+        line-height: 24px;
+        font-weight: 700;
+        color: mat-color($decreditos-app-primary);
+    }
+
+    .subtitle-container {
+        display: flex;
+        justify-content: center;
+
+        .subtitle {
+            font-family: 'Poppins';
+            font-style: normal;
+            font-weight: 500;
+            font-size: 18px;
+            line-height: 24px;
+            text-align: center;
+            letter-spacing: 0.15px;
+            color: rgba(0, 0, 0, 0.87);
+            max-width: 650px;
+        }
+    }
+
+    form {
+        padding: 45px 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        .form-field {
+            width: 100% !important;
+            max-width: 315px !important;
+        }
+
+        .input-prefix {
+            min-width: unset;
+            width: 30px;
+            padding: 0;
+            position: relative;
+            bottom: 6px;
+        }
+
+    }
+}
+
+::ng-deep .mat-form-field-prefix{
+    top : 0 !important;
+}
+
+.custom-prefix {
+    height: 16px !important;
+}
+
+.inputcustom{
+    margin: 0 !important;
+}

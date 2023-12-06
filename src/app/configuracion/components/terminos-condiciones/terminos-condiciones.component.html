@@ -1,0 +1,20 @@
+<app-layout-general>
+    <contenido>
+        <div fxLayout="column" class="tyc">
+            <h2 style="margin-top: 15px;">Términos y Condiciones</h2>
+
+            <ckeditor
+                [(ngModel)]="terminosCondiciones"
+                [editor]="classicEditor"
+            ></ckeditor>
+
+            <button
+              class="botonGuardar borderRadius"
+              mat-raised-button color="primary"
+              (click)="saveTyC()"
+            >Guardar cambios
+            </button>
+
+        </div>
+    </contenido>
+</app-layout-general>

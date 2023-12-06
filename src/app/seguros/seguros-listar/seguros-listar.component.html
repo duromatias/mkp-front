@@ -1,0 +1,32 @@
+<app-layout-general>
+    <contenido class="main" fxLayout.gt-md="row" fxLayoutAlign="center start">
+        <mat-card class="card" fxLayout="column" fxLayoutAlign="start center">
+            <div class="titulo">
+                <img src="/assets/images/seguros/icono-paso2.svg" alt="Paso 2">
+                <span>Selecciona un presupuesto</span>
+            </div>
+            <div class="texto">
+                <span>Las cotizaciones pueden tener emisión diferida de hasta 48hs posterior a la carga de la solicitud. </span>
+            </div>
+            <div class="select">
+                <mat-form-field appearance="outline">
+                    <mat-label>Selecciona el tipo de Cobertura</mat-label>
+                    <mat-select value="teceros_completo" (selectionChange)="filtrarCobertura($event.value)">
+                        <mat-option *ngFor="let tipoCobertura of tiposCobertura" [value]="tipoCobertura">{{utils.formatearTextoConGuionesYMinusculas(tipoCobertura).replace('Teceros','Terceros')}}</mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+            <div class="lista">
+                <app-seguros-card *ngFor="let seguro of segurosFiltrados" [seguro]="seguro" (click)="seleccionar(seguro)"></app-seguros-card>
+                <div *ngIf="(!segurosFiltrados || segurosFiltrados.length === 0) && !ocultarMensajeError" class="contenedor-mensaje">
+                    <span class="texto-error">No se encontraron opciones de seguro.</span>
+                    <span class="texto-error">Espere unos segundos y vuelva a intentar.</span>
+                </div>
+            </div>
+        </mat-card>
+    </contenido>
+</app-layout-general>
+
+
+
+

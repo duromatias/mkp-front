@@ -1,0 +1,18 @@
+<mat-card *ngIf="mostrarBanner">
+    <mat-card-title class="color">Subasta activa</mat-card-title>
+    <mat-card-content>
+        <span *ngIf="tipoSubasta === 'Oferta'" class="textoRestante">
+            <img src="assets/images/timmerSubastaBlue.svg"  alt=""> <span style="margin-left: 5px;">{{textoTiempoRestante}}</span>
+        </span>
+        <span *ngIf="tipoSubasta === 'Inscripción'" class="textoRestante">
+            <img src="assets/images/timmerSubastaBlue.svg"  alt=""> <span style="margin-left: 5px;">{{textoTiempoRestante}}</span>
+        </span>
+    </mat-card-content>
+    <mat-card-actions>
+        <mat-divider ></mat-divider>
+        <div class="divBoton">
+            <button *ngIf="tipoSubasta === 'Oferta'" routerLink="/subastas" mat-raised-button class="borderRadius"  color="primary">Ver vehículos</button>
+            <button *ngIf="tipoSubasta === 'Inscripción'" (click)="sumarVehiculo()" mat-raised-button class="borderRadius"  color="primary">Sumar vehículo</button>
+        </div>
+    </mat-card-actions>
+</mat-card>

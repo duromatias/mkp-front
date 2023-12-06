@@ -1,0 +1,51 @@
+<app-layout-general>
+    <contenido class="main" fxLayout.gt-md="row" fxLayoutAlign="center center">
+        <mat-card class="card" fxLayout="column" fxLayoutAlign="start center">
+            <div class="logo"></div>  
+            <div class="textomark-mb" fxFlex="100" fxLayout="row" fxLayoutAlign="center">
+                <span class="mat-body-strong" style="text-align: center;">
+                    Bienvenido a la vidriera virtual de Decreditos, tu nueva forma de vender autos
+                </span>
+            </div>
+
+            <form [formGroup]="form" fxLayout="row wrap" fxLayoutAlign="space-between" class="form" (ngSubmit)="submit()" [autocomplete]="false">
+                <mat-form-field fxFlex="100" fxFlex.gt-md="100" appearance="outline">
+                    <mat-label>Email</mat-label>
+                    <input formControlName="email" matInput required>
+                    <mat-error *ngIf="error('email')">{{error('email')}}</mat-error>
+                </mat-form-field>
+                
+                <mat-form-field fxFlex="100" fxFlex.gt-md="100" appearance="outline">
+                    <mat-label>Contraseña</mat-label>
+                    <input formControlName="password" matInput [type]="hidePassword ? 'password' : 'text'"  required (keypress)="passwordKeyPress($event)">
+                    <button mat-icon-button matSuffix (click)="hidePassword = !hidePassword">
+                        <mat-icon>{{hidePassword ? 'visibility_off' : 'visibility'}}</mat-icon>
+                    </button>
+                    <mat-error *ngIf="error('password')">
+                        {{error('password')}}
+                    </mat-error>
+                </mat-form-field>
+
+                <ng-container *ngIf="errorMessage != ''">
+                    <span fxFlex="100" fxLayout="row" fxLayoutAlign="center" style="color: red;" >{{errorMessage}}</span>
+                </ng-container>
+
+                <button fxFlex="100" class="submit-button borderRadius" color="primary" mat-raised-button  type="submit">Ingresar</button>
+
+                <div fxFlex="100" fxLayout="row" fxLayoutAlign="center">
+                    <span class="mat-body-strong">
+                        <a routerLink="/auth/recuperar-password">Olvidé mi contraseña</a>
+                    </span>
+                </div>
+                
+                <div fxFlex="100" fxLayout="row" fxLayoutAlign="center">
+                    <span class="mat-body-strong">
+                        ¿Todavía no tenés cuenta? <a routerLink="/auth/register">Registrate</a>
+                    </span>
+                </div>
+
+            </form>
+        
+        </mat-card>
+    </contenido>
+</app-layout-general>

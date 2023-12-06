@@ -1,0 +1,19 @@
+<app-server-autocomplete
+    #autocomplete
+    [label]="label"
+    dataUrl="/google/places/buscar"
+    searchParam="text"
+    searchPrefix=""
+    [dataParams]="{sessionToken:sessionToken}"
+    [data]="data"
+    [value]="value"
+    [required]="required"
+    (optionSelected)="alElegirUbicacion()"
+    (focus)="onFocus()"
+    valueColumn="place_id"
+    labelColumn="description"
+    [preventCallWithEmptyValue]="true"
+    [customErrors]="true"
+    [error]="error"
+
+></app-server-autocomplete>

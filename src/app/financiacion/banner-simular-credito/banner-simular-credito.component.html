@@ -1,0 +1,53 @@
+<div class="cotizarCredito" [class.quitarMinHeight]="datosIncompletos">
+    <span class="tituloCotizar">¡Cotizá tu crédito prendario!</span>
+    <hr style="border: 2px solid #EDEDED;">
+    <ng-container *ngIf="!datosIncompletos">
+        <span class="subTituloCotizar">Escribe cuánto querés financiar</span>
+
+        <div fxLayout="row" class="montoCotizar">
+            <span class="montoCotizar monto" style="width:auto; padding-left: 10px;">$</span>
+            <input type="text" inputmode="numeric" 
+                class="montoCotizar monto" 
+                [(ngModel)]="monto" 
+                app-input-numeric 
+                maxlength="11"
+                style="padding-right: 25px;"
+            >
+        </div>
+    
+        <button 
+            [disabled]="showSpinner"
+            mat-raised-button 
+            class="calcular borderRadius" 
+            color="primary" 
+            (click)="obtenerCuotas()" 
+            >Calcular
+        </button>
+    
+        <mat-progress-spinner *ngIf="showSpinner" matSuffix mode="indeterminate" diameter="32" color="primary"></mat-progress-spinner>
+    
+        <div [class.transparente]="showSpinner">
+            <span class="textoCotizar" *ngIf="montoMaximo != null">
+                <p>NOSOTROS TE PODEMOS FINANCIAR HASTA:<span class="numeroResaltado">&nbsp; ${{montoMaximo}}</span> EN CUOTAS FIJAS, EN PESOS Y EN SISTEMA FRANCÉS.</p> 
+            </span>
+    
+            <div>
+                <div fxLayout="row wraps" *ngFor="let cuotas of cuotas" class="cuotas" >
+                    <p class="cuotas textoCuotasResaltado">{{cuotas.cuotas}} cuotas</p>
+                    <p class="cuotas textoCuotas">&nbsp; de ${{cuotas.montoMinimo}}</p>
+                    <br>
+                    <div class="linea"></div>
+                </div>
+            </div>
+        </div>
+    </ng-container>
+    
+    <div *ngIf="mostrarObtenerCredito" >
+        <button [disabled]="showSpinner" mat-raised-button class="obtenerCredito borderRadius" color="primary" (click)="clickObtenerCredito()">Obtené tu crédito</button>
+        <br>
+    </div>
+
+    <span class="textoAnalizar">
+        <p>El proceso de financiación queda sujeto a análisis del perfíl crediticio.</p> 
+    </span>
+</div>

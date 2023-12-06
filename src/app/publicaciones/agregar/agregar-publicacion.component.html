@@ -1,0 +1,262 @@
+<app-layout-general>
+    <contenido class="main" fxLayout.gt-md="row" fxLayoutAlign="center center">
+        <mat-card  class="card" fxLayout="column" fxLayoutAlign="start center">
+
+            <mat-card-title>
+                <h2>Publicá tu vehículo</h2>
+            </mat-card-title>
+
+            <mat-card-content class="content">
+                <form [formGroup]="form" fxLayout="row wrap" fxLayoutAlign="space-between" class="form" (ngSubmit)="submit()" [autocomplete]="false">
+
+                    <div *ngIf="id" class="data-info form-field">
+                        <span>Publicado por: </span>
+                        <psan>{{ publicacion?.usuario?.email }}</psan>
+                    </div>
+
+                    <div *ngIf="id" class="data-info form-field">
+                        <span>Última modificación: </span>
+                        <psan>{{ publicacion?.updated_at.substr(0,10).split('-').reverse().join('-') }}</psan>
+                    </div>
+
+                    <mat-form-field *ngIf="id" appearance="outline">
+                        <mat-label>Marca</mat-label>
+                        <input formControlName="marca" matInput readonly >
+                    </mat-form-field>
+
+                    <mat-form-field *ngIf="id" appearance="outline">
+                        <mat-label>Año</mat-label>
+                        <input formControlName="año" matInput readonly>
+                    </mat-form-field>
+
+                    <mat-form-field *ngIf="id" appearance="outline">
+                        <mat-label>Modelo</mat-label>
+                        <input formControlName="modelo" matInput readonly>
+                    </mat-form-field>
+
+                    <app-autocomplete-field
+                        *ngIf        = "!id"
+                        [form]       = "form"
+                        fieldName    = "brand_id"
+                        class        = "form-field"
+                        [required]   = "true"
+                        label        = "Marca"
+                        [data]       = "marcas"
+                        valueColumn  = "id"
+                        labelColumn  = "name"
+                        [error]      = "error('brand_id')"
+                    ></app-autocomplete-field>
+                    <app-autocomplete-field
+                        *ngIf        = "!id"
+                        [form]       = "form"
+                        fieldName    = "año"
+                        class        = "form-field"
+                        [required]   = "true"
+                        [disabled]   = "habilitarAnio"
+                        label        = "Año"
+                        [data]       = "years"
+                        valueColumn  = "id"
+                        labelColumn  = "name"
+                        [error]      = "error('año')"
+                    ></app-autocomplete-field>
+
+                    <app-server-autocomplete-field
+                        *ngIf="!id"
+
+                        #modelosField
+                        class="form-field"
+
+                        [form]       = "form"
+                        fieldName    = "codia"
+                        [required]   = "true"
+                        [disabled]   = "habilitarModelo"
+
+                        label        = "Modelo"
+                        searchParam  = "query_string"
+                        [dataParams] ="{ filtros :{price_at: form.get('año')?.value}}"
+                        [dataUrl]      = "'/vehiculos/marcas/' + form.get('brand_id')?.value + '/modelos'"
+                        valueColumn  = "codia"
+                        labelColumn  = "description"
+                        (fetchData)  = "onFetchModelos($event)"
+
+                    ></app-server-autocomplete-field>
+                    <mat-form-field appearance="outline">
+                        <mat-label>Color</mat-label>
+                        <mat-select formControlName="color" required disableOptionCentering panelClass="panelClass">
+                            <mat-option *ngFor="let row of colores" [value]="row.Nombre">{{row.Nombre}}</mat-option>
+                        </mat-select>
+                        <mat-error *ngIf="error('color')">{{ error('color') }}</mat-error>
+                    </mat-form-field>
+
+                    <mat-form-field appearance="outline">
+                        <mat-label>Condición</mat-label>
+                        <mat-select formControlName="condicion" required disableOptionCentering panelClass="panelClass">
+                            <mat-option value="Usado">Usado</mat-option>
+                            <mat-option value="0km">0 Km</mat-option>
+                        </mat-select>
+                        <mat-error *ngIf="error('condicion')">{{ error('condicion') }}</mat-error>
+                    </mat-form-field>
+
+                    <mat-form-field appearance="outline">
+                        <mat-label>Kilómetros</mat-label>
+                        <input formControlName="kilometros" matInput type="text" autocomplete="off" inputmode="numeric" app-input-numeric maxlength="14" (change)="validarKm()">
+                        <mat-error *ngIf="error('kilometros')">{{ error('kilometros')}}</mat-error>
+                    </mat-form-field>
+
+                    <mat-form-field appearance="outline">
+                        <mat-label>Puertas</mat-label>
+                            <mat-select formControlName="puertas" required (opened)="scrollDownDropBox()" disableOptionCentering panelClass="panelClass">
+                            <mat-option value="2">2</mat-option>
+                            <mat-option value="3">3</mat-option>
+                            <mat-option value="4">4</mat-option>
+                            <mat-option value="5">5</mat-option>
+                        </mat-select>
+                        <mat-error *ngIf="error('puertas')">{{ error('puertas') }}</mat-error>
+                    </mat-form-field>
+
+                    <mat-form-field appearance="outline">
+                        <mat-label>Combustible</mat-label>
+                        <mat-select formControlName="tipo_combustible_id" (opened)="scrollDownDropBox()" #selectElement disableOptionCentering panelClass="panelClass">
+                            <mat-option *ngFor="let row of combustibles" [value]="row.id">{{row.descripcion}}</mat-option>
+                        </mat-select>
+                        <mat-error *ngIf="error('tipo_combustible_id')">{{ error('tipo_combustible_id') }}</mat-error>
+                    </mat-form-field>
+
+                    <!-- div class="fileContainer color" style="margin-bottom: 15px;    margin-top: 3px;">
+                        <mat-icon >add_a_photo</mat-icon>
+                        <span style="    font-size: 16px;">Agregar fotos y/o videos </span>
+                    </div -->
+                    <publicaciones-archivos
+                        #archivos
+                        (archivosChange)="alCambiarArchivos($event)"
+                        [error]="error('multimedia')"
+                        [tamanioMaximoPorArchivo]="10"
+                        [tamanioMaximoTotal]="100"
+                        [tamanioMaximoTextoError]="'El archivo supera el tamaño máximo permitido (10 MB). Para poder publicar elimínelo y, si lo desea, adjunte uno que cumpla con lo especificado.'"
+                        (errorChange)="onArchivosErrorChange()"
+                    ></publicaciones-archivos>
+
+                    <mat-form-field class="form-field-full" appearance="outline">
+                        <mat-label>Descripción</mat-label>
+                        <textarea style="min-height:80px" formControlName="descripcion" matInput></textarea>
+                    </mat-form-field>
+
+                    <ng-container *ngIf="!editPhone">
+                        <mat-form-field  appearance="outline">
+                            <mat-label>Teléfono</mat-label>
+                            <input formControlName="telefono" matInput readonly>
+                        </mat-form-field>
+                    </ng-container>
+
+                    <ng-container *ngIf="editPhone" >
+                        <mat-form-field  appearance="outline" class="prefixed">
+                            <mat-label>Teléfono</mat-label>
+                            <span class="custom-prefix">+549 &nbsp;</span>
+                            <input formControlName="telefono" matInput type="number" required>
+                            <mat-error *ngIf="error('telefono')">{{ error('telefono') }}</mat-error>
+                        </mat-form-field>
+                    </ng-container>
+
+                    <mat-form-field appearance="outline">
+                        <mat-label>Dominio</mat-label>
+                        <input formControlName="dominio" matInput required maxlength="7" autocomplete="off" (keydown)="dominioKeydown($event)">
+                        <mat-hint *ngIf="true">Este dato no será visible en la publicación</mat-hint>
+                        <mat-error *ngIf="error('dominio')">Obligatorio</mat-error>
+                    </mat-form-field>
+
+                    <app-direccion 
+                        [form]="form"
+                        (alElegirDireccionIncompleta)="alElegirDireccionIncompleta()"
+                    ></app-direccion>
+
+                    <div fxFlex="100" fxFlex.gt-md="48" fxLayoutAlign="space-between stretch" fxLayout="column"
+                        [class.precio-sugerido]="(error('precio') !== 'Obligatorio' && error('precio')) || precioSugeridoNoDisponible || precioSugerido ">
+                        <div fxFlex="100" fxLayoutAlign="space-between">
+                            <mat-form-field fxFlex="28"  appearance="outline">
+                                <mat-select formControlName="moneda" required (selectionChange)="cambioMoneda()">
+                                    <mat-option value="Pesos">$</mat-option>
+                                    <mat-option value="Dólares">U$S</mat-option>
+                                </mat-select>
+                                <mat-error *ngIf="error('moneda')">{{ error('moneda') }}</mat-error>
+                            </mat-form-field>
+                            <mat-form-field fxFlex="68"  appearance="outline">
+                                <mat-label>Precio de venta</mat-label>
+                                <input required formControlName="precio" matInput type="text" inputmode="numeric" autocomplete="off" app-input-numeric maxlength="11" (change)="validarPrecio()">
+                                <mat-error *ngIf="this.form.get('precio')?.errors?.max">Precio excedido</mat-error>
+                                <mat-error *ngIf="error('precio')">{{ error('precio') }}</mat-error>
+                                <mat-hint *ngIf="precioSugerido || precioSugeridoNoDisponible">
+                                    <ng-container *ngIf="precioSugerido && !esParticular">Precio sugerido: {{simboloMoneda}}{{precioSugerido}}</ng-container>
+                                    <ng-container *ngIf="precioSugeridoNoDisponible && !esParticular">Precio sugerido no disponible</ng-container>
+                                </mat-hint>
+
+                            </mat-form-field>
+                        </div>
+                    </div>
+
+                    
+
+                    <ng-container *ngIf="mostrarInfoSubasta">
+                        <span class="tituloSubasta">Subasta</span>
+
+                        <mat-slide-toggle fxFlex="100" (change)="incluirEnSubastaChange()" formControlName="incluirEnSubasta" [labelPosition]="'before'" [disabled]="!puedeModificarInscripcion">Incluir en Subasta</mat-slide-toggle>
+                        <mat-error *ngIf="mostarErrorFinanciacion" style="font-size: 12px;">Los vehículos que se incluyen en subastas no pueden ser financiados.</mat-error>
+                        <div  fxLayout="column" style="margin-top: 20px;" fxFlex="100">
+                            <div fxLayout="row">
+                                <p>Podés sumar vehiculos hasta el&nbsp;</p>
+                                <p> {{fechaFinInscripcion}}</p>
+                            </div>
+
+                            <div fxLayout="row" fxFlex="100">
+                                <p>Ofertas:&nbsp;</p>
+                                <p> {{fechaInicioOfertas}}</p>
+                                <p>&nbsp;al&nbsp;</p>
+                                <p> {{fechaFinOfertas}}</p>
+                            </div>
+                        </div>
+
+                        <div  fxFlex="100"  fxLayoutAlign="space-between stretch" fxLayout="column" >
+                            <div fxFlex="100" fxLayoutAlign="space-between">
+                                <mat-form-field fxFlex="34"  appearance="outline">
+                                    <mat-label>Precio base</mat-label>
+                                    <input required matInput
+                                        formControlName="precio_base"
+                                        type="text"
+                                        inputmode="numeric"
+                                        autocomplete="off"
+                                        app-input-numeric
+                                        maxlength="11"
+                                        (change)="validarPrecio()"
+                                    >
+                                    <mat-error *ngIf="this.form.get('precio_base')?.errors?.max">Precio excedido</mat-error>
+                                    <mat-error *ngIf="error('precio_base')">{{ error('precio_base') }}</mat-error>
+                                </mat-form-field>
+                            </div>
+                        </div>
+
+                    </ng-container>
+
+                    <ng-container *ngIf="mostrarFinanciacion">
+                        <span class="tituloFinanciacion">Financiación del vehículo</span>
+                        <mat-slide-toggle  fxFlex="100" [labelPosition]="'before'" (toggleChange)="verificarAgencia()"formControlName="financiacion" >Posibilidad de vender con financiación
+                            <img src="assets/images/altaFinanciacion.svg" class="imagenFinanciable">
+                        </mat-slide-toggle>
+                        <mat-error *ngIf="mostarErrorFinanciacion" style="font-size: 12px;">Los vehículos que se incluyen en subastas no pueden ser financiados.</mat-error>
+                    </ng-container>
+
+                    <div *ngIf="mostrarMensajeTelefonoAgencia" fxFlex="100" fxLayout="row" fxLayoutAlign="center">
+                        <span class="mat-body-strong" style="color: red; text-align: center;">
+                            El usuario no tiene un teléfono de contacto, no podrá realizar la carga de la publicación
+                        </span>
+                    </div>
+
+                    <button #submitButton [disabled]="!enabledSubmit" class="submit-button button borderRadius" mat-raised-button  type="submit" color="primary" >
+                        <span *ngIf="!id">Publicar</span>
+                        <span *ngIf="id">Actualizar</span>
+                    </button>
+
+                </form>
+            </mat-card-content>
+
+        </mat-card>
+    </contenido>
+</app-layout-general>

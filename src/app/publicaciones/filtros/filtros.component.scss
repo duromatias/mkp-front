@@ -1,0 +1,30 @@
+p {
+    font-weight: 500;
+    color: rgba(0, 0, 0, 0.87);
+}
+
+mat-radio-group {
+    margin-bottom: 10px;
+}
+
+.divFiltrosConSwitch{
+    display: flex;
+    flex-direction: column;
+    background: #DADADA;
+    border-radius: 10px;
+    padding: 15px;
+    font-size: 16px;
+    font-weight: 500;
+    gap : 15px;
+    margin-bottom: 16px;
+
+    ::ng-deep .mat-slide-toggle-bar {
+        background-color: #21212114;
+        
+    }
+    ::ng-deep .mat-slide-toggle-label{
+        display: flex;
+        justify-content: space-between;
+    }
+
+}

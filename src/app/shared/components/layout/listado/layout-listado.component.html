@@ -1,0 +1,62 @@
+<app-layout-general 
+    #layout 
+    [mostrarPanelSecundario]="mostrarPanelSecundario" 
+    [titulo]="titulo" 
+    [redireccionarAlbuscar]="redireccionarAlbuscar" 
+    (eventoBusqueda)="buscarEnListado($event)"
+>
+    <contenido-superior>
+        <ng-content select="contenido-superior"></ng-content>
+    </contenido-superior>
+    <panel-secundario>
+        <div fxLayout="column" fxLayoutAlign="start stretch">
+            <mat-toolbar *ngIf="isMobile" color="primary">Filtros</mat-toolbar>
+            <div [ngStyle]="{ 'top.px' : 148 - topFiltros + topComponent, 'bottom.px' : 16 + bottomFiltros }" class="filtros-wrapper" style="padding:16px">
+                    <ng-scrollbar>
+                        <div #divFiltros>
+                            <ng-content  select="filtros" ></ng-content>
+                        </div>
+                    </ng-scrollbar>
+                
+                <div #divBotones class="botones" [ngStyle]="{'top.px' : topBotones}">
+
+                    <mat-divider></mat-divider><br />
+                    
+                    <div fxLayout="row" fxLayoutAlign="end start" fxLayoutGap="15px">
+                        <button color="primary" mobile mat-flat-button class="borderRadius" toggler-panel-secundario  (click)="layoutGeneral.layout.getPanelSecundario().toggle()">Cerrar</button>
+                        <button color="primary" mat-flat-button class="borderRadius"   (click)="clickClearFilters()">Limpiar</button>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </panel-secundario>
+    <top-contenido>
+        <ng-content select="top-contenido"></ng-content>
+    </top-contenido>
+    <contenido>
+        <div *ngIf="isMobile" class="ordenar-y-filtrar">
+            <div *ngIf="ordenarOpciones.length > 0" class="buton-container">
+                <button mat-button class="borderRadius" [matMenuTriggerFor]="menu">
+                    <img src="assets/images/header/ordenar-icon-mobile.svg" alt="Icono ordenar">
+                    <span *ngIf="ordenarText === ''">Ordenar</span>
+                    <span *ngIf="ordenarText !== ''">{{ordenarText}}</span>
+                </button>
+            </div>
+            <mat-divider *ngIf="ordenarOpciones.length > 0" [vertical]="true"></mat-divider>
+            <div class="buton-container">
+                <button mat-button class="borderRadius" (click)="layoutGeneral.layout.getPanelSecundario().toggle()">
+                    <img src="assets/images/header/filtros-icon-mobile.svg" alt="Icono Filtrar">
+                    <span>Filtrar</span>
+                </button>
+            </div> 
+        </div>
+        <ng-content select="contenido"></ng-content>
+    </contenido>
+
+    <mat-menu #menu="matMenu">
+        <ng-template matMenuContent let-data="data">
+            <button mat-menu-item *ngFor="let opcion of ordenarOpciones; let i = index" (click)="selectOrdenarOpcion(i)">{{opcion.text}}</button>
+        </ng-template>
+    </mat-menu>
+</app-layout-general>

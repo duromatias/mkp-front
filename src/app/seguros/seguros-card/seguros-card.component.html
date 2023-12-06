@@ -1,0 +1,31 @@
+<mat-card class="card-seguro">
+    <div  class="seguro" [ngClass]="{'seguro-emision-inmediata': seguro.emisionInmediata}">
+        <div class="logo-seguro">
+            <div class="logo" [ngStyle]="{'background-image' : 'url(' + seguro.urlImagen + ')'}"></div>
+        </div>
+        <div class="nombre-seguro">
+            <span [ngClass]="{'color-texto-seguro-emision-inmediata' : seguro.emisionInmediata}">{{seguro.nombre}}</span>
+        </div>
+    </div>
+    <div *ngIf="seguro.valorMes" class="info-seguro">
+        <div class="icono-promocional">
+            <img *ngIf="seguro.emisionInmediata" src="/assets/images/seguros/icono-seguro-promocional.svg" alt="Icono seguro promocional">
+        </div>
+        <div class="texto-promocional">
+            <span *ngIf="seguro.emisionInmediata">Valor Promocional</span>
+        </div>
+        <div class="valor-mes">
+            <span class="moneda">$</span>
+            <span class="monto">{{utils.formatNumero(seguro.valorMes.toString())}}</span>
+            <span class="mes">/mes</span>
+        </div>
+        <div class="contenedor-boton-detalles">
+            <div class="boton-detalles" [ngClass]="{'seguro-emision-inmediata': seguro.emisionInmediata}">
+                <span>+ Detalles</span>
+            </div>
+        </div>
+    </div>
+    <div *ngIf="!seguro.valorMes" class="sin-info-seguro">
+        <span>No disponible</span>
+    </div>
+</mat-card>

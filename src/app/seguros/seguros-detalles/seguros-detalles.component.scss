@@ -1,0 +1,171 @@
+@import "/src/assets/scss/variables.scss";
+
+.main {
+    min-height: calc(100vh - 103px);
+    padding: 16px;
+    @media(max-width: $responsive-mobile){
+        padding:0;
+    }
+
+    .card {
+        padding: 32px;
+        margin: 20px;
+        width: 100%;
+        max-width: 691px;
+        padding-top: 53px;
+        padding-bottom: 47px;
+        box-sizing: border-box;
+
+        @media(max-width: $responsive-mobile){
+            padding: 24px 16px;
+            padding-bottom: 55px;
+            margin: 0;
+            box-shadow: none;
+            background-color: #fafafa;
+        }
+
+        img{
+            width: 300px;
+            height: 100px;
+        }
+
+        .cobertura{
+            text-align: center;
+
+            .texto{
+                font-weight: 600;
+                font-size: 20px;
+                line-height: 27px;
+                color: #696969;
+            }
+
+            .tipo{
+                font-weight: 800;
+                font-size: 20px;
+                line-height: 27px;
+                color: #696969;
+            }
+        }
+
+        .valor{
+            max-width: 400px;
+            width: 100%;
+
+            .valor-mes{
+                max-width: 400px;
+                width: 100%;
+                height: 100px;
+                background: #F5F5F5;
+                border-top-left-radius: 12.5px;
+                border-top-right-radius: 12.5px;
+
+                .valor-mes-monto{
+                    font-weight: 800;
+                    font-size: 26px;
+                    line-height: 27px;
+                    color: #696969;
+                }
+
+                .valor-mes-intervalo{
+                    font-weight: 400;
+                    font-size: 16px;
+                    line-height: 27px;
+                    color: #696969;
+                }
+            }
+
+            .valor-asegurado{
+                max-width: 400px;
+                width: 100%;
+                height: 50px;
+                background: #D1D1D1;
+                border-bottom-left-radius: 12.5px;
+                border-bottom-right-radius: 12.5px;
+
+                .valor-asegurado-monto{
+                    font-weight: 700;
+                    font-size: 20px;
+                    line-height: 27.28px;  
+                    color: #696969;
+                }
+
+                .valor-asegurado-intervalo{
+                    font-weight: 600;
+                    font-size: 12.5px;
+                    line-height: 17px;
+                    color: #696969;
+                }
+            }
+        }
+
+        .beneficios{
+            max-width: 400px;
+            width: 100%;
+
+            .beneficios-titulo{
+                font-weight: 800;
+                font-size: 17.5px;
+                line-height: 24px;
+                color: #696969;
+                text-align: center;
+            }
+
+            .division{
+                max-width: 400px;
+                width: 100%;
+                height: 1.25px;
+                background: #E6E6E6;
+            }
+
+            img{
+                width: 25px;
+                height: 25px;
+            }
+
+            .beneficio{
+                margin-left: 10px;
+                font-weight: 600;
+                font-size: 17.5px;
+                line-height: 24px;
+                color: #696969;
+            }
+        }
+
+        .botones{
+            margin-top: 30px;
+            margin-bottom: 30px;
+
+            display: flex;
+            flex-direction: row;
+            gap: 20px;
+
+            @media(max-width: 280px){
+                flex-direction: column;
+            }
+
+            .volver-button{
+                width: 170px;
+                height: 65px;
+                background: #E6E6E6;
+                box-shadow: 0px 4.2875px 4.2875px rgba(0, 0, 0, 0.25);
+                border-radius: 13.9344px;
+                color: #0A3066;
+                font-weight: 700;
+                font-size: 21.4375px;
+                line-height: 27px;
+            }
+
+            .quiero-button{
+                width: 170px;
+                height: 65px;
+                background: #0A3066;
+                box-shadow: 0px 4.2875px 4.2875px rgba(0, 0, 0, 0.25);
+                border-radius: 13.9344px;
+                color: white;
+                font-weight: 700;
+                font-size: 21.4375px;
+                line-height: 27px;
+            }
+        }
+    }
+}

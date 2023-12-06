@@ -1,0 +1,153 @@
+<app-modal
+    *ngIf="mostrarCalificarComprador && esAgencia"
+    title="¡Hay una oferta ganadora!"
+    textButton="Finalizar venta"
+    (clickBoton)="activarVentaRealizada()"
+    (closeBoton)="cerrarModal()"
+    >
+    <contenido >
+        <p class="tituloCompradorYvendedor">Información del comprador</p>
+        <p style="margin-left: 15px;">Nombre</p>
+        <p class="infoCompradorYvendedor">{{publicacion.ofertas_ultima_oferta.usuario.onboarding_user.user_personal_data.first_name}} {{publicacion.ofertas_ultima_oferta.usuario.onboarding_user.user_personal_data.last_name}}</p>
+        <p style="margin-left: 15px;">Contacto</p>
+        <p class="infoCompradorYvendedor">{{publicacion.ofertas_ultima_oferta.usuario.telefonoContacto}}</p>
+        <p class="infoCompradorYvendedor">
+            <a href="mailto:{{publicacion.ofertas_ultima_oferta.usuario.email}}">{{publicacion.ofertas_ultima_oferta.usuario.email}}</a></p>
+        <p style="margin-left: 15px;">Monto ofertado</p>
+        <div class="montoOfertado">{{simboloMoneda}}{{precio}}</div>
+    </contenido>
+    <botones>
+        <a  mat-stroked-button color="primary" class="button borderRadius" [href]="linkWsp" target="_blank">
+            <mat-icon style="margin-right:10px">whatsapp</mat-icon>
+            <span>Contactar</span>
+        </a>
+    </botones>
+</app-modal>
+
+<app-modal
+    *ngIf="mostrarCalificar && esComprador"
+    title="Oferta ganadora"
+    textButton="Calificar servicio"
+    (clickBoton)="activarVentaRealizada()"
+    (closeBoton)="cerrarModal()"
+    >
+    <contenido >
+        <p class="tituloCompradorYvendedor">Información del vendedor</p>
+        <div fxLayout="row" style="margin-left: 15px;">
+            <b style="color:rgba(0, 0, 0, 0.87);">Agencia:&nbsp;</b>
+            <p>{{publicacion.nombreVendedor}}</p>
+        </div>
+            <p style="margin-left: 15px;">Nombre</p>
+            <p class="infoCompradorYvendedor">{{publicacion.usuario.onboarding_user.user_personal_data.first_name}} {{publicacion.usuario.onboarding_user.user_personal_data.last_name}}</p>
+            <p style="margin-left: 15px;">Contacto</p>
+            <p class="infoCompradorYvendedor">{{telefono}}</p>
+            <p class="infoCompradorYvendedor">
+                <a href="mailto:{{publicacion.usuario.email}}">{{publicacion.usuario.email}}</a></p>
+            <p style="margin-left: 15px;">Monto ofertado</p>
+        <div class="montoOfertado">{{simboloMoneda}}{{precio}}</div>
+    </contenido>
+    <botones>
+        <a  mat-stroked-button color="primary" class="button" [href]="linkWsp" target="_blank">
+            <mat-icon style="margin-right:10px">whatsapp</mat-icon>
+            <span>Contactar</span>
+        </a>
+    </botones>
+</app-modal>
+
+<app-modal
+    *ngIf="mostrarVentaRealizada"
+    title="Venta"
+    textButton="Si"
+    (clickBoton)="activarOfertaGanadora()"
+    (closeBoton)="cerrarModal()"
+    >
+    <contenido >
+        <p class="tituloContenido">¿Pudiste realizar la venta?</p>
+        <p class="comentarios">Comentanos si la operación pudo llevarse a cabo</p>
+    </contenido>
+    <botones>
+        <button mat-stroked-button color="primary" (click)="cerrarModal()" class="button borderRadius">No</button>
+    </botones>
+</app-modal>
+
+<app-modal
+    *ngIf="mostrarOfertaGanadora && esAgencia"
+    title="Califica al comprador"
+    textButton="Observaciones"
+    (clickBoton)="activarObservaciones()"
+    (closeBoton)="cerrarModal()"
+    >
+    <contenido >
+        <p class="tituloContenido">¿Qué te pareció la experiencia?</p>
+        <p class="comentarios">Compartinos tu opinión para seguir mejorando</p>
+        <div xLayout="row" style="gap: 8px; margin-left: 15px;">
+            <button  class="estrellas" *ngFor="let puntos of puntosPosibles" (click)="cambiarPuntuacion(puntos)">
+                <mat-icon *ngIf="puntuacion >= puntos" class="meInteresa mat-icon meInteresaSelected" >star</mat-icon>
+                <mat-icon *ngIf="!(puntuacion >= puntos)" class="meInteresa">star_border</mat-icon>
+            </button>
+        </div>
+    </contenido>
+</app-modal>
+
+<app-modal
+    *ngIf="mostrarOfertaGanadora && esComprador"
+    title="Servicio"
+    textButton="Observaciones"
+    (clickBoton)="activarObservaciones()"
+    (closeBoton)="cerrarModal()"
+    >
+    <contenido >
+        <p class="tituloContenido">¿Qué te pareció la experiencia?</p>
+        <p class="comentarios">Compartinos tu opinión para seguir mejorando</p>
+        <div xLayout="row" style="gap: 8px; margin-left: 15px;">
+            <button  class="estrellas" *ngFor="let puntos of puntosPosibles" (click)="cambiarPuntuacion(puntos)">
+                <mat-icon *ngIf="puntuacion >= puntos" class="meInteresa mat-icon meInteresaSelected" >star</mat-icon>
+                <mat-icon *ngIf="!(puntuacion >= puntos)" class="meInteresa">star_border</mat-icon>
+            </button>
+        </div>
+    </contenido>
+</app-modal>
+
+<app-modal
+    *ngIf="mostrarObservaciones"
+    title="Observaciones"
+    textButton="¡Muchas gracias!"
+    (clickBoton)="enviarObservaciones()"
+    (closeBoton)="cerrarModal()"
+    >
+    <contenido [formGroup]="form" fxLayout="column">
+        <p class="tituloContenido">Tus comentarios son bienvenidos</p>
+        <p class="comentarios">Compartinos tu opinión para seguir mejorando</p>
+        <mat-form-field fxFlex="100" appearance="outline" style="margin-left: 15px;">
+            <mat-label>Observaciones</mat-label>
+            <textarea matInput type="text" formControlName="observaciones" class="alturaCajaTexto"></textarea>
+            <mat-error *ngIf="error('observaciones')">{{error('observaciones') }}</mat-error>
+        </mat-form-field>
+    </contenido>
+</app-modal>
+
+<app-modal
+    *ngIf="mostrarPublicacionSinOfertas"
+    title="Publicación sin ofertas"
+    textButton="Finalizar"
+    (clickBoton)="cerrarPublicacion()"
+    (closeBoton)="cerrarPublicacion()"
+    >
+    <contenido >
+        <p class="tituloContenido">Información de la venta</p>
+        <p class="comentarios">Su publicación no ha recibido ninguna oferta que supere el valor esperado</p>
+    </contenido>
+</app-modal>
+
+<app-modal
+    *ngIf="mostrarOfertaSuperada"
+    title="Tu oferta fue superada"
+    textButton="Finalizar"
+    (clickBoton)="cerrarPublicacion()"
+    (closeBoton)="cerrarModal()"
+    >
+    <contenido >
+        <p class="tituloContenido">Información de la compra</p>
+        <p class="comentarios">Tu oferta fue superada por otros oferentes</p>
+    </contenido>
+</app-modal>

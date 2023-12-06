@@ -1,0 +1,74 @@
+<mat-card  [class.example-card-opacity]="terminada"
+[class.example-card]="!terminada" >
+    <div class="top-controls">
+        <publicaciones-etiqueta *ngIf="es_oportunidad && showOportunidad && !es_subasta && !financiacion"
+            [texto]="'Oportunidad'"
+            [color]="'color_oportunidad'"
+        ></publicaciones-etiqueta>
+        <publicaciones-etiqueta *ngIf="financiacion"
+            [icono]="'iconoFinanciacion'"
+            [texto]="'Financiación'"
+            [color]="'color_financiacion'"
+        ></publicaciones-etiqueta>
+        <publicaciones-etiqueta *ngIf="es_subasta && !terminada && !ganando && !perdiendo"
+            [icono]="'iconoSubasta'"
+            [texto]="'En subasta'"
+            [color]="'color_primario'"
+        ></publicaciones-etiqueta>
+        <publicaciones-etiqueta *ngIf="es_subasta && terminada"
+            [icono]="'iconoSubasta'"
+            [texto]="'Terminada'"
+            [color]="'color_terminada'"
+        ></publicaciones-etiqueta>
+        <publicaciones-etiqueta *ngIf="es_subasta && !terminada && ganando"
+            [icono]="'iconoSubasta'"
+            [texto]="'Ganando'"
+            [color]="'color_ganando'"
+        ></publicaciones-etiqueta>
+        <publicaciones-etiqueta *ngIf="es_subasta && !terminada && perdiendo"
+            [icono]="'iconoSubasta'"
+            [texto]="'Perdiendo'"
+            [color]="'color_perdiendo'"
+        ></publicaciones-etiqueta>
+        <span style="flex: 1"></span>
+        <button class="menu-button" *ngIf="menuItems.length > 0 && !terminada || userService.esAdministrador()" mat-icon-button (click)="clickMenuButton($event)">
+            <mat-icon class="menu-button-icon">more_vert</mat-icon>
+        </button>
+    </div>
+    <mat-card-content #myCard (click)="addClick()">
+        <carousel [items]="multimedia" [showArrows]="mostrarFlechasCarousel" (mouseover)="mouseOverCarousel($event)" [atributoUrl]="'urlCard'"></carousel>
+        <div *ngIf="es_subasta" class="lineaDivisoria"></div>
+        <span *ngIf="!es_subasta" class="contenido precio">{{simboloMoneda}}{{precio}}</span>
+        <div *ngIf="es_subasta" fxLayout="row" fxLayoutAlign="space-between" style="padding: 16px;">
+            <div *ngIf="!publicacion.ofertas_ultima_oferta" class="precioBase">Precio base: {{simboloMoneda}}{{publicacion.precio_base}}</div>
+            <div *ngIf="publicacion.ofertas_ultima_oferta" class="precioBase">Puja Ganadora: {{simboloMoneda}}{{utils.formatNumero((publicacion.ofertas_ultima_oferta.precio_ofertado).toString())}}</div>
+            <mat-icon *ngIf="!publicacion.favorito && (user.id !== publicacion.usuario_id)" (click)="guardarMeInteresa($event)" class="meInteresa">star_border</mat-icon>
+            <mat-icon *ngIf="publicacion.favorito  && (user.id !== publicacion.usuario_id)" (click)="guardarMeInteresa($event)" class="meInteresa meInteresaSelected">star</mat-icon>
+        </div>
+        <span *ngIf="kilometros === ''" class="contenido texto">{{anio}} | 0 km</span>
+        <span *ngIf="kilometros !== ''" class="contenido texto">{{anio}} | {{kilometros}} km</span>
+        <span class="contenido texto">{{marca}} {{modelo}}</span>
+        <span class="contenido texto textoLocation" style="margin-bottom: 20px;">
+            <div class="divLocation">
+                <mat-icon class="location">location_on</mat-icon>
+
+            </div>
+            {{ubicacion}}</span> <!--tenia 4px Margin bottom-->
+    </mat-card-content>
+    <div *ngIf="showMenu" class="menuCard" (click)="clickMenuBackdrop($event)">
+        <button *ngFor="let menuItem of menuItems" class="buttonMenuCard"
+        (mouseDown)="mouseDownOption($event)" (click)="clickOption($event,menuItem.clickFn(publicacion))"
+        >
+            <mat-icon *ngIf="menuItem.icon" >{{menuItem.icon}}</mat-icon>
+            <span *ngIf="menuItem.icon" >
+                {{menuItem.text}}
+            </span>
+            <span *ngIf="!menuItem.icon" >
+                {{menuItem.text}}
+            </span>
+        </button>
+    </div>
+</mat-card>
+<mat-menu #menu>
+    <button *ngFor="let menuItem of menuItems" mat-menu-item (click)="menuItem.click(publicacion)">{{menuItem.text}}</button>
+</mat-menu>

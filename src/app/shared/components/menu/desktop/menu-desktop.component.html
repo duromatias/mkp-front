@@ -1,0 +1,121 @@
+<mat-toolbar>
+    <div class="container">
+        <a class="logo" routerLink="/">
+            <img src="/assets/images/header/logo-deusados-desktop.svg" alt="Logo de Usados">
+        </a>
+
+        <div></div>
+
+        <div class="accesos-y-menu" >
+            <ng-container *ngFor="let acceso of accesos" >
+                <ng-container *ngIf="acceso.descripcion !== 'Mis Datos' && !acceso.grupo">
+                    <a  *ngIf="obtenerSubMenus(acceso).length === 0 && acceso.ruta !== linkWhatsappCotizarSeguro" 
+                        [routerLink]="acceso.ruta"
+                        class="accesoToolbar"
+                        >{{acceso.descripcion}}
+                        <div *ngIf="acceso.descripcion === 'Notificaciones' && consultasPendientes > 0">
+                            <p>
+                                <span matBadge={{consultasPendientes}} 
+                                style="margin-left :15px"
+                                matBadgeColor="warn"
+                                matBadgePosition="below after"
+                                ></span>
+                            </p>
+                        </div>
+                    </a>
+
+    
+                    <a 
+                        *ngIf="obtenerSubMenus(acceso).length > 0" 
+                        [matMenuTriggerFor]="menu"
+                        class="accesoToolbar"
+                        >{{acceso.descripcion}}
+                        <mat-icon>keyboard_arrow_down</mat-icon>
+                    </a>
+                    <mat-menu #menu="matMenu">
+                        <button *ngFor="let access of obtenerSubMenus(acceso)" [routerLink]="access.ruta" mat-menu-item >
+                            {{access.descripcion}}
+                        </button>
+                    </mat-menu>
+                </ng-container>
+            </ng-container>
+            <div *ngIf="usuarioLogueado" style="display: flex; cursor: pointer;"  [matMenuTriggerFor]="menu" class="logueado">
+                <div class="avatarContainer">
+                    <img [src]="getProfilePicture()" alt="avatar usuario" class="avatar">
+                </div>
+                <div class="datosContainer" style="color: white;">
+                    <span class="textoChico">{{textoChico}}</span>
+                    <div style="display: flex;">
+                        <span class="textoGrande" >{{textoGrande}}</span>
+                        <mat-icon matListIcon >keyboard_arrow_down</mat-icon>
+                    </div>
+                    <span class="textoChico" style="opacity: 60%;">{{emailUsuario}}</span>
+                </div>
+                <mat-menu #menu="matMenu">
+                    <button mat-menu-item class="userOption" routerLink="/usuario/mis-datos">Mi Cuenta <mat-icon style="margin-right: 0px;">account_circle</mat-icon></button>
+    
+                    <button mat-menu-item class="userOption" (click)="clickLogout()">Cerrar sesión <mat-icon style="margin-right: 0px;">logout</mat-icon></button>
+                </mat-menu>
+            </div>
+            <div *ngIf="!usuarioLogueado" fxLayout="row" class="deslogueado">
+                <a routerLink="/auth/register">
+                    <button mat-flat-button class="button borderRadius button-registrate">Registrate</button>
+                </a>
+                <a routerLink="/auth/login">
+                    <button mat-button color="primary" class="button borderRadius button-ingresa">Ingresá</button>
+                </a>
+            </div>
+        
+        </div>
+
+        
+    </div>
+
+    <ng-container *ngIf="false">
+
+        <div lienzo fxLayout="row">
+            <img  class="logo" src="assets/images/logo_fondo_azul_horizontal.svg" alt="Decreditos logo" routerLink="/" style="margin-right: 25px;">
+
+            <span class="spacer"></span>
+
+
+            <ng-container *ngFor="let acceso of accesos" >
+                <a *ngIf="acceso.descripcion !== 'Mis Datos'" [routerLink]="acceso.ruta" style="margin-right: 25px;" class="accesoToolbar">
+                    {{acceso.descripcion}}
+                </a>
+            </ng-container>
+
+            <app-networks style="margin-right: 25px; transform:scale(0.75);"></app-networks>
+
+            <div *ngIf="!usuarioLogueado" fxLayout="row" class="drawer-content botonesInicioRegistro">
+                <a routerLink="/auth/register">
+                    <button mat-flat-button style="color: white; background: rgba(255, 255, 255, 0.5);font-size: 16px; width: 123px; height: 43px;">Registrate</button>
+                </a>
+                <a routerLink="/auth/login">
+                    <button mat-button color="primary" style="background: white;font-size: 16px; margin-left: 15px; width:111px; height: 43px;">Ingresá</button>
+                </a>
+            </div>
+
+            <div *ngIf="usuarioLogueado" style="display: flex; cursor: pointer;"  [matMenuTriggerFor]="menu">
+                <div class="avatarContainer">
+                    <img [src]="getProfilePicture()" alt="avatar usuario" class="avatar">
+                </div>
+                <div class="datosContainer">
+                    <span class="textoChico">{{textoChico}}</span>
+                    <div style="display: flex;">
+                        <span class="textoGrande" >{{textoGrande}}</span>
+                        <mat-icon matListIcon >keyboard_arrow_down</mat-icon>
+                    </div>
+                    <span class="textoChico" style="opacity: 60%;">{{emailUsuario}}</span>
+                </div>
+                <mat-menu #menu="matMenu">
+                    <button mat-menu-item class="userOption" routerLink="/usuario/mis-datos">Mis Datos <mat-icon style="margin-right: 0px;">account_circle</mat-icon></button>
+
+                    <button mat-menu-item class="userOption" (click)="clickLogout()">Cerrar sesión <mat-icon style="margin-right: 0px;">logout</mat-icon></button>
+                </mat-menu>
+            </div>
+
+        </div>
+    </ng-container>
+
+</mat-toolbar>

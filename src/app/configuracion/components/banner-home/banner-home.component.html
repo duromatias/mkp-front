@@ -1,0 +1,25 @@
+<app-layout-general [dataSource]="dataSource" >
+    <contenido>
+
+        <mat-card-title >
+            <h2 style=" margin-left: 20px; margin-top: 20px;flex: auto;">Carrusel del Home</h2>
+        </mat-card-title>
+
+        <div style="min-height:900px">
+            <div class="table-sticky-wrapper">
+                <app-table #table [dataSource]="dataSource"></app-table>
+            </div>
+            <mat-paginator
+                itemsPerPageLabel='hola'
+                [length]="dataSource.total"
+                [pageSize]="dataSource.limit"
+                [pageIndex]="dataSource.pageIndex"
+                [pageSizeOptions]="[10 , 20, 30]"
+                (page)="dataSource.setPageIndex($event.pageIndex, $event.pageSize)"
+                >
+            </mat-paginator>
+        </div>
+
+
+    </contenido>
+</app-layout-general>

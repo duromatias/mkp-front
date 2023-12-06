@@ -1,0 +1,76 @@
+.tituloCompradorYvendedor{
+    margin-left: 15px;
+    font-size: 20px;
+    font-weight: 500;
+    line-height: 24px;
+    letter-spacing: 0.15000000596046448px;
+    text-align: left;
+    font-family: 'Poppins';
+    font-style: normal;
+
+}
+
+.infoCompradorYvendedor{
+    color: rgba(0, 0, 0, 0.6);
+    margin-left: 15px;
+}
+
+.montoOfertado{
+    margin-left: 15px;
+    display: flex;
+    height: 44px;
+    border-color: #f5365c;
+    border-width: 1px;
+    border-radius: 3px;
+    border-style: solid;
+    font-size: 16px;
+    letter-spacing: 0.15px;
+    color: #f5365c;
+    flex-direction: row;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+    padding: 0px 16px;
+    width: 100px;
+}
+
+.tituloContenido{
+    margin-left: 15px;
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 24px;
+    letter-spacing: 0.15px;
+    color: rgba(0, 0, 0, 0.87);
+}
+
+.comentarios{
+    margin-left: 15px;
+    margin-right: 20px;
+    color: rgba(0, 0, 0, 0.6);
+}
+
+.alturaCajaTexto{
+    min-height: 65px;
+}
+
+.estrellas{
+    margin-right: 5px;
+    border: hidden;
+    background: #FFFFFF;
+}
+
+.meInteresa{
+    margin-top: 6px;
+    color: rgba(208, 208, 208, 1);
+    width: 52px;
+    height: 52px;
+    font-size: 52px;
+}
+
+.meInteresaSelected{
+    background:  linear-gradient(180deg, #FFEC3E 32.48%, rgba(252, 245, 183, 0) 155.88%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}

@@ -1,0 +1,29 @@
+@import "/src/assets/scss/variables.scss";
+
+app-layout-listado ::ng-deep .mat-drawer-content {
+   @media only screen and (min-width : $responsive-desktop) {
+       margin-top: 30px;
+   }
+}
+
+.divBotonSubasta{
+    display: flex;
+    position: relative;
+    flex-direction: row-reverse;
+    top: -46px;
+    height: 0px;
+
+    button{
+        height: 30px;     
+        display: flex;
+        align-items: center; 
+        font-size: 16px;
+    }
+}
+
+.buttonMobile{
+    position: fixed;
+    z-index: 999;
+    bottom: 20px;
+    right: 20px;
+}

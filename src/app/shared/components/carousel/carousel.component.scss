@@ -1,0 +1,72 @@
+.hole {
+    width: 100%;
+    display: block;
+    position: relative;
+    overflow: hidden;
+    transform: translate3d(0, 0, 0);
+    -webkit-transform: translate3d(0, 0, 0);
+    
+    .trip {
+        text-align: center;
+        align-self: stretch;
+        overflow: hidden;
+        transition: 0.7s all ease-in-out;
+
+        .item {
+            float: left;
+            display: block;
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-position: center;
+            height: 194px;
+            border-radius: 4px 4px 0 0;
+            background-size: cover;
+        }
+        video {
+            background-color: #000000;
+            object-fit: cover;
+        }
+    }
+    .control.arrow {
+        position: absolute;
+        top: calc(50% - 20px);
+        margin: 0 20px;
+        z-index: 10;
+        box-sizing: border-box;
+        padding-left: 12px;
+        padding-right: 12px;
+
+        mat-icon {
+            cursor: pointer;
+            color: white;
+            font-size: 20px;
+            text-shadow: 1px 1px 3px black;
+        }
+    }
+    .buttons {
+        position: absolute;
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        padding-left: 12px;
+        padding-right: 12px;
+        box-sizing: border-box;
+        z-index: 10;
+
+        mat-icon {
+            cursor: pointer;
+            color: white;
+            font-size: 20px;
+            text-shadow: 1px 1px 3px black;
+        }
+    }
+    
+}
+
+video::-webkit-media-controls-volume-slider {
+    display:none;
+}
+    
+video::-webkit-media-controls-mute-button {
+    display:none;
+}

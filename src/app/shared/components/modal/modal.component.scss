@@ -1,0 +1,59 @@
+.bluredBackground{
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    background-color: #000000BF;
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+
+    mat-card{
+        padding: 0;
+        width: 434px;
+        border-radius: 4px;
+        mat-card-title{
+            margin: 0;
+            padding-left: 23px;
+            padding-right: 19px;
+            height: 54px;
+            border-radius: inherit;
+            border-bottom-right-radius : 0;
+            border-bottom-left-radius  : 0;
+            background: linear-gradient(90deg, #8ED7C9 0.01%, #E1C5C3 100%), #A7A5A5;
+            font-weight: 700;
+            font-size: 22px;
+            display: flex;
+            align-items: center;
+            color: #0A3066;
+
+        }
+        ::ng-deep contenido{
+            padding: 23px;
+        }
+        mat-card-actions{
+            padding: 23px;
+            margin: 0;
+
+            button{
+                //margin-top: 24px;
+                font-weight: 500;
+                font-size: 14px;
+                letter-spacing: 1.25px;
+            }
+        }
+
+    }
+
+}
+
+.titulo{
+    flex-grow: 1;
+}
+
+.clearButton{
+    color: rgba(10, 48, 102, 1);
+}
+

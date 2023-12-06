@@ -1,0 +1,83 @@
+mat-toolbar{
+    display: flex;
+    justify-content: center;
+    height: 601px;
+    align-items: flex-start;
+    
+    .container{
+        max-width: 1315px;
+        padding-top: 48px;
+
+        .links{
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            gap: 53px;
+
+            .container-link{
+                width: 30%;
+                display: flex;
+                justify-content: center;
+
+                a{
+
+                    span{
+                        color: white;
+                        font-family: 'Poppins';
+                        font-weight: 700;
+                        font-size: 18px;
+                        line-height: 27px;
+                    }
+                }
+            }
+        }
+
+        .redes-y-logos{
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-top: 140px;
+
+            div{
+                width: 30%;
+                display: flex;
+                justify-content: center;
+            }
+            
+            .redes{
+                gap: 35px;
+
+                a{
+                    height: 37px;
+                }
+
+            }
+
+            .deusados{
+                margin-bottom:-8px;
+
+            }
+
+            .decreditos{
+                
+                a{
+                    height: 40px;
+                }
+            }
+        }
+
+        .texto-final{
+            margin-top: 85px;
+
+            p{
+                white-space: initial;
+                font-family: 'Roboto';
+                font-style: normal;
+                font-weight: 500;
+                font-size: 16px;
+                line-height: 19px;
+                text-align: center;
+            }
+        }
+    }
+}

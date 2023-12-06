@@ -1,0 +1,119 @@
+:host {
+    width           : 100%;
+    display         : flex;
+    flex-direction  : row;
+    align-content   : flex-start;
+    justify-content : flex-start;
+    align-items     : stretch;
+    gap             : 14px;
+    flex-wrap       : wrap;
+    margin-bottom   : 18px;
+}
+
+[file-add-canvas] {
+    display          : flex;
+    flex-direction   : column;
+    align-content    : center;
+    justify-content  : center;
+    align-items      : center;
+    height           : 107px;
+    width            : 146px;
+    background-image : url("data:image/svg+xml,%3csvg width='100%25' height='100%25' xmlns='http://www.w3.org/2000/svg'%3e%3crect width='100%25' height='100%25' fill='none' stroke='%230a3066' stroke-width='2' stroke-dasharray='8%2c 12' stroke-dashoffset='0' stroke-linecap='round' rx='5' ry='5' /%3e%3c/svg%3e");
+    border-radius    : 5px;
+    cursor: pointer;;
+
+    [text] {
+        font-size: 16px;
+        text-align: center;
+    }
+}
+
+[file-add-canvas].large {
+    width: 100%;
+}
+[file-add-canvas].tiny {
+    mat-icon {
+        transform: scale(2);
+    }
+    [text] {
+        display: none;
+    }
+}
+
+[card] {
+    width          : 146px;
+    height         : 107px;
+    border-radius  : 6px;
+    display        : flex;
+    overflow       : hidden;
+    flex-direction : column;
+    flex-wrap      : nowrap;
+    align-content  : stretch;
+    align-items    : stretch;
+    border         : 1px solid #D6D6D6;
+    box-sizing     : border-box;
+    border-radius  : 3.5px;
+
+    [top] {
+
+        display         : flex;
+        height          : 23px;
+        flex-direction  : row;
+        justify-content : flex-end;
+
+        button {
+
+            margin-top   : -10px;
+            margin-right : -10px;
+
+            mat-icon {
+                transform : scale(0.8);
+            }
+        }
+
+    }
+
+    [preview] {
+        display : flex;
+        flex    : 1;
+        height  : 61px;
+    }
+
+    [preview][video] {
+        background : #000;
+
+        video {
+            width: 100%;
+        }
+    }
+
+    [image] {
+        background-size     : cover;
+        background-position : center;
+    }
+
+    [bottom] {
+        display         : flex;
+        height          : 23px;
+        font-size       : 14px;
+        color           : rgba(0, 0, 0, 0.6);
+        justify-content : center;
+    }
+}
+
+[card].error {
+    color: red;
+    border: solid 2px red;
+}
+
+[error] {
+    width: 100%;
+    color: red;
+}
+
+.tamanioArchivo{
+    font-family: Poppins;
+    font-weight: 300;
+    font-size: 12px !important;
+    letter-spacing: 0.15px;
+}

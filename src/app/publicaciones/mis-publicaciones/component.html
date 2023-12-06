@@ -1,0 +1,78 @@
+<app-layout-listado
+    (onClearFilters)="onClearFilters()"
+    [topComponent] = "topMisPublicaciones"
+    [redireccionarAlbuscar]="false" 
+    (eventoBusqueda)="buscar($event)"
+    [ordenarOpciones]="ordenarOpciones"
+>
+    <filtros  fxLayout="column" class="filtros">
+
+        <p>Filtros</p>
+        <publicaciones-filtros
+            #filtrosComponent
+            [mostrarEstado]="true"
+            [mostrarOportunidad]="mostrarOportunidad"
+            [mostrarFinanciacion]="true"
+            [(filtros)]="filtros"
+            (filtrosChange)="actualizarListado()"
+            [baseUrl]="'/publicaciones/*/mis-publicaciones'"
+        >
+        </publicaciones-filtros>
+
+    </filtros>
+
+    <contenido>
+        <div class="buttons" *ngIf="isDesktop">
+            <mat-card-title style=" margin-left: 20px; margin-top: 20px;flex: auto;">
+                <h2 >Mis Publicaciones</h2>
+            </mat-card-title>
+
+            <app-boton-compartir
+                style="padding-left: 20%; flex: auto;"
+                title="Compartir Vidriera"
+                *ngIf="!isAdministrator && mostrarOportunidad"
+                [url]="agenciaLink"
+            ></app-boton-compartir >
+
+            <button
+                *ngIf="!isAdministrator"
+                mat-raised-button color="primary"
+                class="buttonText borderRadius"
+                routerLink="/publicaciones/agregar"
+                style="margin-top: 10px;"
+             >Publicar</button>
+        </div>
+        <div *ngIf="isMobile && !isAdministrator && mostrarOportunidad" class="compartirMobile">
+            <app-boton-compartir
+                style="margin-right: 0px;"
+                [url]="agenciaLink"
+                title=""
+                [texto]="'Mirá las publicaciones de ' + agenciaName"
+            ></app-boton-compartir>
+        </div>
+
+        <div *ngIf="isMobile && !isAdministrator" class="buttonMobile">
+
+            <button mat-fab color="primary" routerLink="/publicaciones/agregar">
+                <mat-icon>add</mat-icon>
+            </button>
+
+        </div>
+
+        <div class="listado">
+            <publicaciones-listado
+                class="publicacionesListado"
+                [ngStyle]="{'margin-top.px' : mTop }"
+                #listado
+                (createMenuItems)="onCreateMenuItems($event)"
+                [url]="'/publicaciones/*/mis-publicaciones'"
+                [filtros]="filtros"
+                (fetchData)="onFetchData($event)"
+                (cardClick)="onCardClick($event)"
+                [mostrarFlechasCarousel]="false"
+                [ordenarOpciones]="ordenarOpciones"
+            ></publicaciones-listado>
+        </div>
+    </contenido>
+
+</app-layout-listado>

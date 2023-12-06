@@ -1,0 +1,79 @@
+<app-layout-listado 
+    (onClearFilters)="onClearFilters()" 
+    [redireccionarAlbuscar]="false" 
+    (eventoBusqueda)="buscar($event)" 
+    [ordenarOpciones]="ordenarOpciones" 
+    [portada]="this.agencia?.rutaImagenPortada"
+    [topComponent]="this.agencia?.rutaImagenPortada != null ? 225 : 0"
+>
+
+    <contenido-superior>
+        <div class="portada" 
+            *ngIf="  !isMobile && agencia" 
+            [style.background-image]="'url(' + this.agencia?.rutaImagenPortada + ')'"
+        ></div>
+        <div *ngIf="!isMobile && agencia" class="redes-sociales">
+            <div class="mini-portada" 
+                *ngIf="this.miniPortada != null && isMobile" 
+                [style.background-image]="'url(' + this.agencia?.rutaImagenMiniPortada + ')'"
+                ></div>
+            <div class="item" *ngIf="agencia.redes_sociales.instagram != null && agencia.redes_sociales.instagram != ''">
+                <img src="assets/images/instagram_outline.png" alt="imagen_instagram">
+                <a class="link" [href]="agencia.redes_sociales.instagram" target="_blank">@{{usuarioInstagram}}</a>
+            </div>
+            <div class="item" *ngIf="agencia.redes_sociales.facebook != null && agencia.redes_sociales.facebook != ''">
+                <img src="assets/images/facebook_outline.png" alt="imagen_facebook">
+                <a class="link" [href]="agencia.redes_sociales.facebook" target="_blank">{{usuarioFacebook}}</a>
+            </div>
+            <div *ngIf="!isMobile"style="margin-right: 50px;"></div>
+        </div>
+    </contenido-superior>
+
+    <filtros  fxLayout="column" class="filtros">
+        
+        <p>Buscá tu auto ideal</p>
+        <publicaciones-filtros
+            #filtrosComponent
+            [mostrarTipoVendedor]="mostrarTipoVendedor"
+            [mostrarOportunidad]="mostrarOportunidad"
+            [mostrarEnSubasta]="esAgencia"
+            [mostrarFinanciacion]="true"
+            [(filtros)]="filtros"
+            [filtrosPorDefecto]="filtros"
+            (filtrosChange)="actualizarListado()"
+            [baseUrl]="'/publicaciones/*'"
+        ></publicaciones-filtros>
+    </filtros>
+    <contenido>
+        <div *ngIf="isMobile && agencia" class="redes-sociales">
+            <div class="mini-portada" 
+                *ngIf="this.miniPortada != null && isMobile" 
+                [style.background-image]="'url(' + this.agencia?.rutaImagenMiniPortada + ')'"
+                ></div>
+            <div class="item" *ngIf="agencia.redes_sociales.instagram != null && agencia.redes_sociales.instagram != ''">
+                <img src="assets/images/instagram_outline.png" alt="imagen_instagram">
+                <a class="link" [href]="agencia.redes_sociales.instagram" target="_blank">@{{usuarioInstagram}}</a>
+            </div>
+            <div class="item" *ngIf="agencia.redes_sociales.facebook != null && agencia.redes_sociales.facebook != ''">
+                <img src="assets/images/facebook_outline.png" alt="imagen_facebook">
+                <a class="link" [href]="agencia.redes_sociales.facebook" target="_blank">{{usuarioFacebook}}</a>
+            </div>
+            <div *ngIf="!isMobile"style="margin-right: 50px;"></div>
+        </div>
+
+        <div *ngIf="esAgencia" class="bannerSubastas">
+            <app-banner-subastas></app-banner-subastas>
+        </div>
+        <div class="listado">
+            <publicaciones-listado 
+                #listado 
+                [menuItems]="menuItems"
+                [url]="'/publicaciones'" 
+                [filtros]="filtros" 
+                (fetchData)="onFetchData($event)"
+                (cardClick)="onCardClick($event)"
+                [ordenarOpciones]="ordenarOpciones"
+            ></publicaciones-listado>
+        </div>
+        </contenido>
+</app-layout-listado>

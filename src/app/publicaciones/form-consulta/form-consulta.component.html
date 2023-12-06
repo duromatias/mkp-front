@@ -1,0 +1,47 @@
+<div class="main">
+    <p class="titulo" style="margin-top:40px">Pedí más información:</p>
+    <button
+        *ngIf="heightFormConsulta === 0"
+        mat-flat-button
+        class="consultaButton consulta borderRadius"
+        color="primary"
+        (click)="openFormConsulta()"
+        >
+        <div class="container">
+            <div class="container-icon">
+                <mat-icon class="mailIcon">mail_outline</mat-icon> 
+            </div>
+            <span>Consultanos</span>
+            <div style="width: 24px;"></div>
+        </div>
+    </button>
+    <div class="consultaFormMobile" [ngStyle]="{'height.%': 0 + heightFormConsulta, 'display':showFormConsulta }">
+        <form [formGroup]="form" >
+            <mat-form-field fxFlex="100" appearance="outline">
+                <mat-label>Nombre y apellido</mat-label>
+                <input matInput type="text"  formControlName='nombre' [readonly]="this.name.length >= 1" required (keypress)="validarCaracteres($event)" >
+                <mat-error *ngIf="error('nombre')">{{ error('nombre') }}</mat-error>
+            </mat-form-field>
+        
+            <mat-form-field fxFlex="100" appearance="outline">
+                <mat-label>Correo electrónico</mat-label>
+                <input matInput type="text"  formControlName='email' [readonly]="user !== null" required>
+                <mat-error *ngIf="error('email')">{{error('email') }}</mat-error>
+            </mat-form-field>
+        
+            <mat-form-field fxFlex="100" appearance="outline">
+                <mat-label>Teléfono</mat-label>
+                <input formControlName="telefono" matInput required (keypress)="validarCaracteresTelefono($event)" maxlength="15" (change)="checkTelefono()"> 
+                <mat-error *ngIf="error('telefono')">{{error('telefono') }}</mat-error>
+            </mat-form-field>
+        
+            <mat-form-field fxFlex="100" appearance="outline">
+                <mat-label>Ingrese su consulta</mat-label>
+                <textarea matInput autocomplete="off" formControlName="texto" required></textarea>
+                <mat-error *ngIf="error('texto')">{{error('texto') }}</mat-error>
+            </mat-form-field>
+        
+            <button mat-raised-button class="borderRadius" (click)="submit()" >Enviar</button>
+        </form>
+    </div>
+</div>

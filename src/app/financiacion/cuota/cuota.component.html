@@ -1,0 +1,30 @@
+<div class="cuota" *ngIf="!selected" [class.gray]="gray" (mouseover)="emitMouseOver()" (click)="clickCuota()">
+    <div class="container-cuota">
+        <div class="nro-cuotas">
+            <span>{{numeroCuota}} cuotas</span>
+        </div>
+        <mat-divider [vertical]="true"></mat-divider>
+        <div class="valor-cuota">
+            <span class="text">Cuota promedio</span>
+            <span class="precio">${{utils.formatNumero(valorCuota.toString())}}</span>
+        </div>
+    </div>
+</div>
+
+<div class="cuota" *ngIf="selected" (mouseleave)="emitMouseLeave()" (click)="emitSelectCuota()">
+    <div class="container-cuota selected">
+        <div class="nro-cuotas">
+            <span>{{numeroCuota}} cuotas</span>
+        </div>
+        <mat-divider [vertical]="true"></mat-divider>
+        <div class="valor-cuota">
+            <span class="text">Cuota promedio</span>
+            <span class="precio">${{utils.formatNumero(valorCuota.toString())}}</span>
+        </div>
+    </div>
+    <div class="seleccionar">
+        <img src="../../../assets/images/financiacion/deusados-logo-right.svg" alt="Logo deusados">
+        <span>SELECCIONAR CUOTA</span>
+        <img src="../../../assets/images/financiacion/deusados-logo-left.svg" alt="Logo deusados">
+    </div>
+</div>

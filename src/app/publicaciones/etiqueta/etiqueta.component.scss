@@ -1,0 +1,49 @@
+button {
+    display: flex;
+    height: 34px;
+    background: white;
+    font-size: 14px;
+    border-radius: 2px;
+    justify-content: center;
+}
+
+.oportunidad{
+    display: flex;
+    height: 34px;
+    background: white;
+    font-size: 14px;
+    border-radius: 10px;
+    justify-content: center;
+    width: 130px;
+    align-items: center;
+    font-weight: 600;
+    padding-right: 4px;
+    margin-top: 3px;
+    margin-left: 3px;
+}
+
+.color-oportunidad{
+    background:#F9F99B !important;
+    color: #0A3066;
+}
+
+.color-financiacion{
+    background: #1D93C1 !important;
+    color: white;
+}
+
+.color-terminada{
+    background: #FFFFFF !important;
+    color: #487694;
+}
+
+.color-ganando{
+    background: #B4EFE4;
+    color: #0A3066;
+
+}
+
+.color-perdiendo{
+    background: #FFDEDC !important;
+    color: #0A3066;
+}

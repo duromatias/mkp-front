@@ -1,0 +1,97 @@
+.accesoToolbar {
+    color: #fff;
+    display: flex;
+    align-content: center;
+    flex-direction: column;
+    justify-content: center;
+    font-size: 16px;
+}
+
+.drawer-content {
+
+    .mat-title {
+        margin: 0;
+    }
+
+    a {
+        text-decoration: none;
+
+        button {
+            width: 130px;
+            height: 55px;
+        }
+    }
+}
+
+
+.divider {
+    margin: 22px 0;
+}
+
+.header-mobile{
+    height:60px;
+    justify-content: space-between;
+
+    .logo-deusados{
+        padding-left: 8px;
+        height: 18px;
+        cursor: pointer;
+    }
+
+    .titulo{
+        font-family: 'Poppins';
+        font-style: normal;
+        font-weight: 600;
+        font-size: 18px;
+        line-height: 20px;
+        text-align: center;
+        letter-spacing: 0.25px;
+    }
+
+    .buscador-container{
+        display: flex;
+        background: white;
+        color: rgba(0, 0, 0, 0.87);
+        height: 32px;
+        border-radius: 16px;
+
+        input{
+            font-size: 18px;
+            padding-left: 10px;
+        }
+        
+        button{
+            height: 32px;
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            width: 32px;
+
+            mat-icon{
+                color: #0A3066;
+    
+            }
+        }
+
+        
+    }
+}
+
+.close{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    margin-top: 8px;
+    margin-right: 10px;
+    margin-bottom: 20px;
+    .closeButton{
+        width: fit-content;
+        height: fit-content;
+        background: white;
+        border: none;
+        .closeIcon{
+            color: #585858;
+            font-size: 30px;
+        }
+    }
+}

@@ -1,0 +1,73 @@
+<ng-container *ngIf="!isMobile">
+    <app-menu-desktop></app-menu-desktop>
+</ng-container>
+<mat-toolbar *ngIf="isMobile" color="primary" class="header-mobile">
+    <div *ngIf="mostrarBuscador" class="buscador-container">
+        <input #inputBuscador matInput type="search" [(ngModel)]="valueBuscador" (keyup)="keyupBuscador($event)" autocomplete="off">
+        <button matSuffix mat-icon-button aria-label="Clear" (click)="toggleBuscador()">
+            <mat-icon>close</mat-icon>
+        </button>
+    </div>
+    <ng-container *ngIf="!mostrarBuscador">
+        <div *ngIf="titulo === ''">
+            <img class="logo-deusados"
+            src="assets/images/header/logo-deusados-mobile.svg"
+            alt="Logo Deusados"
+            routerLink="/">
+        </div>
+        <div style="display: flex;">
+            <div *ngIf="titulo !== '' && mostrarIconoBuscar" style="width: 40px;"></div>
+            <div *ngIf="titulo !== ''" style="width: 40px;"></div>
+        </div>
+        <div *ngIf="titulo !== ''" class="titulo">
+            {{titulo}}
+        </div>
+        <button *ngIf="mostrarPanelSecundario && false" ctoggler-panel-secundario mat-icon-button (click)="layout.getPanelSecundario().toggle()" mobile fxLayout="row" fxLayoutAlign="center center" >
+            <mat-icon>tune</mat-icon>
+        </button>
+        <div>
+            <button *ngIf="mostrarIconoBuscar" mat-icon-button (click)="toggleBuscador()">
+                <img src="assets/images/header/buscar-icon-mobile.svg" alt="Buscar">
+            </button>
+            <button mat-icon-button class="sidenav-button" (click)="layout.getPanelPrincipal().toggle()">  
+                <img src="assets/images/header/menu-icon.svg" alt="Menu">
+            </button>
+        </div>
+    </ng-container>
+</mat-toolbar>
+
+<ng-content select="contenido-superior"></ng-content>
+
+<app-layout-base #layout 
+    [mostrarPanelPrincipal]="isMobile && !clickCerrarPanelPrincipal" 
+    [mostrarPanelSecundario]="mostrarPanelSecundario && cerrarPanelSecundario" 
+    [posicionPanelPrincipal]="posicionPanelPrincipal"
+    [posicionPanelSecundario]="posicionPanelSecundario"
+
+    [lienzo]="lienzo"
+    >
+    
+    <panel-principal *ngIf="isMobile">
+        <app-menu-mobile (cerrarPanelPrincipal)="closeButtonPanelPrincipal($event)"></app-menu-mobile>
+    </panel-principal>
+    <panel-secundario>
+        <ng-content select="panel-secundario"></ng-content>
+        <div class="close" *ngIf="isMobile">
+            <button class="closeButton" (click)="closeButtonPanelSecundario($event)">
+                <mat-icon class="closeIcon">close</mat-icon>
+            </button>
+        </div>
+    </panel-secundario>
+    <contenido>
+        <div>
+            <ng-content select="top-contenido"></ng-content>
+            <ng-content select="contenido"></ng-content>
+        </div>
+    </contenido>
+</app-layout-base>
+<ng-container *ngIf="isMobile">
+    <app-footer-mobile></app-footer-mobile>
+</ng-container>
+<ng-container *ngIf="!isMobile">
+    <app-footer-desktop></app-footer-desktop>
+</ng-container>

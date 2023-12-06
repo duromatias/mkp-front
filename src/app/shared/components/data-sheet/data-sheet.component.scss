@@ -1,0 +1,23 @@
+table {
+    width: 100%;
+}
+td {
+    padding : 10px 16px;
+    color: rgba(0, 0, 0, 0.6);
+    font-size: 15px;
+}
+td.titulo {
+    background-blend-mode: multiply;
+}
+tr:nth-child(odd) {
+    background-color: #F5F5F5;
+}
+tr:nth-child(even) td.titulo {
+    background-color: #F5F5F5;
+}
+tr:nth-child(odd) td.titulo {
+    background-color: #e6e6e6;
+}
+.titulo {
+    width: 1px;
+}

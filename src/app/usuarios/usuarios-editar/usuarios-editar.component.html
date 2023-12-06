@@ -1,0 +1,96 @@
+<app-layout-general>
+    <contenido class="main" fxLayout.gt-md="row" fxLayoutAlign="center center">   
+        <mat-card *ngIf="showForm" class="card" fxLayout="column" fxLayoutAlign="start center">
+            
+            <div fxFlex="50" fxLayout="row" fxLayoutAlign="center">
+                <span class="mat-body-strong">
+                    <a routerLink="/">Salir</a>
+                </span>
+            </div>
+            
+            
+            <mat-card-title>
+    
+                <h2>Editar usuario</h2>
+            </mat-card-title>
+            <mat-card-content class="content">
+                <form  [formGroup]="form" fxLayout="row wrap" fxLayoutAlign="space-between" class="form" (ngSubmit)="submit()" [autocomplete]="false">   
+                    
+    
+                    <mat-form-field fxFlex="100" fxFlex.gt-md="48" appearance="outline">
+                        <mat-label>Email</mat-label>
+                        <input formControlName="email" matInput  readonly>
+                        <mat-error *ngIf="error('email')">{{error('email')}}</mat-error>
+                    </mat-form-field>
+
+                    <mat-form-field fxFlex="100" fxFlex.gt-md="48" appearance="outline">
+                        <mat-label>Nombre</mat-label>
+                        <input formControlName="nombre" matInput  readonly>
+                    </mat-form-field>
+
+                    <mat-form-field fxFlex="100" fxFlex.gt-md="48" appearance="outline">
+                        <mat-label>Teléfono</mat-label>
+                        <input formControlName="telefono" matInput readonly >
+                    </mat-form-field>
+
+                   
+                    <mat-form-field fxFlex="100" fxFlex.gt-md="48" appearance="outline" *ngIf="!esAgencia">
+                        <mat-label>Dni</mat-label>
+                        <input formControlName="dni" matInput readonly >
+                    </mat-form-field>
+
+                
+                    <mat-form-field fxFlex="100" fxFlex.gt-md="48" appearance="outline" *ngIf="esAgencia">
+                        <mat-label>CUIT/CUIL</mat-label>
+                        <input formControlName="cuit" matInput readonly >
+                    </mat-form-field>
+                    
+                    <mat-form-field fxFlex="100" fxFlex.gt-md="100" appearance="outline">
+                        <mat-label>Dirección</mat-label>
+                        <input formControlName="direccionCompleta" matInput  readonly>
+                    </mat-form-field>
+
+                    <mat-form-field fxFlex="100" fxFlex.gt-md="48" appearance="outline" *ngIf="esAgencia">
+                        <mat-label>Nombre de la Agencia</mat-label>
+                        <input formControlName="razon_social" matInput readonly >
+                    </mat-form-field>
+                    
+
+                    <mat-form-field fxFlex="100" fxFlex.gt-md="48" appearance="outline">
+                        <mat-label>Rol</mat-label>
+                        <mat-select formControlName="rol_id">
+                          <mat-option [value]="1" disabled>
+                            Administrador
+                          </mat-option>
+                          <mat-option [value]="2">
+                            Agencia
+                          </mat-option>
+                          <mat-option [value]="3">
+                            Particular
+                          </mat-option>
+                          
+                        </mat-select>
+                    </mat-form-field>
+
+                    <div *ngIf="showSuccessMessage" fxFlex="100" fxLayout="row" fxLayoutAlign="center">
+                        <span class="mat-body-strong success">
+                            {{message}}
+                        </span>
+                    </div>
+
+                    <div *ngIf="showErrorMessage" fxFlex="100" fxLayout="row" fxLayoutAlign="center">
+                        <span class="mat-body-strong" style="color: red;">
+                            El usuario no está en Onboarding
+                        </span>
+                    </div>
+
+                    <button fxFlex="100" class="submit-button borderRadius" mat-raised-button color="primary" type="submit" >Guardar cambios</button>
+
+    
+                </form>
+            </mat-card-content>
+
+        </mat-card>
+    </contenido>
+</app-layout-general>
+

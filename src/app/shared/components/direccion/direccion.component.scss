@@ -1,0 +1,55 @@
+@import "/src/assets/scss/variables.scss";
+
+:host {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.campos {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-content: space-between;
+    width: 100%;
+    flex-wrap: wrap;
+
+    mat-form-field, .form-field{
+        width: 100%;
+
+        @media(min-width: $responsive-desktop) {
+            width: 48%;
+   
+        }
+    }
+
+    .form-field-full{
+        width: 100% !important;
+    }
+}
+
+.row {
+    width: 301px;
+}
+
+app-direccion-autocomplete {
+    width: 100%;
+}
+
+@media(max-width: 695px) {
+    .row {
+        width: 100%;
+    }
+}
+
+@media(min-width: 696px) {
+    .row {
+        width: 314px;
+    }
+}
+
+@media(min-width: 1441px) {
+    .row {
+        width: 301px;
+    }
+}

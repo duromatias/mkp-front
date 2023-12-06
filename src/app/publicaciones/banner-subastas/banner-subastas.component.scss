@@ -1,0 +1,93 @@
+@import "/src/assets/scss/variables.scss";
+
+mat-card {
+
+    padding : 0;
+
+    border-radius : 10px;
+
+    mat-card-title {
+        border-radius              : inherit;
+        border-bottom-right-radius : 0;
+        border-bottom-left-radius  : 0;
+
+        margin : unset;
+        
+        padding-left   : 23px;
+        padding-top    : 15px;
+        padding-bottom : 15px;
+        
+        font-weight : bold;
+        font-size   : 22px;
+        background  : linear-gradient(90deg, #8ED7C9 0.01%, #E1C5C3 100%), #A7A5A5;
+    } 
+
+    mat-card-content{
+        padding-left : 23px;
+        padding-right : 23px;
+        padding-top  : 30px;
+
+        margin : unset;
+
+        font-size : 20px;
+        color     : rgba(0, 0, 0, 0.6);
+
+        .textoRestante{
+            display: flex;
+            align-items: center;
+            font-weight: 500;
+
+
+            img{
+                padding-bottom: 4px;
+                margin: 0 3px;
+            }
+        }
+
+        mat-icon{
+            top      : 4px;
+            position : relative;
+        }
+
+    }
+
+    mat-card-actions{
+        
+        @media only screen and (min-width : $responsive-desktop) {
+            height: 82px;
+        }
+        
+        @media only screen and (max-width : $responsive-mobile) {
+            height: 62px;
+        }
+
+        padding : 0;
+        
+
+        margin:  0;
+        margin-top: 26px;
+        
+        .divBoton{
+            @media only screen and (min-width : $responsive-desktop) {
+                padding-top   : 23px;
+                padding-right : 56px;
+                
+            }
+            
+            @media only screen and (max-width : $responsive-mobile) {
+                padding-top   : 13px;
+                padding-right : 15px;
+               
+            }
+
+            display         : flex;
+            justify-content : flex-end;
+            
+            button{
+                height      : 36px;
+                font-size   : 14px;
+                font-weight : 500;
+            }
+        }
+    }
+}

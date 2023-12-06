@@ -1,0 +1,38 @@
+@import "/src/assets/scss/variables.scss";
+
+.contenedor{
+    width: 330px;
+    height: 130px;
+    @media(max-width: $responsive-mobile){
+        max-width: 220px;
+        max-height: 130px;
+    }
+    @media(max-width: 280px){
+        max-width: 185px;
+        max-height: 130px;
+    }
+}
+.titulo{
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 24px;
+    text-align: center;
+    letter-spacing: 1.0176px;
+    color: #000000;
+    width: 215px;
+    margin: auto;
+    @media(max-width: 280px){
+        width: auto;
+    }
+}
+
+.button{
+    height: 37.44765090942383px;
+    width: 130.25270080566406px;
+    margin-top: -45px;
+}
+.buttonBorder{
+    height: 37.44765090942383px;
+    width: 130.25270080566406px;
+    border-color: #0A3066 !important;
+}

@@ -1,0 +1,80 @@
+@import "/src/assets/scss/variables.scss";
+
+.card{
+    display: flex;
+    width: 100%;
+
+    .titulo{
+        font-weight: 600;
+        font-size: 16px;
+        line-height: 24px;
+        letter-spacing: 0.5px;
+        color: #49454F;
+    }
+    
+    .subtitulo{
+        font-weight: 400;
+        font-size: 13px;
+        line-height: 24px;
+        color: #49454F;
+    }
+
+    .cargar-imagen{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        padding: 16px 12px 14px 14px;
+        background-image : url("data:image/svg+xml,%3csvg width='100%25' height='100%25' xmlns='http://www.w3.org/2000/svg'%3e%3crect width='100%25' height='100%25' fill='none' stroke='%230a3066' stroke-width='2' stroke-dasharray='8%2c 12' stroke-dashoffset='0' stroke-linecap='round' rx='5' ry='5' /%3e%3c/svg%3e");
+        border-radius : 5px;
+        height: 105px;
+        margin-top: 10px;
+
+        .label{
+            font-weight: 400;
+            font-size: 16px;
+            line-height: 24px;
+            letter-spacing: 0.15px;
+        }
+
+        .sublabel{
+            font-weight: 300;
+            font-size: 12px;
+            line-height: 24px;
+            letter-spacing: 0.15px;
+        }
+    }
+
+    .preview {
+        .link{
+            font-weight: 600;
+            font-size: 9px;
+            line-height: 11px;
+            cursor: pointer;
+            margin-bottom: 5px;
+        }
+
+        .imagen{
+            display : flex;
+            flex : 1;
+            height : 130px;
+            background-size: cover;
+            width: 100%;
+            background-position : center;
+        }
+
+        @media(max-width: $responsive-mobile) {
+            margin-top: 5px;
+        }
+    }
+    
+    .error {
+        width: 100%;
+        color: red;
+    }
+
+}
+
+
+

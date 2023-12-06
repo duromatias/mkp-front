@@ -1,0 +1,44 @@
+<app-layout-general>
+    <contenido class="main" fxLayout.gt-md="row" fxLayoutAlign="center start">
+        <mat-card class="card" fxLayout="column" fxLayoutAlign="start center" fxLayoutGap="20px">
+
+            <div class="cobertura">
+                <span class="texto">La mejor cobertura de </span>
+                <span class="tipo">{{utils.formatearTextoConGuionesYMinusculas(seguro.cobertura.tipo).replace('Teceros','Terceros')}}</span>
+            </div>
+
+            <div class="valor" fxLayout="column" fxLayoutAlign="start center">
+                <div class="valor-mes" fxLayout="column" fxLayoutAlign="center center">
+                    <span class="valor-mes-monto">$ {{utils.formatNumero(seguro.cobertura.valor_seguro.toString())}}</span>
+                    <span class="valor-mes-intervalo">/ por mes</span>
+                </div>
+                <div *ngIf="seguro.cobertura.suma_asegurada != null" class="valor-asegurado" fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="5px">
+                    <span class="valor-asegurado-intervalo">VALOR ASEGURADO </span>
+                    <span class="valor-asegurado-monto">$ {{utils.formatNumero(seguro.cobertura.suma_asegurada.toString())}}</span>
+                </div>
+            </div>
+
+            <div class="beneficios" fxLayout="column" fxLayoutAlign="start center" fxLayoutGap="20px">
+                <span class="beneficios-titulo">¿QUE BENEFICIOS TE BRINDA?</span>
+                <div class="division"></div>
+                <div fxLayout="column" fxLayoutAlign="start start" fxLayoutGap="20px">
+                    <div *ngFor="let beneficio of seguro.cobertura.items_cobertura" fxLayout="row" fxLayoutAlign="start center">
+                        <img src="/assets/images/seguros/check.svg" alt="check">
+                        <span class="beneficio">{{limitarItemCobertura(beneficio)}}</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="botones">
+                <button class="volver-button button borderRadius" mat-raised-button type="button" (click)="volver()">
+                    <span>Volver</span>
+                </button>
+                <a [href]="linkWhatsappCotizarSeguro" target="_blank">
+                    <button class="quiero-button button borderRadius" mat-raised-button type="button">
+                        <span>Lo quiero</span>
+                    </button>
+                </a>
+            </div>
+        </mat-card>
+    </contenido>
+</app-layout-general>

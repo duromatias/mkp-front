@@ -1,0 +1,70 @@
+@import "/src/assets/scss/variables.scss";
+
+:host {
+    box-sizing      : border-box;
+    display: flex;
+    overflow: scroll;
+}
+.tira {
+    display         : flex;
+    display         : -webkit-flex;
+    flex-direction  : row;
+    justify-content : flex-start;
+    align-items     : flex-start;
+    gap             : 21px;
+    padding-bottom  : 5px;
+
+    a{
+        max-width: 314px;
+    }
+}
+.wrapper-link {
+    display                     : flex;
+    display                     : -webkit-flex;
+    align-self                  : stretch;
+    align-content               : stretch;
+    justify-self                : stretch;
+    flex-direction              : row;
+    -webkit-tap-highlight-color : rgba(0, 0, 0, 0);
+}
+publicaciones-card {
+    display    : flex;
+    display    : -webkit-flex;
+    align-self : stretch;
+    width      : 100%;
+    max-width  : 314px;
+}
+
+@media only screen and (max-width: 659px) {
+    :host {
+        justify-content : flex-start;
+    }
+    .wrapper-link {
+        width: 234px;
+    }
+    .wrapper-link:first-child {
+        margin-left: 21px;
+    }
+    .wrapper-link:last-child {
+        margin-right: 21px;
+    }
+}
+
+@media only screen and (min-width: 660px) and (max-width: 768px) {
+    .wrapper-link {
+        width     : calc(50% - 10px);
+        min-width : 300px;
+    }
+}
+@media only screen and (min-width: 769px) {
+    .wrapper-link {
+        width: calc(33% - 21px);
+    }
+}
+
+@media only screen and (min-width: 1290px) {
+    .wrapper-link {
+        width: 333px;
+    }
+}
+

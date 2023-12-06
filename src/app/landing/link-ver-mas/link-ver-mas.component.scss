@@ -1,0 +1,44 @@
+@import "/src/assets/scss/variables.scss";
+
+:host {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    width: 100%;
+    @media(max-width: $responsive-mobile) {
+        justify-content: center;
+    }
+    a {
+        font-weight: 600;
+        font-size: 16px;
+        line-height: 24px;
+        color: #3F3F3F;
+        display: flex;
+        margin-bottom: 30px;
+
+        span{
+            font-weight: 700;
+        }
+    }
+
+    button {
+        font-weight: 600;
+        font-size: 16px;
+        line-height: 24px;
+        height: 50px;
+        border: 1px solid #3F3F3F;
+        filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+        border-radius: 10px;
+        align-items: center;
+        justify-content: center;
+        margin-top: 25px;
+        margin-bottom: 25px;
+        
+        span{
+            font-weight: 700;
+            vertical-align: initial;
+        }
+    }
+
+}

@@ -1,0 +1,18 @@
+<div fxLayout="row wrap" fxLayout.xs="column" fxLayoutAlign="start start" fxLayoutAlign.xs="start stretch" fxLayoutGap="15px">
+    <mat-form-field appearance="legacy">
+        <mat-label>{{textoBuscar}}</mat-label>
+        <input matInput [(ngModel)]="dataSource.filtros.busqueda" (keydown.enter)="dataSource.refreshData()" />
+    </mat-form-field>
+    <ng-content></ng-content>
+    
+    <div fxFlexAlign="start" fxLayout="row" fxLayoutAlign="start start">
+        <button mat-icon-button matSuffix (click)="dataSource.clearFilters()" [disabled]="!dataSource.canClearFilters()"> 
+            <mat-icon>clear</mat-icon>
+        </button>
+        <button mat-icon-button matSuffix (click)="buscar()"> 
+            <mat-icon>search</mat-icon>
+        </button>
+        <button *ngIf="botonAgregar" mat-flat-button class="borderRadius" color="primary" [routerLink]="agregarLink">{{agregarTexto}}</button>
+    </div>
+    
+</div>

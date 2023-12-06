@@ -1,0 +1,70 @@
+<app-layout-general>
+    <contenido class="main" fxLayout.gt-md="row" fxLayoutAlign="center">
+        <mat-card class="card" fxLayout="column" fxLayoutAlign="start center">
+
+            <mat-card-title>
+                <img src="/assets/images/seguros/icono-paso1.svg" alt="Paso 1">
+                <span>Ingresa los datos para cotizar</span>
+            </mat-card-title>
+
+            <mat-card-content class="content">
+                <form [formGroup]="form" fxLayout="column" fxLayoutAlign="center center" class="form" (ngSubmit)="submit()" [autocomplete]="false">
+
+                    <app-autocomplete-field
+                        [form]       = "form"
+                        fieldName    = "anio"
+                        class        = "form-field"
+                        [required]   = "true"
+                        label        = "¿Qué año es el vehículo?"
+                        [data]       = "anios"
+                        valueColumn  = "valor"
+                        labelColumn  = "valor"
+                        [error]      = "error('anio')"
+                        (optionSelected)="anioChange()"
+                    ></app-autocomplete-field>
+
+                    <app-server-autocomplete-field
+                        class        = "form-field"
+                        [form]       = "form"
+                        fieldName    = "marca_modelo_id"
+                        [required]   = "true"
+                        label        = "¿Qué marca y modelo es?"
+                        searchParam  = "busqueda"
+                        [dataUrl]    = "'/seguros/cotizaciones/listar-modelos-por-año/' + form.get('anio')?.value"
+                        valueColumn  = "codia"
+                        labelColumn  = "label"
+                        placeholder  = "Ej.: Volkswagen Vento..."
+                        [preventCallWithEmptyValue] = "true"
+                        (optionSelected) = "asignarVehiculo($event)"
+                    ></app-server-autocomplete-field>
+
+                    <app-server-autocomplete-field
+                        class                       = "form-field"
+                        [form]                      = "form"
+                        fieldName                   = "codigo_postal"
+                        [required]                  = "true"
+                        label                       = "¿Cuál es el Código Postal?"
+                        searchParam                 = "busqueda"
+                        [dataUrl]                   = "'/seguros/cotizaciones/listar-localidades'"
+                        valueColumn                 = "id"
+                        labelColumn                 = "codigo_postal_localidad_provincia"
+                        placeholder                 = "Ingresa número, barrio o localidad..."
+                        [preventCallWithEmptyValue] = "true"
+                        (optionSelected)            = "asignarCodigoPostal($event)"
+                    ></app-server-autocomplete-field>
+
+                    <button class="submit-button button borderRadius" mat-raised-button type="submit" color="primary" >
+                        <span>Cotizar Póliza</span>
+                    </button>
+
+                    <button class="volver-button button borderRadius" mat-raised-button type="button" (click)="volver()">
+                        <span>Volver</span>
+                    </button>
+                </form>
+ 
+            </mat-card-content>
+
+        </mat-card>
+    </contenido>
+</app-layout-general>
+

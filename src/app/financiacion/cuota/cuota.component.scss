@@ -1,0 +1,156 @@
+@import "/src/assets/scss/variables.scss";
+
+.cuota{
+    cursor: pointer;
+    width: 320px;
+    height: 110px;
+    background: linear-gradient(
+        -90deg,
+        #B4EFE4 -27.22%,
+        #7EB2BC -15.3%,
+        #0A3066 28.44%
+    );
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 10px;
+
+    @media only screen and (max-width: 339px) {
+        width: 248px;
+        height: 88px;
+    }
+
+    .container-cuota{
+        display: flex;
+        flex-direction: row;
+        height: 100%;
+
+        .nro-cuotas{
+            width: 158px;
+            height: inherit;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            
+            @media only screen and (max-width: 339px) {
+                width: 122px;
+            }
+
+            span{
+                color: #FFFFFF;
+                font-family: 'Poppins';
+                font-style: normal;
+                font-weight: 700;
+                font-size: 26px;
+                line-height: 24px;
+                letter-spacing: 0.15px;
+
+                @media only screen and (max-width: 339px) {
+                    font-size: 20px;
+                    line-height: 24px;
+                    letter-spacing: 0.15px;
+                }
+            }
+
+        }
+
+        mat-divider{
+            border-color: #fafafa7d;
+            border-right-width: 2px;
+            margin-top: 13px;
+            margin-bottom: 14px;
+
+        }
+
+        .valor-cuota{
+            width: 160px;
+            color: #FFFFFF;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 5px;
+
+            @media only screen and (max-width: 339px) {
+                width: 124px;
+            }
+
+            .text{
+                font-family: 'Open Sans';
+                font-style: normal;
+                font-weight: 400;
+                font-size: 14px;
+                line-height: 21px;
+                letter-spacing: 0.15px;
+
+                @media only screen and (max-width: 339px) {
+                    font-size: 12px;
+                    line-height: 18px;
+                }
+            }
+
+            .precio{
+                font-family: 'Poppins';
+                font-style: normal;
+                font-weight: 600;
+                font-size: 26px;
+                line-height: 24px;
+                letter-spacing: 0.15px;
+
+                @media only screen and (max-width: 339px) {
+                    font-weight: 600;
+                    font-size: 22px;
+                }
+            }
+        }
+    }
+
+    .selected{
+        height: 77px;
+
+        @media only screen and (max-width: 339px) {
+            height: 62px;
+        }
+    }
+
+    .seleccionar{
+        height: 33px;
+        background: white;
+        border-bottom-left-radius: 10px;
+        border-bottom-right-radius: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 6px;
+
+        @media only screen and (max-width: 339px) {
+            height: 26x;
+        }
+        span{
+            font-family: 'Poppins';
+            font-style: normal;
+            font-weight: 600;
+            font-size: 14px;
+            line-height: 18px;
+            text-align: center;
+            letter-spacing: 2px;
+            color: $primary-color;
+
+        }
+    }
+}
+
+.gray{
+    background: #AAAAAA;
+
+    .nro-cuotas{
+        span{
+            font-weight: 500 !important;
+        }
+    }
+
+    .valor-cuota{
+        .precio{
+            font-weight: 500 !important;
+        }
+    }
+}
+

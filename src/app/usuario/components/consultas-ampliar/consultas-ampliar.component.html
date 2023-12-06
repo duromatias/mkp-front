@@ -1,0 +1,100 @@
+<app-layout-general >
+    <contenido class="main" fxLayout.gt-md="row" fxLayoutAlign="center center">
+        <mat-card class="card" fxLayout="column" fxLayoutAlign="start center">
+            <mat-card-content fxLayout="column" class="content">
+
+                <div fxFlex="50" fxLayout="row" fxLayoutAlign="center">
+                <span class="mat-body-strong">
+                    <a routerLink="/usuario/consultas">Salir</a>
+                </span>
+                </div>
+
+                <mat-card-title style="align-self: center;">
+                    <h2>Consulta</h2>
+                </mat-card-title>
+
+                <div  fxLayout="column" class="informacionConsulta">
+                    <div fxLayout="row">
+                        <p>Publicación:&nbsp;
+                         <a
+                            href="/publicaciones/{{consulta?.publicacion_id}}"
+                            target="_blank">{{marcaVehiculo}} {{modeloVehiculo}} {{anio}}
+                        </a>
+                        <p>
+                    </div>
+                    <div fxLayout="row">
+                        <p>Fecha de consulta:&nbsp;</p>
+                        <p> {{fecha}}</p>
+                    </div>
+                </div>
+
+                <form [formGroup]="form" fxLayout="column" class="datosFormulario">
+
+                    <mat-form-field fxFlex="100" appearance="legacy">
+                        <mat-label>Nombre y apellido</mat-label>
+                        <input matInput type="text"  formControlName='nombre' readonly >
+                    </mat-form-field>
+
+                    <div fxLayout="row wrap" fxLayoutAlign="space-between" >
+                        <mat-form-field fxFlex = "100" fxFlex.gt-md = "48" appearance="legacy">
+                            <mat-label>Teléfono</mat-label>
+                            <input matInput typo="text" formControlName="telefono" readonly>
+                            <mat-error *ngIf="error('telefono')">{{error('telefono') }}</mat-error>
+                        </mat-form-field>
+
+                        <mat-form-field fxFlex = "100" fxFlex.gt-md = "48" appearance="legacy">
+                            <mat-label>Email</mat-label>
+                            <input matInput type="text"  formControlName='email' readonly>
+                            <mat-error *ngIf="error('email')">{{error('email') }}</mat-error>
+                        </mat-form-field>
+                    </div>
+
+
+                    <mat-form-field fxFlex="100" appearance="outline" >
+                        <mat-label>Consulta</mat-label>
+                        <textarea matInput type="text"  formControlName="texto" readonly class="alturaCajaTexto"></textarea>
+                        <mat-error *ngIf="error('texto')">{{error('texto') }}</mat-error>
+                    </mat-form-field>
+
+
+                    <div  *ngIf="!estadoResuelto">
+                        <mat-form-field fxFlex="100" appearance="outline" style="margin-bottom: 15px;">
+                            <mat-label>Nota</mat-label>
+                            <mat-hint>
+                                <mat-icon matDatepickerToggleIcon>info</mat-icon>
+                                Esta nota es privada, sólo vos podés verla.
+                            </mat-hint>
+                            <textarea matInput type="text" formControlName="respuesta" class="alturaCajaTexto"></textarea>
+                            <mat-error *ngIf="error('respuesta')">{{error('respuesta') }}</mat-error>
+                        </mat-form-field>
+                    </div>
+
+
+                    <div  *ngIf="estadoResuelto">
+                    <mat-form-field fxFlex="100" appearance="outline" style="margin-bottom: 15px;">
+                        <mat-label>Nota</mat-label>
+                        <mat-hint>
+                            <mat-icon matDatepickerToggleIcon>info</mat-icon>
+                            Esta nota es privada, sólo vos podés verla.
+                        </mat-hint>
+                        <textarea matInput type="text" formControlName="respuesta" readonly required class="alturaCajaTexto"></textarea>
+                        <mat-error *ngIf="error('respuesta')">{{error('respuesta') }}</mat-error>
+                    </mat-form-field>
+                </div>
+
+                    <mat-form-field fxFlex="50" fxFlex.gt-md="48" appearance="outline" style="width: 50%;" >
+                    <mat-label>Estado</mat-label>
+                    <mat-select formControlName="estado" >
+                        <mat-option value="Resuelta" >Resuelta </mat-option>
+                        <mat-option value="Pendiente">Pendiente</mat-option>
+                    </mat-select>
+                    <mat-error *ngIf="error('estado')">{{error('estado') }}</mat-error>
+                    </mat-form-field>
+
+                <button color="primary" fxFlex="100"  mat-raised-button class="borderRadius" [disabled]="form.pristine"(click)="submit(idConsulta)" type="submit" >Guardar</button>
+                </form>
+            </mat-card-content>
+        </mat-card>
+    </contenido>
+</app-layout-general>
+

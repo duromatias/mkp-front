@@ -1,0 +1,33 @@
+<div file-add-canvas [ngClass]="{'large': archivos.length === 0, 'tiny': archivos.length > 0 }" class="color" (click)="fileInput.click()">
+    <mat-icon class="material-icons-outlined" color="primary">add_a_photo</mat-icon>
+    <span text class="color">Agregar fotos y/o videos </span>
+    <span text class="color tamanioArchivo">(tamaño máximo 10 MB)</span>
+</div>
+
+<div card *ngFor="let row of getArhivosOrdenados()" [ngClass]="{error: row.hasError}">
+    <div top>
+        <button mat-icon-button type="button" [matMenuTriggerFor]="menu" [matMenuTriggerData]="{ data : row }">
+            <mat-icon>more_vert</mat-icon>
+        </button>
+    </div>
+
+    <div *ngIf="row.type === 'video'" preview video>
+        <video [src]="row.src"></video>
+    </div>
+    <div *ngIf="row.type === 'image'" preview image [style.background-image]="'url(' + row.src + ')'"></div>
+
+    <div bottom>
+        <span *ngIf="row.esPortada">Portada</span>
+    </div>
+</div>
+
+<input #fileInput type="file" (change)="onFileChange($event)" style="display:none;" multiple />
+
+<mat-menu #menu="matMenu">
+    <ng-template matMenuContent let-data="data">
+        <button mat-menu-item (click)="clickMarcarPortada(data)" *ngIf="data.type === 'image'">Seleccionar portada</button>
+        <button mat-menu-item (click)="clickEliminar(data)">Eliminar</button>
+    </ng-template>
+</mat-menu>
+
+<div error *ngIf="error">{{ error }}</div>

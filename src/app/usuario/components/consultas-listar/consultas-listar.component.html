@@ -1,0 +1,55 @@
+<app-layout-listado [dataSource]="dataSource" >
+    <filtros  fxLayout="column" style="max-width: 200px;" >
+
+        <p>Filtros</p>
+
+        <app-search-input fxFlex="100" [(value)]="dataSource.filtros.nombre" (change)="dataSource.refreshData(0)" (click)="$event.stopPropagation()"
+            label = "Nombre y apellido"
+        ></app-search-input>
+
+
+        <div class="main" *ngIf="!esParticular">
+            <mat-form-field appearance="outline" style="width: 100%;">
+                <mat-label>Publicaciones</mat-label>
+                <mat-select  [(ngModel)]="filtroPublicacion" (selectionChange)="publicacionesChange()">
+                    <mat-option value="TODAS">Todas</mat-option>
+                    <mat-option value="Creadas por mi">Creadas por mi</mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+
+
+        <mat-form-field appearance="outline" style="width: 100%;">
+          <mat-label>Estado</mat-label>
+          <mat-select [(ngModel)]="dataSource.filtros.estado" (selectionChange)="dataSource.refreshData(0)">
+                <mat-option value="">Todos</mat-option>
+                <mat-option value="Resuelta">Resuelta</mat-option>
+                <mat-option value="Pendiente">Pendiente</mat-option>
+          </mat-select>
+        </mat-form-field>
+    </filtros>
+
+    <contenido style="min-width: 1000px;" >
+
+        <mat-card-title *ngIf="!isMobile" style=" margin-left: 20px; margin-top: 20px;flex: auto;">
+            <h2 >Consultas</h2>
+        </mat-card-title>
+
+        <div >
+            <div class="table-sticky-wrapper">
+                <app-table #table [dataSource]="dataSource"></app-table>
+            </div>
+
+            <mat-paginator
+                itemsPerPageLabel='hola'
+                [length]="dataSource.total"
+                [pageSize]="dataSource.limit"
+                [pageIndex]="dataSource.pageIndex"
+                [pageSizeOptions]="[10 , 20, 30]"
+                (page)="dataSource.setPageIndex($event.pageIndex, $event.pageSize)"
+                >
+            </mat-paginator>
+
+        </div>
+    </contenido>
+</app-layout-listado>

@@ -1,0 +1,269 @@
+@import "/src/assets/scss/variables.scss";
+
+.main {
+    min-height: calc(100vh - 103px);
+    padding: 16px;
+
+    .card {
+        padding: 32px;
+        margin: 20px;
+        max-width: 688px;
+
+        @media(min-width: 480x) {
+            padding-left: 30px;
+            padding-right: 30px;
+        }
+
+        h2{
+            font-weight: 600;
+            font-size: 20px;
+            line-height: 24px;
+            color: #4F4E53;
+            letter-spacing: 0.15px;
+        }
+
+        .vidriera{
+            display: flex;
+            width: 100%;
+            flex-direction: column;
+            align-content: center;
+            align-items: center;
+
+            .editar-vidriera{
+                border: 2px solid #EAEAEA;
+                border-radius: 5px;
+                margin-bottom: 25px;
+                background: #FAFAFA;
+                width: 100%;
+                padding: 20px;
+                @media(max-width: $responsive-mobile) {
+                    width: 100%;
+                    max-width: 200px;
+                }
+
+                .cargar-imagenes{
+                    display: flex;
+                    flex-direction: row;
+                    justify-content: space-between;
+                    margin-bottom: 20px;
+
+                    @media(max-width: $responsive-mobile){
+                        flex-direction: column;
+                    }
+
+                    .portada{
+                        width: 100%;
+                        margin-right: 10px;
+                    }
+
+                    .mini-portada{
+                        width: 50%;
+                        @media(max-width: $responsive-mobile){
+                            width: 100%;
+                            margin-top: 20px;
+                        }
+                    }
+                }
+
+                .redes-sociales{
+                    margin-top: 15px;
+                    margin-bottom: 15px;
+                    flex-direction: row;
+                    display: flex;
+                    @media(max-width: $responsive-mobile) {
+                        width: 100%;
+                        max-width: 200px;
+                        flex-direction: column !important;
+                        display: flex !important;
+                        gap: 15px;
+                        input{
+                            text-overflow: ellipsis;
+                            overflow:hidden;
+                            white-space:nowrap;
+                        }
+                    }
+                }
+
+                span{
+                    font-weight: 600;
+                    font-size: 16px;
+                    line-height: 24px;
+                    letter-spacing: 0.5px;
+                    color: #49454F;
+                }
+
+                img{
+                    width: 30px;
+                    height: 30px;
+                    margin-right: 5px;
+                    margin-left: 5px;
+                    @media(max-width: $responsive-mobile) {
+                        width: 20px;
+                        height: 20px;
+                    }
+                }
+
+                ::ng-deep .mat-form-field-wrapper{
+                    padding: 0;
+                    margin: 0;
+                    background: #EAEAEA;
+                }
+
+                mat-form-field {
+                    font-size: 10px;
+                    width: 260px;
+                    @media(max-width: $responsive-mobile) {
+                        width: 100%;
+                        max-width: 200px;
+                    }
+                }
+
+                .guardar-button{
+                    width: 170px;
+                    height: 30px;
+                    background: #0A3066;
+                    box-shadow: 0px 2.08537px 2.08537px rgba(0, 0, 0, 0.25);
+                    border-radius: 6.77744px;
+                    font-weight: 700;
+                    font-size: 10.4268px;
+                    line-height: 13px;
+                    color: white;
+                    border: none;
+                    cursor: pointer;
+                    margin-top: 20px;
+                }
+
+                .guardar-button-deshabilitado{
+                    width: 170px;
+                    height: 30px;
+                    background: #0A3066;
+                    box-shadow: 0px 2.08537px 2.08537px rgba(0, 0, 0, 0.25);
+                    border-radius: 6.77744px;
+                    font-weight: 700;
+                    font-size: 10.4268px;
+                    line-height: 13px;
+                    color: grey;
+                    border: none;
+                    margin-top: 20px;
+                }
+            }
+        }
+
+        .content{
+
+            .form {
+                width: 100%;
+                margin: 0px 21px;
+                margin-left: 0px;
+
+                mat-form-field, .form-field{
+                    width: 100%;
+
+                    @media(min-width: $responsive-desktop) {
+                        width: 48%;
+               
+                    }
+
+                    mat-label{
+                        font-weight: 600;
+                        font-size: 16px;
+                        line-height: 24px;
+                        color: #49454F;
+                        letter-spacing: 0.5px;
+                    }
+
+                    input{
+                        font-weight: 600;
+                        font-size: 16px;
+                        line-height: 24px;
+                        color: #636363;
+                        letter-spacing: 0.5px;
+                    }
+                }
+
+                .form-field-full{
+                    width: 100% !important;
+                }
+                
+                .input-prefix {
+                    min-width: unset;
+                    width: 30px;
+                    padding: 0;
+                    position: relative;
+                    bottom: 6px;
+                }
+                
+                .submit-button {
+                    height: 39px;
+                    width: 156.87px;
+                    margin: 30px 0;
+                    margin: auto;
+                    font-family: Nunito Sans !important;
+                    font-style: normal;
+                    font-weight: 600;
+                    font-size: 16px;
+                    line-height: 24px;
+                    letter-spacing: 0.5px;
+
+                }
+
+                .button-border{
+                    border-color: #0A3066;
+                    width: 156.87px !important;
+                }
+
+                .modificar-datos-agencias{
+                    font-weight: 700;
+                    font-size: 16px;
+                    line-height: 24px;
+                    color: #49454F;
+                }
+
+                .link-web-agencias{
+                    color: rgba(29, 122, 255, 1);
+                    text-decoration: underline;
+                    font-weight: 700;
+                    font-size: 16px;
+                    line-height: 24px;
+                }
+                
+            }
+            
+        }
+            
+    }
+}
+
+:host{
+    ::ng-deep{
+        .mat-form-field-prefix{
+            top: 0 !important ;
+        }
+    }
+}
+
+::ng-deep .contenedorGris .mat-form-field-appearance-outline .mat-form-field-outline   { 
+    background-color: #EAEAEA;
+}
+
+.contenedorGris{
+    @media(max-width: $responsive-mobile){
+        width: 100%;
+    }
+}
+
+::ng-deep .mat-form-field.mat-form-field-invalid .mat-form-field-label {
+    color: #f44336;
+}
+
+::ng-deep .mat-form-field-empty.mat-form-field-label, .mat-form-field-can-float.mat-form-field-should-float .mat-form-field-label {
+    display: block;
+}
+
+.separarFormField{
+    @media(max-width: $responsive-mobile){
+        ::ng-deep .mat-form-field {
+            margin-top: 15px;
+        }
+    }
+}

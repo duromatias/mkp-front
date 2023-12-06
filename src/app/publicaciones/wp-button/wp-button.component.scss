@@ -1,0 +1,30 @@
+.button {
+    font-size: 18px;
+    padding: 0 16px;
+    width: 100%;
+    background: #FFDEDC;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border: none;
+    border-radius: 10px;
+    height: 50px;
+    @media(max-width: 280px){
+        width: 225px;
+    }
+
+    ::ng-deep .mat-button-wrapper{
+        line-height: 50px;
+    }
+
+}
+
+.container{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 18px;
+    padding: 0 2px;
+    font-weight: 600;
+    letter-spacing: 1.25px;
+}
+
+

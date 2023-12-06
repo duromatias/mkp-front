@@ -1,0 +1,8 @@
+<mat-form-field fxFlex="100"  appearance="outline">
+    <mat-label>{{label}}</mat-label>
+    <mat-select [(ngModel)]="value" (selectionChange)="notifyChange()">
+        <mat-option *ngIf="emptyOption" [value]="null">{{ emptyOption }}</mat-option>
+        <mat-option *ngFor="let option of options" [value]="option[optionsValue]">{{ option[optionsLabel] }}</mat-option>
+    </mat-select>
+    <mat-error *ngIf="error">{{ error }}</mat-error>
+</mat-form-field>  

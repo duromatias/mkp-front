@@ -1,0 +1,5 @@
+<mat-form-field fxFlex="100" appearance="outline">
+    <mat-label>{{label}}</mat-label>
+    <input matInput type="text" autocomplete="off" [(ngModel)]="value" (change)="notifyChange()" [readonly]="readOnly">
+    <mat-error *ngIf="error">{{ error }}</mat-error>
+</mat-form-field>

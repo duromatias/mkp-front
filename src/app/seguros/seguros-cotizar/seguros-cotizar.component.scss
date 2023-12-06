@@ -1,0 +1,75 @@
+@import "/src/assets/scss/variables.scss";
+
+.main {
+    padding: 16px;
+    @media(max-width: 1024px){
+        padding: 0;
+    }
+
+    .card {
+        padding: 32px;
+        margin: 20px;
+        max-width: 700px;
+        width: 100%;
+        padding-top: 53px;
+        overflow: hidden;
+
+        @media(max-width: $responsive-mobile){
+            padding: 24px 16px;
+            margin: 0;
+            box-shadow: none;
+            background-color: #fafafa;
+        }
+
+        mat-card-title{
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            margin-bottom: 20px;
+            column-gap: 8px;
+
+            span{
+                font-family: 'Nunito Sans';
+                font-style: normal;
+                font-weight: 700;
+                font-size: 20px;
+                line-height: 27px;
+                color: #6D6D6D;
+            }
+        }
+
+        .content{
+            width: 100%;
+            max-width: 330px;
+
+            .form{
+                .submit-button {
+                    height: 55px;
+                    margin: 10px 0;
+                    width: 100%;
+                }
+
+                .volver-button {
+                    height: 55px;
+                    margin: 10px 0;
+                    width: 100%;
+                    color: #0A3066;
+                }
+
+                mat-form-field{
+                    width: 100%;
+                }
+
+                app-server-autocomplete-field{
+                    width: 100%;
+                }
+
+                app-autocomplete-field{
+                    width: 100%;
+                }
+            }
+
+        }
+
+    }
+}

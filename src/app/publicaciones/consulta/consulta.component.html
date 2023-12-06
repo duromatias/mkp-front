@@ -1,0 +1,78 @@
+<app-layout-general>
+    <contenido>
+        <div class="main" *ngIf="estado !== estados.cargado">
+            <div *ngIf="estado === estados.noEncontrado" class="no-encontrado">
+                La publicación no se encuentra disponible
+            </div>
+            <div *ngIf="estado === estados.accesoNoPermitido" class="no-encontrado" style="text-align: center;">
+              <div style="font-size: 20px; margin-top: 25px;">
+                Esta publicación se encuentra disponible sólo para usuarios de agencias.
+              </div>
+              <div style="font-size: 20px;">
+                En caso de serlo, registrate o ingresá para poder consultarla.
+              </div>
+            </div>
+        </div>
+
+
+        <div class="main" *ngIf="estado === estados.cargado">
+              <app-boton-compartir class="botonCompartir"
+                  [url]="url + '?utm_source=marketplace&utm_medium=boton_compartir&utm_campaign=referral'"
+                  [texto]="'Mirá este '+ marcaVehiculo + ' ' + modeloVehiculo + ' publicado en deusados: ' + url"
+              ></app-boton-compartir>
+            <!--
+                <div fila-botones nomobile>
+                    <button mat-button color="primary">
+                        <mat-icon style="margin-right: 10px">share</mat-icon>
+                        <span>Compartir</span>
+                    </button>
+                </div>
+            -->
+            <div contenedor-columnas>
+                <div contenedor-secundario nomobile>
+                    <div class="info-agencia" *ngIf="this.agencia">
+                        <div class="mini-portada" 
+                            *ngIf="this.agencia.rutaImagenMiniPortada != null" 
+                            [style.background-image]="'url(' + this.agencia.rutaImagenMiniPortada + ')'"
+                        ></div>
+                        <div class="item" *ngIf="agencia.redes_sociales.instagram != null && agencia.redes_sociales.instagram != ''">
+                            <img src="assets/images/instagram_outline.png" alt="imagen_instagram">
+                            <a class="link" [href]="agencia.redes_sociales.instagram" target="_blank">@{{usuarioInstagram}}</a>
+                        </div>
+                        <div class="item" *ngIf="agencia.redes_sociales.facebook != null && agencia.redes_sociales.facebook != ''">
+                            <img src="assets/images/facebook_outline.png" alt="imagen_facebook">
+                            <a class="link" [href]="agencia.redes_sociales.facebook" target="_blank">{{usuarioFacebook}}</a>
+                        </div>
+                    </div>
+                    <banner-simular-credito    *ngIf="publicacion.financiacion" [publicacion]="publicacion"></banner-simular-credito>
+                    <publicaciones-form-consulta [publicacion]="publicacion" ></publicaciones-form-consulta>
+                    <publicaciones-wp-button
+                        *ngIf="!publicacionPropia"
+                        [publicacion]="publicacion"
+                        class="wspButton"
+                        style="margin-top:20px"
+                    ></publicaciones-wp-button>
+                    <div *ngIf="esAdministrador" style="margin-top:53px;">
+                      <p class="contador">Visitas hasta el momento: {{clicks}} </p>
+                    </div>
+
+
+                </div>
+                <div columna-principal>
+                    <publicaciones-publicacion
+                        #publicacionComponent
+                        [publicacion]="publicacion"
+                        [publicacionPropia]="publicacionPropia"
+                        [mostrarDireccionCompleta]="user !== null"
+                        [mostrarTelefono]="user !== null"
+                    ></publicaciones-publicacion>
+                </div>
+            </div>
+
+
+            <app-publicacion-subasta-terminada 
+                *ngIf="publicacion.subasta"
+                [publicacion]="publicacion"></app-publicacion-subasta-terminada>
+        </div>
+    </contenido>
+</app-layout-general>

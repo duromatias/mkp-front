@@ -1,0 +1,232 @@
+<app-layout-general>
+    <contenido class="main" fxLayout.gt-md="row" fxLayoutAlign="center center">
+        <mat-card *ngIf="currentUser" class="card" fxLayout="column" fxLayoutAlign="start center">
+
+            <div *ngIf="esAgencia" class="vidriera">
+                <div>
+                    <h2>Editar vidriera</h2>
+                </div>
+                
+                <div class="editar-vidriera">
+                    <form [formGroup]="formVidriera" (ngSubmit)="editarVidriera()" [autocomplete]="false">
+                        <div class="cargar-imagenes">
+                            <app-agregar-archivo class="portada"
+                                #archivoPortada
+                                [titulo] = "'Portada de la vidriera'"
+                                [subtitulo]="'Sube una foto para la portada'"
+                                [valorInicial] = "this.formVidriera.get('portada')?.value"
+                                (archivoChange)="alCambiarArchivos($event, 'portada')"
+                                (errorChange)="onArchivosErrorChange($event)"
+                            ></app-agregar-archivo>
+
+                            <app-agregar-archivo class="mini-portada"
+                                [titulo] = "'Mini portada'"
+                                [subtitulo]="'Sube el logo de tu agencia'"
+                                [valorInicial] = "this.formVidriera.get('mini_portada')?.value"
+                                (archivoChange)="alCambiarArchivos($event, 'mini_portada')"
+                                (errorChange)="onArchivosErrorChange($event)"
+                            ></app-agregar-archivo>
+                        </div>
+
+                        <span>Redes sociales</span>
+                        <div class="redes-sociales" fxLayoutAlign="space-between center">
+                            <div fxLayout="row" fxLayoutAlign=" center">
+                                <img src="assets/images/instagram_outline.png" alt="imagen_instagram">
+                                <mat-form-field appearance="outline">
+                                    <mat-label>Ingresa el link</mat-label>
+                                    <input formControlName="instagram" matInput >
+                                </mat-form-field>
+                            </div>
+                            <div fxLayout="row" fxLayoutAlign=" center">
+                                <img src="assets/images/facebook_outline.png" alt="imagen_facebook">
+                                <mat-form-field appearance="outline" >
+                                    <mat-label>Ingresa el link</mat-label>
+                                    <input formControlName="facebook" matInput >
+                                </mat-form-field>
+                            </div>
+                        </div>
+
+                        <div fxLayout="column" fxLayoutAlign="center center">
+                            <button [disabled]="habilitarGuardarCambios" 
+                            [class.guardar-button]="!habilitarGuardarCambios" 
+                            [class.guardar-button-deshabilitado]="habilitarGuardarCambios">Guardar cambios</button>
+                        </div>
+                    </form>
+                </div>
+                
+            </div>
+                
+            <mat-card-content class="content">
+                <div fxLayout="row" fxLayoutAlign="center center">
+                    <h2 *ngIf="!esAgencia">Mi Cuenta</h2>
+                    <h2 *ngIf="esAgencia">Datos agencia</h2>
+                </div>
+                
+                <form [formGroup]="form" fxLayout="row wrap" fxLayoutAlign="space-between" class="form" (ngSubmit)="submit()" [autocomplete]="false">
+
+                    <ng-container *ngIf="esAgencia" >
+
+                        <div class="contenedorGris form-field" >
+                            <ng-container *ngIf="this.form.get('email')?.value">
+                                <mat-form-field fxFlex="100" appearance="outline" class="textStyle">
+                                    <mat-label>Email</mat-label>
+                                    <input formControlName="email" matInput  readonly>
+                                    <mat-error *ngIf="error('email')">{{error('email')}}</mat-error>
+                                </mat-form-field>
+                            </ng-container>
+                        </div>
+
+                        <ng-container *ngIf="this.form.get('nombre')?.value">
+                            <div class="contenedorGris form-field">
+                                <mat-form-field fxFlex="100"  appearance="outline" class="textStyle">
+                                    <mat-label>Nombre</mat-label>
+                                    <input formControlName="nombre" matInput  readonly>
+                                </mat-form-field>
+                            </div>
+                        </ng-container>
+
+                        <ng-container *ngIf="this.form.get('apellido')?.value">
+                            <div class="contenedorGris form-field">
+                                <mat-form-field fxFlex="100" appearance="outline" class="textStyle">
+                                    <mat-label>Apellido</mat-label>
+                                    <input formControlName="apellido" matInput  readonly>
+                                </mat-form-field>
+                            </div>   
+                        </ng-container>
+
+                        <div class="contenedorGris form-field">
+                            <ng-container *ngIf="this.form.get('razon_social')?.value">
+                                <mat-form-field fxFlex="100"  appearance="outline" class="textStyle">
+                                    <mat-label>Nombre de la Agencia</mat-label>
+                                    <input formControlName="razon_social" matInput  readonly>
+                                </mat-form-field>
+                            </ng-container>
+                        </div>
+
+                        <ng-container *ngIf="this.form.get('cuit')?.value && mostrarCuit">
+                            <div class="contenedorGris form-field">
+                                <mat-form-field fxFlex="100"  appearance="outline" class="textStyle">
+                                    <mat-label>Cuit</mat-label>
+                                    <input formControlName="cuit" matInput  readonly>
+                                    <mat-error *ngIf="error('cuit')">{{error('cuit')}}</mat-error>
+                                </mat-form-field>
+                            </div>
+                        </ng-container>
+
+                        <ng-container *ngIf="this.form.get('calle')?.value">
+                            <div class="contenedorGris form-field">
+                                <mat-form-field fxFlex="100"  appearance="outline" class="textStyle">
+                                    <mat-label>Calle</mat-label>
+                                    <input formControlName="calle" matInput  readonly>
+                                </mat-form-field>
+                            </div>
+
+                        </ng-container>
+                    
+                        <ng-container *ngIf="this.form.get('numero')?.value">
+                            <div class="contenedorGris form-field">
+                                <mat-form-field fxFlex="100" appearance="outline" class="textStyle">
+                                    <mat-label>Número</mat-label>
+                                    <input formControlName="numero" matInput  readonly>
+                                </mat-form-field>
+                            </div>
+                        </ng-container>
+
+                        <ng-container *ngIf="this.form.get('localidad')?.value">
+                            <div class="contenedorGris form-field">
+                                <mat-form-field fxFlex="100"  appearance="outline" class="textStyle">
+                                    <mat-label>Localidad</mat-label>
+                                    <input formControlName="localidad" matInput  readonly>
+                                </mat-form-field>
+                            </div>
+                        </ng-container>
+
+                        <ng-container *ngIf="this.form.get('provincia')?.value">
+                            <div class="contenedorGris form-field">
+                                <mat-form-field fxFlex="100"  appearance="outline" class="textStyle">
+                                    <mat-label>Provincia</mat-label>
+                                    <input formControlName="provincia" matInput  readonly>
+                                </mat-form-field>
+                            </div>
+                        </ng-container>
+                        
+                        <ng-container *ngIf="this.form.get('codigo_postal')?.value">
+                            <div class="contenedorGris form-field">
+                                <mat-form-field fxFlex="100"  appearance="outline" class="textStyle">
+                                    <mat-label>Código Postal</mat-label>
+                                    <input formControlName="codigo_postal" matInput  readonly>
+                                </mat-form-field>
+                            </div>
+                        </ng-container>
+
+                        <ng-container *ngIf="this.form.get('telefono')?.value">
+                            <div class="contenedorGris form-field">
+                                <mat-form-field fxFlex="100"  appearance="outline" class="textStyle">
+                                    <mat-label>Teléfono</mat-label>
+                                    <input formControlName="telefono" matInput  readonly>
+                                </mat-form-field>
+                            </div>
+                        </ng-container>
+
+                        <div fxFlex="100" fxLayout="column" fxLayoutAlign="space-around center" class="textStyle">
+                            <div fxLayout="row" fxLayoutGap="5px">
+                                <mat-icon color="primary">error_outline</mat-icon>
+                                <span class="mat-body-strong modificar-datos-agencias">
+                                    Para modificar tus datos ingresá a
+                                    <a class="link-web-agencias" [href]="linkOnboarding" target="_blank">Web Agencias</a>
+                                </span>
+                            </div>
+                            <button color="primary" style="margin-top:30px; margin-bottom:20px;" class="button-border borderRadius" mat-stroked-button (click)="darDeBajaDialog()">Darse de baja</button>
+                        </div>
+
+                    </ng-container>
+
+                    <ng-container *ngIf="!esAgencia">
+
+                        <div class="contenedorGris form-field">
+                            <mat-form-field fxFlex="100"  appearance="outline" class="separarFormField contenedorGris">
+                                <mat-label>Email</mat-label>
+                                <input formControlName="email" matInput readonly>
+                                <mat-error *ngIf="error('email')">{{error('email')}}</mat-error>
+                            </mat-form-field>
+                        </div>
+                        
+                        <mat-form-field appearance="outline" class="separarFormField">
+                            <mat-label>Nombre</mat-label>
+                            <input formControlName="nombre" matInput required>
+                            <mat-error *ngIf="error('nombre')">{{error('nombre')}}</mat-error>
+                        </mat-form-field>
+                        
+                        <mat-form-field appearance="outline" class="separarFormField prefixed">
+                            <mat-label>Teléfono</mat-label>
+                            <span class="custom-prefix">+549 &nbsp;</span>
+                            <input formControlName="telefono" type="number" matInput>
+                            <mat-error *ngIf="error('telefono')">{{error('telefono')}}</mat-error>
+                        </mat-form-field>
+
+                        <app-direccion 
+                            #componenteDireccion
+                            [form]="form"
+                            (alElegirDireccionIncompleta)="alElegirDireccionIncompleta()"
+                        >
+                        </app-direccion>
+
+                        <div fxFlex="100" fxLayout="row" fxLayoutAlign="center">
+                            <span class="mat-body-strong">
+                                <a color="primary" routerLink="/usuario/mis-datos/cambiar-password">Cambiar contraseña</a>
+                            </span>
+                        </div>
+
+
+                        <div fxFlex="100" fxLayout="column" fxLayoutAlign="space-around center" style="margin-top:10px; gap: 10px;">
+                            <button color="primary"  class="submit-button borderRadius" mat-raised-button type="submit" [disabled]="!datosCambiados" >Guardar cambios</button>
+                            <button color="primary" class="button-border borderRadius" mat-stroked-button (click)="darDeBajaDialog()">Darse de baja</button>
+                        </div>
+                    </ng-container>
+                    
+                </form>
+            </mat-card-content>
+        </mat-card>
+    </contenido>
+</app-layout-general>
+    

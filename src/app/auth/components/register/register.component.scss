@@ -1,0 +1,71 @@
+@import "/src/assets/scss/variables.scss";
+
+.main {
+    min-height: calc(100vh - 103px);
+    padding: 16px;
+    
+    .card { 
+        padding: 32px;
+        margin: 20px;
+        max-width: 688px;
+       
+        
+
+        @media(min-width: 480x) {
+            padding-left: 30px;
+            padding-right: 30px;
+        }
+    
+        .logo {
+            height: 91px;
+            width: 260px;
+            margin-bottom: 16px;
+            background-image: url(/assets/images/logo_horizontal.svg);
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: cover;
+        }
+
+        .onboarding-account {
+            text-align: center;
+
+            a {
+                
+                font-weight: 500;
+                font-size: 14px;
+            }
+        }
+    
+        .form {
+            width: 100%;
+            margin: 0 21px;
+
+            mat-form-field, .form-field{
+                width: 100%;
+
+                @media(min-width: $responsive-desktop) {
+                    width: 48%;
+           
+                }
+            }
+
+            .form-field-full{
+                width: 100% !important;
+            }
+
+            .input-prefix {
+                min-width: unset;
+                width: 30px;
+                padding: 0;
+                position: relative;
+                bottom: 6px;
+            }
+    
+            .submit-button {
+                height: 55px;
+                margin: 30px 0;
+            }
+
+        }
+    }
+}

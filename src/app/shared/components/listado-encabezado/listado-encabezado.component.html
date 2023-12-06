@@ -1,0 +1,21 @@
+<div toolbar class="container" 
+    fxLayout="row" 
+    fxLayoutGap="10px" 
+    fxLayoutAlign="space-between start" 
+
+    fxLayout.xs="column" 
+    fxLayoutAlign.xs="start stretch" 
+>
+    <app-section-title>{{titulo}}</app-section-title>
+    <div 
+        class="controles-listado"
+        fxLayout="row wrap" 
+        fxLayoutAlign="start start" 
+        fxLayoutGap="15px" 
+        
+        fxLayout.xs="column" 
+        fxLayoutAlign.xs="start stretch"
+    >
+    <ng-content></ng-content>
+    </div>
+</div>

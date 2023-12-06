@@ -1,0 +1,26 @@
+<app-layout-general>
+    <contenido>
+        <div fxLayout="column" class="contenido">
+
+            <div class="buttons">
+                <mat-card-title  style=" margin-left: 20px; margin-top: 20px;flex: auto;">
+                    <h2> Parámetros</h2>
+                </mat-card-title>
+            </div>
+
+            <app-table
+                [dataSource]="dataSource"
+                [columns]="this.columns"
+                [columnsToShow]="this.columnsToShow">
+            </app-table>
+
+            <button
+                fxFlexOffset="5vh"
+                class="submit-button borderRadius" mat-raised-button color="primary"
+                style="margin-bottom: 20px;"
+                (click)="onSubmit()" >
+                Guardar cambios
+            </button>
+        </div>
+    </contenido>
+</app-layout-general>

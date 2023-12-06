@@ -1,0 +1,16 @@
+<video
+    #video
+    [muted]="true"
+    playsinline
+    (click)="clickVideo()"
+    [width]="width"
+    [height]="height"
+    [ngStyle]="{'width.px': width, 'height.px' : height, display: displayVideo}"
+>
+    <source [src]="src" />
+</video>
+<div *ngIf="!playing" class="overlay">
+    <button class="play-button" (click)="playVideo()">
+        <mat-icon>play_arrow</mat-icon>
+    </button>
+</div>

@@ -1,0 +1,77 @@
+<div fxLayout="column" >
+
+    <ng-container >
+        <div  *ngIf="!usuarioLogueado" fxLayout="row" style="margin-top: 45px;margin-left: 19px; margin-bottom: -35px;">
+            <span  class="nombreUsuario">Bienvenido</span>
+        </div>
+    </ng-container>
+
+    <div class="close">
+        <button class="closeButton" (click)="closeButtonPanelPrincipal($event)">
+            <mat-icon class="closeIcon">close</mat-icon>
+        </button>
+    </div>
+
+
+    <!--
+        <ng-container *ngIf="usuarioLogueado">
+            <div fxLayout="column" style="margin-top: 45px;margin-left: 19px;">
+                <span class="textoChico">{{textoChico}}</span>
+                <span class="textoGrande" >{{textoGrande}}</span>
+                <span class="textoChico" style="opacity: 60%;">{{emailUsuario}}</span>
+            </div>
+        </ng-container>
+    -->
+
+
+    <!-- TODO: nombre -->
+    <!-- TODO: email-->
+
+    <div *ngIf="!usuarioLogueado" fxLayout="row wrap" class="drawer-content" style="justify-content: space-evenly;">
+        <a routerLink="/auth/login" (click)="checkUrl($event)">
+            <button mat-raised-button class="borderRadius" color="primary" >Ingresar</button>
+        </a>
+        <a routerLink="/auth/register" (click)="checkUrl($event)">
+            <button fxFlexOffset="10px" mat-button class="borderRadius" color="primary">Registrarse</button>
+        </a>
+    </div>
+
+    <mat-nav-list>
+        <ng-container *ngFor="let acceso of accesos" >
+            <mat-list-item *ngIf="obtenerSubMenus(acceso).length === 0 && !acceso.grupo && acceso.ruta !== linkWhatsappCotizarSeguro" [routerLink]="acceso.ruta">
+                <div fxFlex="100" fxLayout="row" fxLayoutAlign="space-between start" >
+                    <a *ngIf="acceso.descripcion != 'Mis Datos'" matLine>{{acceso.descripcion}}</a>
+                    <a *ngIf="acceso.descripcion === 'Mis Datos'" matLine>Mi Cuenta</a>
+                    <img *ngIf="acceso.descripcion != 'Notificaciones' || consultasPendientes == 0" class="imagen" src="assets/images/{{acceso.icono}}.svg">
+                    <div *ngIf="acceso.descripcion === 'Notificaciones' && consultasPendientes > 0">
+                        <img class="imagen" src="assets/images/{{acceso.icono}}.svg">
+                        <span matBadge={{consultasPendientes}} 
+                        class="matBadge"
+                        matBadgeColor="warn"
+                        matBadgePosition="below after"
+                        ></span>
+                    </div>
+                </div>
+            </mat-list-item>
+
+
+            <ng-container *ngIf="obtenerSubMenus(acceso).length > 0" >
+                <mat-divider class="divider" style="margin-top: 29px; margin-bottom: 5px;"></mat-divider>
+                <span style="margin-left: 15px;">{{acceso.descripcion}}</span>
+                <mat-list-item *ngFor="let access of obtenerSubMenus(acceso)"[routerLink]="access.ruta">
+                    <div fxFlex="100" fxLayout="row"  fxLayoutAlign="space-between start" >
+                        <a  matLine>{{access.descripcion}}</a>
+                        <img class="imagen" src="assets/images/{{access.icono}}.svg">
+                    </div>
+                </mat-list-item>
+                <mat-divider class="divider" style="margin-top: 29px; margin-bottom: 0px;"></mat-divider>
+            </ng-container>
+
+        </ng-container>
+        <mat-list-item *ngIf="usuarioLogueado" (click)="clickLogout()">
+            <mat-icon matListIcon>logout</mat-icon>
+            <a matLine>Cerrar sesion</a>
+        </mat-list-item>
+    </mat-nav-list>
+
+</div>

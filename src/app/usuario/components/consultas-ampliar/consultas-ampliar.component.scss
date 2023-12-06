@@ -1,0 +1,61 @@
+.main {
+  min-height: calc(100vh - 103px);
+  padding: 16px;
+
+  .card {
+    padding-top: 32px;
+    padding-bottom: 32px;
+    max-width: 688px;
+    margin: 20px;
+
+      @media(max-width: 1000px) {
+        padding-left: 30px;
+        padding-right: 30px;
+      }
+
+      .content{
+
+            .form {
+                width: 100%;
+                margin: 0px 21px;
+                margin-left: 0px;
+            }
+
+            .informacionConsulta{
+                margin-left: 90px;
+                margin-bottom: 10px;
+                font-family: Poppins;
+                font-size: 16px;
+                font-style: normal;
+                font-weight: 500;
+                line-height: 24px;
+                letter-spacing: 0.15000000596046448px;
+                text-align: left;
+                color: rgba(79, 78, 83, 1);
+                @media(max-width: 1000px) {
+                    font-size: 14px;
+                    float: left;
+                    margin: 0 0 0 0;
+                }
+            }
+            .datosFormulario{
+                margin-left: 90px;
+                margin-right: 90px;
+                @media(max-width: 1000px) {
+                    margin: 0 0 0 0;
+                }
+            }
+        }
+    }
+}
+
+.alturaCajaTexto{
+    min-height: 65px;
+}
+
+.botonGuardar{
+  margin-top: 30px;
+  align-self: center;
+  width: 350px;
+}
+

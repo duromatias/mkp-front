@@ -1,0 +1,28 @@
+@import "/src/assets/scss/variables.scss";
+
+.impresion{
+    width: 21cm;
+
+    .header-impresion{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0 65px;
+        box-sizing: border-box;
+        background: $primary-color;
+        width: 100%;
+        min-height: 87px;
+        -webkit-print-color-adjust: exact;// mostrar color en la impresion
+
+        .title{
+            font-family: 'Poppins';
+            font-style: normal;
+            font-weight: 700;
+            font-size: 20px;
+            line-height: 33px;
+            text-align: center;
+            letter-spacing: 0.15px;
+            color: #FFFFFF;
+        }
+    }
+}

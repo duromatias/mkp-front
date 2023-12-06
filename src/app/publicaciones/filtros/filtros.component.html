@@ -1,0 +1,197 @@
+<app-search-input *ngIf="deviceService.isDesktop"
+    [(value)]="filtros['busqueda_marca_modelo']"
+    (valueChange)="changed()"
+    [autocompleteValue]="'off'"
+></app-search-input>
+
+
+<div class="divFiltrosConSwitch" *ngIf="mostrarOportunidad || mostrarEnSubasta || mostrarFinanciacion">
+    <ng-container *ngIf="mostrarFinanciacion">
+        <mat-slide-toggle
+        [(ngModel)]="filtros['financiacion']"
+        (change)="switchChanged($event,'financiacion')"
+        class="example-margin"
+        color="primary"
+        labelPosition = "before"
+        >
+        Financiación
+        <img src="assets/images/financiacion.svg" style="vertical-align: middle;">
+        </mat-slide-toggle>
+    </ng-container>
+    <ng-container *ngIf="mostrarOportunidad">
+        <mat-slide-toggle
+        [(ngModel)]="filtros['es_oportunidad']"
+        (change)="switchChanged($event,'es_oportunidad')"
+        class="example-margin"
+        color="primary"
+        labelPosition = "before"
+        >
+        Ofertas únicas
+        </mat-slide-toggle>
+    </ng-container>
+    
+    <ng-container *ngIf="mostrarEnSubasta">
+        <mat-slide-toggle
+        [(ngModel)]="filtros['en_subasta']"
+        (change)="switchChanged($event,'en_subasta')"
+        class="example-margin"
+        color="primary"
+        labelPosition = "before"
+        >
+        En Subasta
+        </mat-slide-toggle>
+    </ng-container>
+</div>
+
+<p>Ubicación</p>
+<app-select-input
+    [emptyOption]="'Todas'"
+    [label]="'Provincia'"
+    [options]="provincias"
+    [(value)]="filtros['provincia']"
+    (valueChange)="changeProvincia()"
+></app-select-input>
+<app-select-input 
+    [emptyOption]="'Todas'"
+    [label]="'Localidad'"
+    [options]="localidades"
+    [(value)]="filtros['localidad']"
+    (valueChange)="changed()"
+    style="margin-top: -10px"
+></app-select-input>
+
+<p>Marca</p>
+<app-server-autocomplete
+    [label]="'Ingrese'"
+    [labelForAll]="'Todas'"
+    [valueColumn]="'valor'"
+    [labelColumn]="'descripcion'"
+    [placeholder]="'Ingrese'"
+    [dataUrl]="baseUrl + '/marcas'"
+    [searchParam]="'busqueda_marca'"
+    [(value)]="filtros['marca']"
+    [keydownFn]="marcaKeyDown"
+    (optionSelected)="changed()"
+></app-server-autocomplete>
+
+<p>Modelo</p>
+<app-server-autocomplete
+    [label]="'Ingrese'"
+    [labelForAll]="'Todos'"
+    [valueColumn]="'valor'"
+    [labelColumn]="'descripcion'"
+    [placeholder]="'Ingrese'"
+    [dataUrl]="baseUrl + '/modelos'"
+    [searchParam]="'busqueda_modelo'"
+    [(value)]="filtros['modelo']"
+    (optionSelected)="changed()"
+></app-server-autocomplete>
+
+<p>Año</p>
+<div anio>
+
+    <app-select-input
+        [label]="'Desde'"
+        [options]="anios"
+        [(value)]="filtros['año_desde']"
+        (valueChange)="changed()"
+    ></app-select-input>
+    <app-select-input
+        [label]="'Hasta'"
+        [options]="anios"
+        [(value)]="filtros['año_hasta']"
+        (valueChange)="changed()"
+    ></app-select-input>
+</div>
+
+<p>Condición</p>
+<app-select-input
+    [emptyOption]="'Todas'"
+    [label]="'Seleccione'"
+    [options]="condicion"
+    [(value)]="filtros['condicion']"
+    (valueChange)="changed()"
+></app-select-input>
+
+<p>Color</p>
+<app-select-input
+    [emptyOption]="'Todos'"
+    [label]="'Seleccione'"
+    [options]="colores"
+    [(value)]="filtros['color']"
+    (valueChange)="changed()"
+></app-select-input>
+
+<p>Puertas</p>
+<app-select-input
+    [emptyOption]="'Todas'"
+    [label]="'Seleccione'"
+    [options]="puertas"
+    [(value)]="filtros['puertas']"
+    (valueChange)="changed()"
+></app-select-input>
+
+<p>Moneda</p>
+<app-select-input
+    [emptyOption]="'Todas'"
+    [label]="'Seleccione'"
+    [options]="monedas"
+    [(value)]="filtros['moneda']"
+    (valueChange)="changed()"
+></app-select-input>
+
+<p>Precio</p>
+<app-number-input
+    [label]="'Mínimo'"
+    [(value)]="filtros['precio_desde']"
+    (valueChange)="changed()"
+></app-number-input>
+<app-number-input
+    [label]="'Máximo'"
+    [(value)]="filtros['precio_hasta']"
+    (valueChange)="changed()"
+    style="margin-top: -10px"
+></app-number-input>
+
+<p>Combustible</p>
+<app-select-input
+    [emptyOption]="'Todos'"
+    [label]="'Combustible'"
+    [options]="tiposCombustible"
+    [(value)]="filtros['tipo_combustible_id']"
+    (valueChange)="changed()"
+></app-select-input>
+
+<p>Kilómetros</p>
+<app-number-input
+    [label]="'Desde'"
+    [(value)]="filtros['kilometros_desde']"
+    (valueChange)="changed()"
+></app-number-input>
+<app-number-input
+    [label]="'Hasta'"
+    [(value)]="filtros['kilometros_hasta']"
+    (valueChange)="changed()"
+    style="margin-top: -10px"
+></app-number-input>
+
+<ng-container *ngIf="mostrarTipoVendedor">
+    <p>Tipo de Vendedor</p>
+    <app-select-input
+    [emptyOption]="'Todos'"
+    [label]="'Seleccione'"
+    [options]="tiposVendedor"
+    [(value)]="filtros['usuario_rol_id']"
+    (valueChange)="changed()"
+    ></app-select-input>
+</ng-container>
+
+<ng-container *ngIf="mostrarEstado">
+    <p>Estado</p>
+    <app-select-input
+        [label]="'Seleccione'"
+        [options]="estados"
+        [(value)]="filtros['estado']"
+        (valueChange)="changed()"
+    ></app-select-input>
+</ng-container>

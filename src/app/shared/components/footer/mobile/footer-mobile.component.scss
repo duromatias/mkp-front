@@ -1,0 +1,93 @@
+mat-toolbar{
+    height: fit-content;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    padding: 0;
+    margin: 0;
+    padding-bottom: 225px;
+    
+    .container{
+        display: flex;
+        flex-direction: column;
+        width: 310px;
+
+        .logo-deusados{
+            display: flex;
+            justify-content: center;
+            margin-top: 35px;
+        }
+
+        .links{
+            display: flex;
+            flex-direction: column;
+            margin-top: 95px;
+            gap: 30px;
+
+
+            .container-link{
+                display: flex;
+                justify-content: center;
+
+                a{
+                    display: flex;
+                    align-items: center;
+                    height: 24px;
+                    
+                    span{
+                        color: white;
+                        font-family: 'Poppins';
+                        font-style: normal;
+                        font-weight: 600;
+                        font-size: 16px;
+                        line-height: 24px;
+
+                    }
+                }
+            }
+        }
+
+        .redes{
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 90px;
+
+            a{
+                height: 45px;
+                width:  45px;
+
+                img{
+                    height: inherit;
+                    width: inherit;
+                }
+            }
+        }
+
+        .decreditos{
+            display: flex;
+            justify-content: center;
+            margin-top: 80px;
+
+            a{
+                height: 35px;
+            }
+        }
+
+        .texto-final{
+            margin-top: 50px;
+
+
+            p{
+                white-space: initial;
+                font-family: 'Nunito Sans';
+                font-style: normal;
+                font-weight: 600;
+                font-size: 16px;
+                line-height: 22px;
+                text-align: center;
+            }
+        }
+
+    }
+}

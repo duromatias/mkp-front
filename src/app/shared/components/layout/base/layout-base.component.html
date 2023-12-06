@@ -1,0 +1,13 @@
+<div [attr.lienzo]="lienzo ? true : null">
+    <mat-drawer-container>
+        <mat-drawer  *ngIf="mostrarPanelPrincipal" #panelPrincipal [mode]="drawerMode" [opened]="drawerOpened" [position]="_panelPrincipalPosition">
+            <ng-content select="panel-principal"></ng-content>
+        </mat-drawer>
+        <mat-drawer class="panelSecundario" *ngIf="mostrarPanelSecundario" #panelSecundario [mode]="drawerMode" [opened]="drawerOpened" [position]="_panelSecundarioPosition" >
+            <ng-content select="panel-secundario"></ng-content>
+        </mat-drawer>
+        <mat-drawer-content class="contenido">
+            <ng-content  select="contenido"></ng-content>
+        </mat-drawer-content>
+    </mat-drawer-container>
+</div>

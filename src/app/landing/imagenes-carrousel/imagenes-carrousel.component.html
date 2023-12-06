@@ -1,0 +1,45 @@
+<div class="hole" #hole>
+    <button #leftArrow class="control arrow" *ngIf="items.length > 1 " 
+        [ngStyle]="{'visibility': visibility}"  
+        mat-icon-button (click)="increment($event, -1)" 
+        (mousedown)="mouseDown($event)">
+        <mat-icon class="left">arrow_back_ios</mat-icon>
+    </button>
+    <button  #rightArrow class="control arrow" *ngIf="items.length > 1 " 
+        [ngStyle]="{'visibility': visibility}" 
+        mat-icon-button (click)="increment($event, 1)" 
+        (down)="mouseDown($event)" 
+        style="right:0">
+        <mat-icon class="right">arrow_forward_ios</mat-icon>
+    </button>
+    <div *ngIf="!isMobile" class="indicadores">
+        <div [class.circle]="currentPosition!=0" [class.circle-fill]="currentPosition==0"></div>
+        <div [class.circle]="currentPosition!=1" [class.circle-fill]="currentPosition==1"></div>
+        <div [class.circle]="currentPosition!=2" [class.circle-fill]="currentPosition==2"></div>
+    </div>
+
+    <div class="trip"  
+    [ngStyle]="{'margin-left': -tripMarginLeft + '%', 'transition': transition}">
+        <ng-container *ngFor="let item of items">
+            <a href="{{item.link}}" target="_blank">
+                <div nomobile class="item"
+                    [ngStyle]="{'background-image': 'url(' + item.imagen_desktop + ')'}"
+                >
+                    <div class="texto">
+                        <span class="titulo">{{item.titulo}}</span>
+                        <span class="detalle">{{item.detalle}}</span>
+                    </div>  
+                </div>
+            
+                <div mobile class="item"
+                    [ngStyle]="{'background-image': 'url(' + item.imagen_mobile + ')'}"
+                >
+                    <div class="texto">
+                        <span class="titulo">{{item.titulo}}</span>
+                        <span class="detalle">{{item.detalle}}</span>
+                    </div>  
+                </div>
+            </a>
+        </ng-container>
+    </div>
+</div>

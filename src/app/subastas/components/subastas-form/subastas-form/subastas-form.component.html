@@ -1,0 +1,129 @@
+<app-layout-general>
+    <contenido class="main" fxLayout.gt-md="row" fxLayoutAlign="center center">
+        <mat-card class="card" fxLayout="column" fxLayoutAlign="start center">
+            <mat-card-title>
+                <h2 *ngIf="!editar" style="font-size: 20;">Nueva Subasta</h2>
+                <h2 *ngIf="editar" style="font-size: 20;">Editar Subasta</h2>
+
+            </mat-card-title>
+            <mat-card-content class="content">
+                <form [formGroup]="form" class="form">
+                    <div class="grupo-campos">
+                        <h2>Periodo de carga de vehículos</h2>
+
+                        <div fxLayout="row wrap" fxLayoutAlign="space-between">
+
+                            <mat-form-field appearance="outline" fxFlex = "100" fxFlex.gt-md = "48" >
+                                <mat-label>Fecha Inicio</mat-label>
+                                <input
+                                    matInput [matDatepicker]="datepickerInicioCarga"
+                                    required
+                                    formControlName="fecha_inicio_inscripcion"
+                                    [min]="todayDate"
+                                    [max]="form.value.fecha_fin_inscripcion"
+                                    (dateChange)="limpiarFechaFinCarga()"
+                                >
+                                <mat-datepicker-toggle matSuffix [for]="datepickerInicioCarga">
+                                    <mat-icon matDatepickerToggleIcon>calendar_today</mat-icon>
+                                </mat-datepicker-toggle>
+                                <mat-datepicker #datepickerInicioCarga>
+                                    <mat-datepicker-actions>
+                                        <button mat-button class="borderRadius" matDatepickerCancel>Cancelar</button>
+                                        <button mat-raised-button class="borderRadius" color="primary" matDatepickerApply>Aplicar</button>
+                                    </mat-datepicker-actions>
+                                </mat-datepicker>
+                            </mat-form-field>
+
+                            <mat-form-field appearance="outline" fxFlex = "100" fxFlex.gt-md = "48" >
+                                <mat-label>Fecha Fin</mat-label>
+                                <input
+                                    matInput [matDatepicker]="datepickerFinCarga"
+                                    required
+                                    formControlName="fecha_fin_inscripcion"
+                                    [min]="form.value.fecha_inicio_inscripcion"
+                                    (dateChange)="limpiarFechaInicioOfertas()"
+                                >
+                                <mat-datepicker-toggle matSuffix [for]="datepickerFinCarga">
+                                    <mat-icon matDatepickerToggleIcon>calendar_today</mat-icon>
+                                </mat-datepicker-toggle>
+                                <mat-datepicker #datepickerFinCarga>
+                                <mat-datepicker-actions>
+                                    <button mat-button class="borderRadius" matDatepickerCancel>Cancelar</button>
+                                    <button mat-raised-button class="borderRadius" color="primary" matDatepickerApply>Aplicar</button>
+                                </mat-datepicker-actions>
+                                </mat-datepicker>
+                            </mat-form-field>
+                        </div>
+                    </div>
+
+                    <div class="grupo-campos">
+                        <h2>Periodo de ofertas</h2>
+                        <div fxLayout="row wrap" fxLayoutAlign="space-between">
+                            <mat-form-field  appearance="outline" fxFlex = "100" fxFlex.gt-md = "48" >
+                                <mat-label>Fecha Inicio</mat-label>
+                                <input
+                                    matInput [matDatepicker]="datepickerInicioOfertas"
+                                    required
+                                    formControlName="fecha_inicio_ofertas"
+                                    [min]="form.value.fecha_fin_inscripcion"
+                                    [max]="form.value.fecha_fin_ofertas"
+                                    (dateChange)="limpiarFechaFinOfertas()"
+                                >
+                                <mat-datepicker-toggle matSuffix [for]="datepickerInicioOfertas">
+                                    <mat-icon matDatepickerToggleIcon>calendar_today</mat-icon>
+                                </mat-datepicker-toggle>
+                                <mat-datepicker #datepickerInicioOfertas>
+                                    <mat-datepicker-actions>
+                                        <button mat-button class="borderRadius" matDatepickerCancel>Cancelar</button>
+                                        <button mat-raised-button class="borderRadius" color="primary" matDatepickerApply>Aplicar</button>
+                                    </mat-datepicker-actions>
+                                </mat-datepicker>
+                            </mat-form-field>
+
+                            <mat-form-field  appearance="outline" fxFlex = "100" fxFlex.gt-md = "48" >
+                                <mat-label>Fecha Fin</mat-label>
+                                <input
+                                    matInput [matDatepicker]="datepickerFinOfertas"
+                                    required
+                                    formControlName="fecha_fin_ofertas"
+                                    [min]="form.value.fecha_inicio_ofertas"
+                                >
+                                <mat-datepicker-toggle matSuffix [for]="datepickerFinOfertas">
+                                    <mat-icon matDatepickerToggleIcon>calendar_today</mat-icon>
+                                </mat-datepicker-toggle>
+                                <mat-datepicker #datepickerFinOfertas>
+                                    <mat-datepicker-actions>
+                                        <button mat-button class="borderRadius" matDatepickerCancel>Cancelar</button>
+                                        <button mat-raised-button class="borderRadius" color="primary" matDatepickerApply>Aplicar</button>
+                                    </mat-datepicker-actions>
+                                </mat-datepicker>
+                            </mat-form-field>
+                        </div>
+                    </div>
+                    <div class="button-row">
+                        <button
+                            *ngIf="!editar"
+                            color="primary"
+                            mat-raised-button
+                            class="borderRadius"
+                            (click)="submit()"
+                            type="submit"
+                        >Crear Subasta
+                        </button>
+                        <button
+                            *ngIf="editar"
+                            color="primary"
+                            mat-raised-button
+                            class="borderRadius"
+                            (click)="submit()"
+                            type="submit"
+                        >Actualizar Subasta</button>
+                    </div>
+
+                </form>
+            </mat-card-content>
+        </mat-card>
+    </contenido>
+
+</app-layout-general>
+

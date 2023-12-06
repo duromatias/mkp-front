@@ -1,0 +1,384 @@
+@import "/src/assets/scss/variables.scss";
+
+.card{
+    padding-top: 100px;
+    margin-top: 58px;
+    max-width: 1026px;
+    margin-bottom: 40px;
+    .title{
+        font-weight: 500;
+        font-size: 26px;
+        line-height: 38px;
+        letter-spacing: 0.15px;
+        color: $primary-color;
+
+        padding: 0px 190px;
+        text-align: initial;
+
+    }
+
+    .card-container{
+        display: flex;
+        justify-content: center;
+
+        .content{
+            display: flex;
+            flex-direction: column;
+            align-items: stretch;
+            align-content: stretch;
+
+            .agencia {
+                margin-top: 30px;
+                margin-bottom: 16px;
+                font-weight: 700;
+                font-size: 20px;
+                line-height: 30px;
+                letter-spacing: 0.15px;
+                color: rgba(0, 0, 0, 0.87);
+            }
+
+            .datos-contacto {
+                background: #F7F7F7;
+                padding-top: 45px;
+                padding-bottom: 20px;
+            }
+
+            .text-consulta{
+                margin-top: 21px;
+                font-weight: 400;
+                font-size: 12px;
+                line-height: 13px;
+                color: #6F6B6B;
+            }
+
+            .titulo-contacto {
+                font-weight: 600;
+                font-size: 16px;
+                line-height: 24px;
+                letter-spacing: 0.15px;
+                color: rgba(0, 0, 0, 0.87);
+            }
+
+            .phone {
+                font-weight: 500;
+                font-size: 15px;
+                line-height: 22px;
+                letter-spacing: 0.15px;
+                color: rgba(0, 0, 0, 0.6);
+            }
+
+            .seccion {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                padding: 36px 16px 20px;
+                border-bottom: solid 2px rgba(0, 0, 0, 0.12);
+
+                .seccion-contenido{
+                    max-width: 456px;
+                    width: 100%;
+                }
+
+                .subtitle{
+                    font-weight: 600;
+                    font-size: 18px;
+                    line-height: 27px;
+                    letter-spacing: 0.15px;
+                    color: rgba(0, 0, 0, 0.87);
+                }
+                .detalle:nth-child(2){
+                    margin-top: 10px;
+                }
+
+                .detalles-financiacion {
+                    margin-bottom: 30px;
+                }
+
+                .detalle{
+                    min-height: 30px;
+                    font-size: 16px;
+                    letter-spacing: 0.15px;
+                    color: rgba(0, 0, 0, 0.6);
+                    .atributo {
+                        font-weight: 600;
+                    }
+
+                    .valor{
+                        font-weight: 400;
+                    }
+                }
+            }
+
+            .seccion {
+
+                .datos-ubicacion {
+                    display: flex;
+                    flex-direction: column;
+    
+                    .direccion{
+                        margin-top: 4px;
+                        font-size: 15px;
+                        line-height: 22px;
+                        letter-spacing: 0.15px;
+                        color: rgba(0, 0, 0, 0.6);
+                    }
+    
+                    .link{
+                        display: flex;
+                        margin-top: 18px;
+                        a{
+                            font-weight: 600;
+                            font-size: 14px;
+                            line-height: 0px;
+                            display: flex;
+                            align-items: center;
+                            letter-spacing: 0.15px;
+                            text-decoration-line: underline;
+                            color: $primary-color;
+                        }
+                    }
+                }
+            }
+
+            .detalles-vehiculo{
+                /*margin-top: 36px;*/
+                margin-bottom: 40px;
+            }
+        }
+    }
+
+    .botones{
+            
+        display: flex;
+        justify-content: center;
+        margin-top: 36px;
+        margin-bottom: 20px;
+        width: 100%;
+
+        button{
+            width: 263px;
+            height: 46px;
+        }
+    }
+}
+
+.header-impresion{
+    display: none;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 65px;
+    box-sizing: border-box;
+    background: $primary-color;
+    width: 100%;
+    min-height: 87px;
+    -webkit-print-color-adjust: exact;// mostrar color en la impresion
+
+    .title{
+        font-weight: 700;
+        font-size: 20px;
+        line-height: 33px;
+        text-align: center;
+        letter-spacing: 0.15px;
+        color: #FFFFFF;
+    }
+}
+
+.footer-impresion{
+    height: 93px; 
+    width: 100%; 
+    background: $primary-color;
+    position: fixed;
+    bottom: 0;
+    overflow: hidden !important;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 10px;
+
+    
+    .logo{
+        height: 22px;
+    }
+
+    p{
+        font-family: 'Roboto';
+        font-style: normal;
+        font-weight: 500;
+        font-size: 12px;
+        line-height: 16px;
+        display: flex;
+        align-items: center;
+        text-align: center;
+        color: #FFFFFF;
+    }
+
+}
+
+@media(max-width: $responsive-mobile){
+    .card {
+        border  : none !important;
+        margin  : 0 !important;
+        padding-top : 32px;
+
+        .title {
+            padding     : 0;
+            font-size   : 18px;
+            line-height : 28.5px;
+            text-align  : center;
+        }
+        .card-container {
+            .content {
+                .seccion {
+                    border-bottom: none;
+                    &:after {
+                        content          : "";
+                        background-color : rgba(0, 0, 0, 0.12);
+                        display          :  block;
+                        margin-left      : 20px;
+                        margin-right     : 20px;
+                        margin-bottom    : -20px;
+                        margin-top       : 20px;
+                        height           : 2px;
+                        width            : 100%;
+                    }
+                }
+                .agencia {
+                    display        : flex;
+                    flex-direction : column;
+                    align-content  : center;
+                    align-items    : center;
+                }
+            }
+        }
+    }
+    app-wp-button-financiacion {
+        display: block;
+        margin-top: 21px;
+        margin-bottom: 5px;
+    }
+}
+@media(min-width: $responsive-desktop){
+    app-wp-button-financiacion {
+        display: block;
+        margin-top: -91px;
+        position: absolute;
+        margin-left: 229px;
+        width: 228px;
+    }
+}
+
+.only-print{
+    display: none !important;
+}
+
+@media print {
+
+
+    .detalles-vehiculo{
+        margin-bottom: 0px;
+    }
+    .card{
+        overflow: hidden !important; 
+        margin-bottom: -150px;
+    }
+
+    *{
+        -webkit-print-color-adjust: exact !important;
+
+    }
+
+    ::-webkit-scrollbar {
+        display: none !important;
+    }
+    .sin-borde-print{
+        border-width: 0 !important;
+        margin-bottom: 200px;
+
+    }
+
+    @page { 
+        margin: 0;
+        size: auto;
+        width: 21cm; 
+
+    }
+
+    .no-print{
+        display: none !important;
+    }
+
+    .only-print{
+        display: unset !important;
+    }
+
+    ::ng-deep app-menu-desktop{
+        display: none;
+    }
+    ::ng-deep app-footer-desktop{
+        display: none;
+    }
+    ::ng-deep .header-mobile{
+        display: none;
+    }
+
+    .header-impresion{
+        display: flex;
+    }
+
+    .card{ 
+        height: 1000px !important;
+        padding: 0 !important;
+        margin: 0 !important;
+        .title{
+            display: none;
+        }
+
+        app-wp-button-financiacion{
+            display: none !important;
+        }
+
+        .botones{
+            display: none !important;
+        }
+
+        .text-consulta{
+            display: none !important;
+        }
+
+        .link{
+            display: none !important;
+        }
+
+        .seccion{
+            padding: 15px 20px !important;
+        }
+    
+        .datos-contacto{
+            background: none !important;
+        }
+
+        .datos-ubicacion{
+            flex-direction: row !important;
+            gap: 15px;
+        }
+
+        .row-print{
+            display: flex;
+            flex-direction: row !important;
+            gap: 15px;
+        }
+
+
+    }
+
+    .no-print{
+        display: none !important;
+    }
+
+    .footer-impresion{
+        display: flex !important;
+    }
+
+}
+

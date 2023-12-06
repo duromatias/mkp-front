@@ -1,0 +1,40 @@
+.contenedor{
+    width: 330px;
+    height: 130px;
+}
+.titulo{
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 24px;
+    text-align: center;
+    letter-spacing: 1.0176px;
+    color: #000000;
+    width: 215px;
+    height: 48px;
+    margin: auto;
+}
+
+.subtitulo{
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 13px;
+    text-align: center;
+    letter-spacing: 0.425541px;
+    color: #000000;
+    margin: auto;
+    margin-top: 33px;
+}
+
+.button{
+    height: 37.44765090942383px;
+    width: 130.25270080566406px;
+}
+.buttonBorder{
+    height: 37.44765090942383px;
+    width: 130.25270080566406px;
+    border-color: #0A3066 !important;
+}

@@ -1,0 +1,18 @@
+<div class="tira">
+    <a class="wrapper-link" *ngFor="let publicacion of publicaciones" [routerLink]="'/publicaciones/' + publicacion.id">
+        <publicaciones-card
+            [publicacion]     = publicacion
+            [anio]            = publicacion.anio
+            [precio]          = publicacion.precio
+            [kilometros]      = publicacion.kilometros
+            [marca]           = publicacion.marca
+            [modelo]          = publicacion.modelo
+            [multimedia]      = publicacion.multimedia
+            [ubicacion]       = publicacion.ubicacion
+            [es_oportunidad]  = publicacion.es_oportunidad
+            [financiacion]    = publicacion.financiacion
+            [mostrarFlechasCarousel] = false
+            [user]            = user
+        ></publicaciones-card>
+    </a>
+</div>

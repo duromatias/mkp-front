@@ -1,0 +1,122 @@
+<app-layout-general [lienzo]="false">
+    <contenido>
+        <div class="seccion-1">
+            <div class="lienzo">
+                <div class="container-banner">
+
+                    <div class="content-banner">
+                        <div class="title">
+                            <div *ngIf="deviceService.isMobile">
+                                <p>Comprá y vendé el</p>
+                                <p>auto de tus sueños</p>
+                                <img src="/assets/images/home/flechas_seccion1.png">
+                            </div>
+                            <div *ngIf="deviceService.isDesktop">
+                                <p>Comprá y vendé</p>
+                                <p>el auto de tus sueños</p>
+                                <img src="/assets/images/home/flechas_seccion1.png">
+                            </div>
+                        </div>
+
+                        <div class="container-form">
+                            <form [formGroup]="form" (ngSubmit)="search()">
+                                <mat-form-field appearance="outline" class="fill-container">
+                                        <input nomobile formControlName="marcaModelo" matInput placeholder="Escribe la Marca y el Modelo..." autocomplete="off">
+                                        <input mobile formControlName="marcaModelo" matInput autocomplete="off">
+                                </mat-form-field>
+                                <button *ngIf="deviceService.isMobile" mat-raised-button type="submit" class="boton-buscar"><mat-icon style="margin-right: 5px;">search</mat-icon>Buscar</button>
+                                <button *ngIf="deviceService.isDesktop" mat-raised-button type="submit" class="boton-buscar"><img src="/assets/images/home/search-icon.svg"><span>Buscar</span></button>
+                            </form>
+                        </div>
+
+                        <div *ngIf="deviceService.isMobile" [class.legend]="!isMobile" [class.legend-mobile]="isMobile">
+                            <p>DeUsados.com</p>
+                            <p>es un producto de</p>
+                            <img src="/assets/images/home/branch.png">
+                        </div>
+
+                        <div *ngIf="deviceService.isDesktop" [class.legend]="!isMobile" [class.legend-mobile]="isMobile">
+                            <div>
+                                <p>DeUsados.com</p>
+                                <p>es un producto de</p>
+                                <img src="/assets/images/home/branch.png">
+                            </div>
+                        </div>
+                        
+
+                    </div>
+
+                    <div nomobile>
+                        <img class="happy-man" src="/assets/images/home/banner_seccion1_happy_man.png">
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="titulo-seccion">
+            Últimos publicados
+        </div>
+        <div class="seccion-2">
+            <div class="lienzo">
+                <landing-cards-carrousel [publicaciones]="publicaciones"></landing-cards-carrousel>
+
+                <landing-link-ver-mas *ngIf="!isMobile" [titulo]="'todos los vehículos'" [link]="'/publicaciones'"></landing-link-ver-mas>
+                <landing-link-ver-mas *ngIf="isMobile"  [titulo]="'más vehículos'"       [link]="'/publicaciones'"></landing-link-ver-mas>
+            </div>
+        </div>
+
+        <div class="seccion-3">
+            <app-imagenes-carrousel></app-imagenes-carrousel>
+        </div>
+
+        <div class="titulo-seccion" style="background-color: transparent;">
+            <div *ngIf="haySubasta">Últimos subastados</div>
+            <div *ngIf="!haySubasta">Otras publicaciones</div>
+        </div>
+        <div class="seccion-4">
+            <div class="lienzo">
+                <landing-cards-carrousel [publicaciones]="subastas"></landing-cards-carrousel>
+                <landing-link-ver-mas *ngIf="haySubasta"  [titulo]="'más subastas'" [link]="'/subastas'"></landing-link-ver-mas>
+                <landing-link-ver-mas *ngIf="!haySubasta" [titulo]="'todas'"        [link]="'/publicaciones'"></landing-link-ver-mas>
+            </div>
+        </div>
+
+        <div class="seccion-5">
+            <div class="titulo-seccion">Compra y venta de tus usados de la forma más simple</div>
+            <div class="lienzo">
+                <div class="item">
+                    <img class="imagen-simple" src="/assets/images/home/simple_seccion5.png">
+                    <span class="titulo">Simple</span>
+                    <span class="descripcion">Cientos de vehículos al alcance de tu mano y 100% online.</span>
+                </div>
+                <div class="item">
+                    <img class="imagen" src="/assets/images/home/seguro_seccion5.png">
+                    <span class="titulo">Seguro</span>
+                    <span class="descripcion">Comprá con la seguridad de saber que son agencias registradas.</span>
+                </div>
+                <div class="item">
+                    <img class="imagen" src="/assets/images/home/negociable_seccion5.png">
+                    <span class="titulo">Financiable</span>
+                    <span class="descripcion">Encontrá el auto de tus sueños, nosotros lo financiamos.</span>
+                </div>
+            
+            </div>
+        </div>
+
+        <div class="banner-verde">
+            <div *ngIf="deviceService.isDesktop">
+                <span nomobile class="title"> <span class="title-bold">DeUsados.com</span> es un producto de Decreditos S.A.</span>
+            </div>
+            <div *ngIf="deviceService.isMobile" class="banner-mobile">
+                <span class="title-bold">DeUsados.com</span>
+                <span nomobile class="title">es un producto de Decreditos</span>
+                <span mobile class="title">es un producto de </span>
+                <span class="title">Decreditos S.A.</span>
+            </div>
+            <span class="subtitle">Más de 20 años liderando en el sector financiero.</span>
+        </div>
+    </contenido>
+</app-layout-general>
+
+

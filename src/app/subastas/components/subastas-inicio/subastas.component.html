@@ -1,0 +1,297 @@
+<app-layout-listado (onClearFilters)="onClearFilters()" [redireccionarAlbuscar]="false" (eventoBusqueda)="buscar($event)" [ordenarOpciones]="ordenarOpciones">
+
+
+    <filtros  fxLayout="column" >
+
+        <div [ngStyle]="{display: mostrarFiltrosSubastas }">
+            <p>Filtros</p>
+            <publicaciones-filtros
+                #filtrosComponent1
+                [mostrarTipoVendedor]="mostrarTipoVendedor"
+                [mostrarOportunidad]="mostrarOportunidad"
+                [mostrarEnSubasta]="esAgencia"
+                [(filtros)]="filtros"
+                (filtrosChange)="actualizarListado()"
+                [baseUrl]="filtrosBaseUrl"
+            >
+            </publicaciones-filtros>
+        </div>
+
+        <div class="main" *ngIf="filtroMisVehiculos === true || true" fxLayout="column">
+            <p class="tituloFiltro" fxLayoutAlign="space-between">
+                Filtros subasta
+                <button *ngIf="!mostrarFiltrosMisVehiculos" mat-icon-button matSuffix (click)="visualizarFiltrosMisVehiculos()">
+                    <mat-icon>expand_more</mat-icon>
+                </button>
+                <button *ngIf="mostrarFiltrosMisVehiculos" mat-icon-button matSuffix (click)="visualizarFiltrosMisVehiculos()">
+                    <mat-icon>expand_less</mat-icon>
+                </button>
+            </p>
+
+            <div  *ngIf="mostrarFiltrosMisVehiculos" fxLayout="column">
+                <p>Estado</p>
+                <mat-form-field appearance="outline" style="width: 100%;">
+                    <mat-label>Estado</mat-label>
+                    <mat-select  [(ngModel)]="filtros.subasta_estado" (selectionChange)="actualizarListado()">
+                        <mat-option value="vigente">Activas</mat-option>
+                        <mat-option value="finalizada">Finalizadas</mat-option>
+                        <mat-option value="proxima">Próxima</mat-option>
+                        <mat-option value="">Todas</mat-option>
+                    </mat-select>
+                </mat-form-field>
+
+                <p>Fecha fin de subasta</p>
+
+                <mat-form-field appearance="outline" fxFlex = "100" fxFlex.gt-md = "48" >
+                    <mat-label>Desde</mat-label>
+                    <input
+                        #filtroFechaDesde matInput [matDatepicker]="pickerFechaDesde"
+                        (focus)="pickerFechaDesde.open()"
+                        [(ngModel)]="filtroSubastaFechaDesde"
+                        (dateChange)="actualizarListado()">
+                    <mat-datepicker-toggle matSuffix [for]="pickerFechaDesde">
+                        <mat-icon matDatepickerToggleIcon>calendar_today</mat-icon>
+                    </mat-datepicker-toggle>
+                    <mat-datepicker #pickerFechaDesde></mat-datepicker>
+                </mat-form-field>
+
+                <mat-form-field appearance="outline" fxFlex = "100" fxFlex.gt-md = "48" >
+                    <mat-label>Hasta</mat-label>
+                    <input
+                        #filtroFechaHasta matInput [matDatepicker]="pickerFechaHasta"
+                        [min]="fechaDesde"
+                        (focus)="pickerFechaHasta.open()"
+                        [(ngModel)]="filtroSubastaFechaHasta"
+                        (dateChange)="actualizarListado()">
+                    <mat-datepicker-toggle matSuffix [for]="pickerFechaHasta">
+                        <mat-icon matDatepickerToggleIcon>calendar_today</mat-icon>
+                    </mat-datepicker-toggle>
+                    <mat-datepicker #pickerFechaHasta></mat-datepicker>
+                </mat-form-field>
+            </div>
+        </div>
+
+        <p *ngIf="filtroMisVehiculos" class="tituloFiltro">
+            Búsqueda avanzada
+            <button *ngIf="!mostrarFiltros" mat-icon-button matSuffix (click)="visualizarFiltrosAvanzados()">
+                <mat-icon>expand_more</mat-icon>
+            </button>
+            <button *ngIf="mostrarFiltros" mat-icon-button matSuffix (click)="visualizarFiltrosAvanzados()">
+                <mat-icon>expand_less</mat-icon>
+            </button>
+        </p>
+
+        <div class="main" *ngIf="filtroMisPujas === true" fxLayout="column" >
+            <p class="tituloFiltro" fxLayoutAlign="space-between">
+                Filtros subasta
+                <button *ngIf="!mostrarFiltrosMisPujas" mat-icon-button matSuffix (click)="visualizarFiltrosMisPujas()">
+                    <mat-icon>expand_more</mat-icon>
+                </button>
+                <button *ngIf="mostrarFiltrosMisPujas" mat-icon-button matSuffix (click)="visualizarFiltrosMisPujas()">
+                    <mat-icon>expand_less</mat-icon>
+                </button>
+            </p>
+
+            <div  *ngIf="mostrarFiltrosMisPujas" fxLayout="column">
+
+                <p>Fecha fin de subasta</p>
+
+                <mat-form-field appearance="outline" fxFlex = "100" fxFlex.gt-md = "48" >
+                    <mat-label>Desde</mat-label>
+                    <input
+                        #filtroFechaDesde matInput [matDatepicker]="pickerFechaDesde"
+                        (focus)="pickerFechaDesde.open()"
+                        [(ngModel)]="filtros.subasta_fecha_fin_ofertas_desde"
+                        (dateChange)="actualizarListado()">
+                    <mat-datepicker-toggle matSuffix [for]="pickerFechaDesde">
+                        <mat-icon matDatepickerToggleIcon>calendar_today</mat-icon>
+                    </mat-datepicker-toggle>
+                    <mat-datepicker #pickerFechaDesde></mat-datepicker>
+                </mat-form-field>
+
+                <mat-form-field appearance="outline" fxFlex = "100" fxFlex.gt-md = "48" >
+                    <mat-label>Hasta</mat-label>
+                    <input
+                        #filtroFechaHasta matInput [matDatepicker]="pickerFechaHasta"
+                        [min]="fechaDesde"
+                        (focus)="pickerFechaHasta.open()"
+                        [(ngModel)]="filtros.subasta_fecha_fin_ofertas_hasta"
+                        (dateChange)="actualizarListado()">
+                    <mat-datepicker-toggle matSuffix [for]="pickerFechaHasta">
+                        <mat-icon matDatepickerToggleIcon>calendar_today</mat-icon>
+                    </mat-datepicker-toggle>
+                    <mat-datepicker #pickerFechaHasta></mat-datepicker>
+                </mat-form-field>
+
+                <p>Marca</p>
+                <app-server-autocomplete
+                    [label]="'Ingrese'"
+                    [labelForAll]="'Todas'"
+                    [valueColumn]="'valor'"
+                    [labelColumn]="'descripcion'"
+                    [placeholder]="'Ingrese'"
+                    [dataUrl]="baseUrl + '/marcas'"
+                    [searchParam]="'busqueda_marca'"
+                    [(value)]="filtros['marca']"
+                    (optionSelected)="actualizarListado()"
+                ></app-server-autocomplete>
+
+                <p>Modelo</p>
+                <app-server-autocomplete
+                    [label]="'Ingrese'"
+                    [labelForAll]="'Todos'"
+                    [valueColumn]="'valor'"
+                    [labelColumn]="'descripcion'"
+                    [placeholder]="'Ingrese'"
+                    [dataUrl]="baseUrl + '/modelos'"
+                    [searchParam]="'busqueda_modelo'"
+                    [(value)]="filtros['modelo']"
+                    (optionSelected)="actualizarListado()"
+                ></app-server-autocomplete>
+
+                <p>Moneda</p>
+                <app-select-input
+                    [emptyOption]="'Todas'"
+                    [label]="'Seleccione'"
+                    [options]="monedas"
+                    [(value)]="filtros['moneda']"
+                    (valueChange)="actualizarListado()"
+                ></app-select-input>
+
+                <p>Año</p>
+                <div>
+                    <app-select-input
+                        [label]="'Desde'"
+                        [options]="anios"
+                        [(value)]="filtros['año_desde']"
+                        (valueChange)="actualizarListado()"
+                    ></app-select-input>
+                    <app-select-input
+                        [label]="'Hasta'"
+                        [options]="anios"
+                        [(value)]="filtros['año_hasta']"
+                        (valueChange)="actualizarListado()"
+                    ></app-select-input>
+                </div>
+
+            </div>
+        </div>
+
+
+        <publicaciones-filtros  [ngStyle]="{display: mostrarFiltrosAvanzados }"
+            #filtrosComponent2
+            [mostrarTipoVendedor]="mostrarTipoVendedor"
+            [mostrarOportunidad]="mostrarOportunidad"
+            [mostrarEnSubasta]="esAgencia"
+            [(filtros)]="filtros"
+            (filtrosChange)="actualizarListado()"
+            [baseUrl]="filtrosBaseUrl"
+        >
+        </publicaciones-filtros>
+    </filtros>
+
+    <top-contenido>
+        <div *ngIf="!userService.esAdministrador()" class="backgroundTab">
+            <mat-tab-group (selectedTabChange)="clickTab($event)" >
+                <mat-tab label="Subasta"></mat-tab>
+                <mat-tab label="Mis vehículos"></mat-tab>
+                <mat-tab label="Mis pujas"></mat-tab>
+                <mat-tab label="Me interesa"></mat-tab>
+            </mat-tab-group>
+        </div>
+    </top-contenido>
+    
+    <contenido >
+        <div *ngIf="estadoSubasta === 'Inscripcion' && !userService.esAdministrador()"
+            style="margin-top: 35px;
+            margin-left: 30px;
+            margin-right: 13px;
+            display: flex;
+            justify-content: space-between;"
+
+        >
+            <div style="display: flex;
+                gap: 13px;"
+            >
+                <div>
+                    <img src="assets/images/timmerSubastaRed.svg" alt="">
+                </div>
+                <div style="display: flex;
+                    flex-direction: column;
+                    padding-top: 5px;"
+                >
+                    <span style="font-size: 20px;">Abierta la inscripción</span>
+                    <span style="font-size: 15px;
+                        color: rgba(0, 0, 0, 0.6);"
+                    >Hasta el {{fechaFinInscripcion}}</span>
+                </div>
+            </div>
+
+            <button
+                *ngIf="!isMobile"
+                class="botonSuperior borderRadius"
+                mat-raised-button
+                color="primary"
+                type="button"
+                (click)="clickSubastar()"
+            >
+            Subastar
+            </button>
+
+            <div *ngIf="isMobile" class="subastarMobile">
+                <button mat-fab color="primary" (click)="clickSubastar()">
+                    <mat-icon>add</mat-icon>
+                </button>
+            </div>
+
+
+
+        </div>
+
+        <div fxLayout="row wrap" fxLayoutAlign="space-between">
+            <div *ngIf="estadoSubasta === 'Oferta'" style="display: flex;
+
+                gap: 13px;margin-top: 35px;
+                margin-left: 30px;
+                margin-right: 13px;
+                display: flex;
+                justify-content: start;">
+
+                <div>
+                    <img src="assets/images/timmerSubastaRed.svg" alt="">
+                </div>
+                <div style="display: flex;
+                    flex-direction: column; justify-content: center; margin-top: -5px;">
+
+                    <span style="font-size: 20px;">Termina en {{textoTiempoRestante}}</span>
+                </div>
+
+            </div>
+
+            <div *ngIf="userService.esAdministrador()" class="gestionarSubastas"
+>
+                <button
+                class="botonSuperior"
+                mat-raised-button color="primary"
+                type="button"
+                routerLink="/subastas/listar"
+                >Gestionar subastas
+                </button>
+            </div>
+        </div>
+        <div class="listado">
+            <publicaciones-listado
+                *ngIf="showListado"
+                #listado
+                [url]="urlListado"
+                [filtros]="filtros"
+                (fetchData)="onFetchData($event)"
+                (cardClick)="onCardClick($event)"
+                (clickMeInteresa)="actualizarListado()"
+                [ordenarOpciones]="ordenarOpciones"
+            ></publicaciones-listado>
+        </div>
+
+    </contenido>
+
+</app-layout-listado>

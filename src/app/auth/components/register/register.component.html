@@ -1,0 +1,139 @@
+<app-layout-general>
+    <contenido class="main" fxLayout.gt-md="row" fxLayoutAlign="center center">
+        <mat-card class="card" fxLayout="column" fxLayoutAlign="start center">
+            <div class="logo"></div>
+            <h2>Registrate</h2>
+
+            <span class="mat-h4 onboarding-account">
+                Si ya sos usuario de Decréditos podés <a routerLink="/auth/login">ingresar</a> con el mismo usuario y contraseña
+            </span>
+
+            <form [formGroup]="form" fxLayout="row wrap" fxLayoutAlign="space-between" class="form" (ngSubmit)="submit()" [autocomplete]="false">
+                <mat-form-field appearance="outline">
+                    <mat-label>Email</mat-label>
+                    <input formControlName="email" matInput required>
+                    <mat-error *ngIf="form.get('email')?.invalid">{{getFieldErrorMessage('email')}}</mat-error>
+                </mat-form-field>
+
+
+
+                <mat-form-field appearance="outline">
+                    <mat-label>Confirmar Email</mat-label>
+                    <input formControlName="email_confirmation" (change)="verifyEmail()" matInput required>
+                    <mat-error *ngIf="form.get('email_confirmation')?.invalid">{{getFieldErrorMessage('email_confirmation')}}</mat-error>
+                </mat-form-field>
+
+                <mat-form-field appearance="outline">
+                    <mat-label>Contraseña</mat-label>
+                    <input formControlName="password" matInput [type]="hidePassword ? 'password' : 'text'" required>
+                    <button mat-icon-button matSuffix (click)="hidePassword = !hidePassword">
+                        <mat-icon>{{hidePassword ? 'visibility_off' : 'visibility'}}</mat-icon>
+                    </button>
+                    <mat-error *ngIf="form.get('password')?.invalid">
+                        {{getFieldErrorMessage('password')}}
+                    </mat-error>
+                </mat-form-field>
+
+                <mat-form-field appearance="outline">
+                    <mat-label>Confirmar Contraseña</mat-label>
+                    <input formControlName="password_confirmation" matInput type="password" required>
+                    <mat-error *ngIf="form.get('password_confirmation')?.invalid">{{getFieldErrorMessage('password_confirmation')}}</mat-error>
+                </mat-form-field>
+
+                <mat-form-field fxFlexAlign="start" appearance="outline">
+                    <mat-label>Tipo de Usuario</mat-label>
+                    <mat-select formControlName="rol_id" required (selectionChange)="cambiarTipoDeUsuario($event)">
+                        <mat-option *ngFor="let rol of roles" [value]="rol.id">
+                            {{rol.descripcion}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+
+                <!-- Agencia fields-->
+                <ng-container *ngIf="showAgenciaRolFields()">
+                    <mat-form-field appearance="outline">
+                        <mat-label>CUIT/CUIL</mat-label>
+                        <input formControlName="cuit" type="number" matInput required>
+                        <mat-error *ngIf="form.get('cuit')?.invalid">{{getFieldErrorMessage('cuit')}}</mat-error>
+                    </mat-form-field>
+
+                    <mat-form-field appearance="outline">
+                        <mat-label>Nombre de la Agencia</mat-label>
+                        <input formControlName="razon_social" matInput required autocomplete="off">
+                    </mat-form-field>
+
+                    <app-direccion
+                        #componenteDireccion
+                        [form]="form"
+                        (alElegirDireccionIncompleta)="alElegirDireccionIncompleta()"
+                    ></app-direccion>
+
+
+                    <div class="form-field" fxLayayout="row">
+                        <button mat-button disabled class="input-prefix">0</button>
+                        <mat-form-field  fxFlex="100" appearance="outline">
+                            <mat-label>Código de Área</mat-label>
+                            <input formControlName="codigo_area" type="number" matInput required>
+                            <mat-error *ngIf="form.get('codigo_area')?.invalid">
+                                {{getFieldErrorMessage('codigo_area')}}
+                            </mat-error>
+                        </mat-form-field>
+                    </div>
+
+                    <div class="form-field" fxLayayout="row">
+                        <button mat-button disabled class="input-prefix">15</button>
+                        <mat-form-field fxFlex="100" appearance="outline">
+                            <mat-label>Teléfono</mat-label>
+                            <input formControlName="telefono" type="number" matInput required>
+                            <mat-error *ngIf="form.get('telefono')?.invalid">
+                                {{getFieldErrorMessage('telefono')}}
+                            </mat-error>
+                        </mat-form-field>
+                    </div>
+                </ng-container>
+
+
+                <!-- Particular fields -->
+                <ng-container *ngIf="showParticularRolFields()">
+                    <mat-form-field fxFlex="100" fxFlex.gt-md="48" appearance="outline">
+                        <mat-label>Nombre y Apellido</mat-label>
+                        <input formControlName="nombre" (keypress)="validarCaracteres($event)" matInput required>
+                    </mat-form-field>
+                </ng-container>
+
+                <div fxFlex="100" fxLayout="row" fxLayoutAlign="center">
+                    <mat-checkbox
+                        [(ngModel)]="terminosCondiciones" [ngModelOptions]="{standalone: true}">
+                        Acepto los
+                    </mat-checkbox>
+
+                    <span style="line-height: 24px;">
+                        <a app-a-new-tab-redirect style="font-size: 14px;  white-space: pre; cursor: pointer; font-weight: 500;" href="/auth/tyc" target="_blank"> Términos y Condiciones</a>
+
+                    </span>
+                </div>
+
+                <button fxFlex="100" class="submit-button borderRadius" color="primary" mat-raised-button  type="submit">Crear mi cuenta</button>
+                <div *ngIf="submitted" fxFlex="100" fxLayout="column" fxLayoutAlign="start center">
+                    <!-- Errors -->
+                    <mat-error *ngIf="!terminosCondiciones">
+                        Para registrarse debe estar de acuerdo con los términos y condiciones
+                    </mat-error>
+                    <mat-error *ngFor="let error of apiErrors | keyvalue">
+                        {{error.value}}
+                    </mat-error>
+
+                    <!-- Success -->
+                    <span *ngIf="success" class="success">Cuenta creada con éxito</span>
+                </div>
+
+
+                <div fxFlex="100" fxLayout="row" fxLayoutAlign="center">
+                    <span class="mat-body-strong">
+                        ¿Ya tenés una cuenta? <a routerLink="/auth/login">Iniciar Sesión</a>
+                    </span>
+                </div>
+            </form>
+        </mat-card>
+    </contenido>
+</app-layout-general>

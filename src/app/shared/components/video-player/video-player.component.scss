@@ -1,0 +1,50 @@
+:host {
+    position: relative;
+    background-color : #000000;
+}
+video {
+    position         : absolute;
+    inset            : 0;
+    background-color : #000000;
+    object-fit       : cover;
+}
+
+.overlay {
+    position: absolute;
+    inset           : 0;
+    top             : 0;
+    left            : 0;
+    right           : 0;
+    bottom          : 0;
+    display         : flex;
+    justify-content : center;
+    align-items     : center;
+    z-index         : 9;
+
+    .play-button {
+        background      : #00000066;
+        width           : 60px;
+        height          : 60px;
+        display         : flex;
+        justify-content : center;
+        align-items     : center;
+        border-radius   : 20%;
+        border          : none;
+        color           : #fff;
+        cursor          : pointer;
+        z-index         : 9;
+    }
+}
+
+@media only screen and (min-width: 768px) {
+    .overlay {
+        .play-button {
+            width: 100px;
+            height: 100px;
+
+            mat-icon {
+                transform: scale(2);
+            }
+        }
+    }
+}

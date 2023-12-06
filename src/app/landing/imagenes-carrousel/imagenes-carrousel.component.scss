@@ -1,0 +1,167 @@
+@import "/src/assets/scss/variables.scss";
+
+.hole {
+    width: 100%;
+    height: 580px;
+    display: block;
+    position: relative;
+    overflow: hidden;
+    transform: translate3d(0, 0, 0);
+    -webkit-transform: translate3d(0, 0, 0);
+
+    @media(max-width: $responsive-mobile) {
+        height: 359px;
+    } 
+    
+    .trip {
+        text-align: center;
+        align-self: stretch;
+        overflow: hidden;
+        transition: 0.7s all ease-in-out;
+        display:flex;
+        width: 300%;
+        height: 580px;
+
+        @media(max-width: 280px) {
+            width: 390%;
+        } 
+
+        a {
+            display: flex;
+            flex-grow: 3;
+
+            .item {
+                float: left;
+                display: block;
+                background-repeat: no-repeat;
+                background-size: cover;
+                background-position: center;
+                flex-grow: 1;
+
+                .texto{
+                    display: flex;
+                    flex-direction: column;
+                    width: 350px;
+                    height: 550px;
+                    align-items: center;
+                    justify-content: center;
+                    margin-left: 200px;
+                    text-align: initial;
+
+                    @media(max-width: $responsive-mobile) {
+                        margin-left: 90px;
+                        margin-right: 77px;
+                        width: 190px;
+                        height: 359px;
+                    } 
+                    
+                    @media(max-width: 280px) {
+                        margin-left: 50px;
+                        margin-right: 0px;
+                        width: 190px;
+                    }
+
+                    .titulo{
+                        font-weight: 800;
+                        font-size: 46px;
+                        line-height: 69px;
+                        color: #0A3066;
+
+                        @media(max-width: $responsive-mobile) {
+                            font-size: 30px;
+                            line-height: 45px;
+                            color: white;
+                            text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.5);
+                        } 
+                    }
+        
+                    .detalle{
+                        font-weight: 300;
+                        font-size: 46px;
+                        line-height: 69px;
+                        color: #0A3066;
+
+                        @media(max-width: $responsive-mobile) {
+                            font-size: 30px;
+                            line-height: 45px;          
+                            color: white;
+                            text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.5);
+                        } 
+                    }
+                }
+
+            
+            }
+        }
+    }
+
+    .control.arrow {
+        position: absolute;
+        margin-left: 20px;
+        margin-right: 20px;
+        width: 66px;
+        height: 66px;
+        top: calc(50% - 20px);
+        z-index: 10;
+        box-sizing: border-box;
+        background: rgba(32, 32, 32, 0.6);
+
+        @media(max-width: $responsive-mobile) {
+            width: 38px;
+            height: 38px;
+        }  
+
+        mat-icon {
+            text-align: center;
+            cursor: pointer;
+            color: white;
+            font-size: 20px;
+            text-shadow: 1px 1px 3px black;
+            transform: scale(1.6);
+
+            @media(max-width: $responsive-mobile) {
+                transform: scale(1);
+            }  
+        }
+
+        .left{
+            margin-left: 10px;
+            @media(max-width: $responsive-mobile) {
+                margin-left: 6px;
+                margin-bottom: 5px;
+            }
+        }
+
+        .right{
+            margin-left: 2px;
+            @media(max-width: $responsive-mobile) {
+                margin-bottom: 5px;
+            }
+        }
+    }
+
+    .indicadores{
+        display: flex !important;
+        flex-direction: row;
+        z-index: 10;
+        position: absolute;
+        top: calc(100% - 50px);
+
+        .circle{
+            margin-left: 18px;
+            background-color: white;
+            border-radius: 50%;
+            width: 23px;
+            height: 23px;
+        }
+
+        .circle-fill{
+            margin-left: 18px;
+            background-color: #0A3066;;
+            border-radius: 50%;
+            width: 23px;
+            height: 23px;
+        }
+    }
+    
+}

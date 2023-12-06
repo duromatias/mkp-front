@@ -1,0 +1,54 @@
+<app-layout-general>
+    <contenido fxLayout.gt-md="row" class="contenido">
+        <mat-card>
+
+            <div class="title">
+                <span>Seleccioná el plazo y valor estimado de cuota</span>
+            </div>
+
+            <div class="monto-financiar">
+                <span>Monto a financiar </span><span>$ <span style="font-weight: 600;">{{utils.formatNumero(monto.toString())}}</span></span>
+            </div>
+
+            <div class="cuotas">
+                <app-cuota *ngFor="let cuota of cuotas" [numeroCuota]="cuota.cantidadCuotas" [valorCuota]="cuota.valorPrimerCuota"
+                    [selected]="cuota.selected" [gray]="cuota.gray" (mouseOver)="mouseOverCuota(cuota)" (mouseLeave)="mouseLeave()" (selectCuota)="selectCuota(cuota)">
+                </app-cuota>
+            </div>
+
+            <div class="aclaraciones">
+                <span>
+                    * Los valores estimados de cuota NO INCLUYEN el seguro del vehículo.
+                </span>
+                <span>
+                    * El valor de la cuota exacta se confirma con el aprobado definitivo y queda sujeta a tu perfil.
+                </span>
+            </div>
+
+            <div class="cobertura" *ngIf="datosCargados">
+                <div class="cobertura-title">
+                    <span>Cobertura del Seguro</span>
+                </div>
+                <div class="cobertura-container">
+                    <div class="cobertura-contenido">
+
+                        <div class="valor">
+                            <span class="subtitle">Valor del Seguro: </span><span class="monto">&nbsp;${{utils.formatNumero(seguro.ValorSeguro.toString())}}</span>
+                        </div>
+
+                        <div class="compania">
+                            <span></span>
+                            <span class="subtitle">Compañía: </span><span class="">&nbsp;{{seguro.NomCompania}}</span>
+                        </div>
+
+                        <div class="descripcion">
+                            <span class="subtitle" style="line-height: 14px;">Cobertura: </span><span style="line-height: 14px;">{{seguro.Cobertura}}</span>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+        </mat-card>
+    </contenido>
+</app-layout-general>

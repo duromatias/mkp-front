@@ -1,0 +1,11 @@
+<div class="oportunidad" style="gap:7px" 
+    [class.color]="color === 'color_primario'" 
+    [class.color-terminada]="color === 'color_terminada'"
+    [class.color-oportunidad]="color === 'color_oportunidad'"
+    [class.color-financiacion]="color === 'color_financiacion'"
+    [class.color-ganando]="color === 'color_ganando'"
+    [class.color-perdiendo]="color === 'color_perdiendo'">
+    <img *ngIf="icono" [src]="'/assets/images/'+icono+'.svg'" alt="">
+    <span>{{texto}}</span>
+    
+</div>

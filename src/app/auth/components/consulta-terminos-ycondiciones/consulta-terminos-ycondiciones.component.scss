@@ -1,0 +1,48 @@
+@import "/src/assets/scss/variables.scss";
+
+contenido{
+    align-items: flex-start !important;
+}
+
+mat-card{
+    box-sizing: border-box;
+    width: 100%;
+    max-width: 943px;
+    margin-left: 10px;
+    margin-right: 10px;
+    mat-card-title{
+        text-align: center;
+
+    }
+    mat-card-content{
+        font-size: 16px;
+    }
+}
+
+@media only screen and (max-width : $responsive-mobile){
+    mat-card{
+        margin: 28px;
+        padding: 28px;
+    }
+
+    mat-card-content{
+        margin-top: 30px;
+    }
+}
+
+@media only screen and (min-width : $responsive-desktop){
+    contenido{
+
+        min-height: 900px;
+    }
+    mat-card{
+        margin-top: 56px;
+        padding: 33px 56px 56px 56px ;
+        width: 943px;
+        margin-bottom: 56px;
+    }
+
+    mat-card-content{
+        margin-top: 40px;
+    }
+}

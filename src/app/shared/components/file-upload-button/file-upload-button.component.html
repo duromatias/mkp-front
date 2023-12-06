@@ -1,0 +1,6 @@
+<button type="button" mat-flat-button (click)="fileInput.click()">{{label}}</button>
+<br />
+<input #fileInput type="file" (change)="onFileChange($event)" />
+<span *ngIf="choosenFile">
+    <i>{{choosenFileLabel}}: <b>{{ choosenFile.name }}</b></i>
+</span>

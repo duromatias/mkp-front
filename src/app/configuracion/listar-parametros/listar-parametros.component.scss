@@ -1,0 +1,38 @@
+@import "/src/assets/scss/variables.scss";
+
+.contenido {
+    @media(min-width: 1600px) {
+        min-height: 81vh;
+    }
+
+    @media(min-width: 1920px) {
+        min-height: 84vh;
+    }
+
+    .submit-button {
+        align-self: center;
+        height: 55px;
+    }
+}
+
+.buttons{
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 35px;
+    margin-right: 14px;
+    margin-bottom: 15px;
+
+    .botonTyc{
+        height: 41px;
+        width: 310px;
+        align-self: end;
+        margin-bottom: 10px;
+        @media only screen and (max-width: $responsive-mobile) {
+            margin-top: -10px;
+            margin-bottom: 10px ;
+            margin-right: -8px !important;
+        }
+    }
+}
+
+

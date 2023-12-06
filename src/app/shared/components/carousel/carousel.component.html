@@ -1,0 +1,34 @@
+<div class="hole" #hole [ngStyle]="holeStyle">
+    <button #leftArrow class="control arrow" *ngIf="items.length > 1 " [ngStyle]="{'visibility': visibility}"  mat-icon-button (click)="increment($event, -1)" (mousedown)="mouseDown($event)">
+        <mat-icon>arrow_back_ios</mat-icon>
+    </button>
+    <button  #rightArrow class="control arrow" *ngIf="items.length > 1 " [ngStyle]="{'visibility': visibility}" mat-icon-button (click)="increment($event, 1)" (down)="mouseDown($event)" style="right:0">
+        <mat-icon>arrow_forward_ios</mat-icon>
+    </button>
+    <div class="trip"  [ngStyle]="{'width.px' : widthCarousel ,'height.px' : height, 'margin-left': tripMarginLeft + 'px', 'transition': transition}">
+        <ng-container *ngFor="let item of itemsToShow">
+            <div *ngIf="item.tipo === 'image'" 
+                class="item"
+                [ngStyle]="{'width.px': width, 'height.px' : height, 'background-image': 'url(' + item[atributoUrl] + ')'}"
+            ></div>
+            <app-video-player *ngIf="item.tipo === 'video'"
+                #videoPlayer
+                class="item" [src]="item[atributoUrl]" 
+                [ngStyle]="{'width.px': width, 'height.px' : height}"
+                [width]="width"
+                [height]="height"
+            ></app-video-player>
+            <!-- video *ngIf="item.tipo === 'video'"
+                #video
+                [muted]="true"
+                controls="true"
+                class="item"
+                [ngStyle]="{'width.px': width, 'height.px' : height}"
+            >
+                <source [src]="item[atributoUrl]" />
+            </video -->
+        </ng-container>
+        
+    </div>
+    
+</div>

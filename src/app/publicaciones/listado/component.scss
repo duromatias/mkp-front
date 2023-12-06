@@ -1,0 +1,99 @@
+@import "/src/assets/scss/variables.scss";
+
+:host {
+    box-sizing      : border-box;
+    margin-top      : 58px;
+    margin-left     : 20px;
+
+    display         : flex;
+    display         : -webkit-flex;
+    flex-wrap       : wrap;
+    flex-direction  : row;
+    justify-content : flex-start;
+    row-gap         : 30px;
+    column-gap      : 13px;
+    align-items     : flex-start;
+}
+.wrapper-link {
+    display: flex;
+    display: -webkit-flex;
+    align-self: stretch;
+    align-content: stretch;
+    justify-self: stretch;
+    flex-direction: row;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+publicaciones-card {
+    display   : flex;
+    display: -webkit-flex;
+    align-self: stretch;
+    width: 100%;
+}
+
+@media only screen and (max-width: 659px) {
+    :host {
+        margin-top      : 16px;
+        margin-right    : 17px;
+        justify-content : center;
+    }
+    .wrapper-link {
+        width     : 100%;
+    }
+}
+
+@media only screen and (min-width: 660px) and (max-width: 768px) {
+    :host {
+        margin-right: 20px;
+    }
+    .wrapper-link {
+        width     : calc(50% - 10px);
+        min-width : 300px;
+    }
+}
+@media only screen and (min-width: 769px) {
+    .wrapper-link {
+        width: calc(33% - 10px);
+    }
+}
+
+@media only screen and (min-width: 1290px) {
+    .wrapper-link {
+        width: 333px;
+    }
+}
+
+
+.errorMessage {
+    width: 100%;
+    display: flex;
+    display: -webkit-flex;
+    text-align: center;
+    flex-direction: column;
+    row-gap: 5px;
+}
+
+.ordenar{
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    padding-right: 15px;
+    gap: 10px;
+    margin-bottom: -15px;
+
+    .ordernarPor{
+        font-weight: 600;
+        font-size: 16px;
+        line-height: 20px;
+        letter-spacing: 0.25px;
+
+        color: #616161;
+    }
+
+    .ordenarText{
+        font-weight: 400;
+        font-size: 16px;
+        line-height: 20px;
+        letter-spacing: 0.25px;
+        color: #2D2D2D;
+    }
+}

@@ -1,0 +1,117 @@
+.logo {
+    width: 89px;
+    height: 47px;
+    margin-top: 39px;
+}
+
+.drawer-content {
+    padding: 16px;
+    text-align: right;
+    
+
+    .mat-title {
+        margin: 0;
+    }
+
+    a {
+        text-decoration: none;
+
+        button {
+            width: 130px;
+            height: 55px;
+        }
+    }
+}
+
+
+.divider {
+    margin: 22px 0;
+}
+
+.logo{
+    height: 15.719375610351562px;
+    width: 13px;
+    border-radius: 0px;
+
+}
+
+.nombreUsuario{
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 24px;
+    letter-spacing: 0.15px;
+    opacity: 87%;
+
+}
+
+.razonSocial{
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 20px;
+    letter-spacing: 0.25px;
+    opacity: 87%;
+}
+
+.email{
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 20px;
+    letter-spacing: 0.25px;
+    color: rgba(0, 0, 0, 0.6);
+}
+
+.textoGrande {
+    font-size: 18px;
+    font-weight: 600;
+    line-height: 24px;
+    opacity: 87%;
+    letter-spacing: 0.15px;
+}
+
+.textoChico {
+    font-size: 13px;
+    font-weight: 400;
+    line-height: 20px;
+    letter-spacing: 0.25px;
+    font-family: 'Roboto';
+}
+
+.close{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    margin-top: 8px;
+    margin-right: 10px;
+    margin-bottom: 20px;
+    .closeButton{
+        width: fit-content;
+        height: fit-content;
+        background: white;
+        border: none;
+        .closeIcon{
+            color: #585858;
+            font-size: 30px;
+        }
+    }
+}
+
+.mat-badge-content {
+    width: 10px;
+    height: 10px;
+    font-weight: 500;
+    font-size: 6px;
+    line-height: 12px;
+    text-align: center;
+    letter-spacing: 0.15px;
+    z-index: 10;
+    margin-bottom: 18px;
+    margin-right: 7px;
+    background: #F20E0E;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

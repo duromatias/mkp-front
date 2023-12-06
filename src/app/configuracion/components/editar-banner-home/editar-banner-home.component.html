@@ -1,0 +1,86 @@
+<app-layout-general>
+    <contenido class="main" fxLayout.gt-md="row" fxLayoutAlign="center center">
+        <mat-card  class="card" fxLayout="column" fxLayoutAlign="start center">
+
+            <div fxFlex="50" fxLayout="row" fxLayoutAlign="center">
+                <span class="mat-body-strong">
+                    <a routerLink="/configuracion/banner">Salir</a>
+                </span>
+            </div>
+
+            <mat-card-title>
+                <h2>Editar carrusel del home</h2>
+            </mat-card-title>
+
+            <mat-card-content class="content">
+                <form  [formGroup]="form" fxLayout="row wrap" fxLayoutAlign="space-between" class="form" (ngSubmit)="null" [autocomplete]="false">
+
+                    <mat-form-field fxFlex="100" fxFlex.gt-md="48" appearance="outline">
+                        <mat-label>Título</mat-label>
+                        <input formControlName="titulo" matInput required>
+                        <mat-error *ngIf="error('titulo')">{{error('titulo')}}</mat-error>
+                    </mat-form-field>
+
+                    <mat-form-field fxFlex="100" fxFlex.gt-md="48" appearance="outline">
+                        <mat-label>Orden</mat-label>
+                        <input formControlName="orden" matInput required >
+                        <mat-error *ngIf="error('orden')">{{error('orden')}}</mat-error>
+                    </mat-form-field>
+
+                    <mat-form-field fxFlex="100" fxFlex.gt-md="100" appearance="outline">
+                        <mat-label>Detalle</mat-label>
+                        <input formControlName="detalle" matInput required>
+                        <mat-error *ngIf="error('detalle')">{{error('detalle')}}</mat-error>
+                    </mat-form-field>
+
+                    <mat-form-field fxFlex="100" fxFlex.gt-md="100" appearance="outline">
+                        <mat-label>Link</mat-label>
+                        <input formControlName="link" matInput >
+                        <mat-error *ngIf="error('link')">{{error('link')}}</mat-error>
+                    </mat-form-field>
+
+                    <div class="imagenes">
+                        <mat-card>
+                            <mat-card-subtitle>Imagen mobile</mat-card-subtitle>
+                            <mat-card-content>
+                                <div class="preview" [style.background-image]="'url(' + imagenMobileUrl + ')'"></div>
+                            </mat-card-content>
+                            <mat-card-actions>
+                                <app-file-upload-button
+                                    #uploadButtonMobile
+                                    fxFlex="100"
+                                    mat-raised-button
+                                    color="primary"
+                                    [label]="'Elegir archivo'"
+                                    (change)="alElegirImagenMobile()"
+                                ></app-file-upload-button>
+                            </mat-card-actions>
+                        </mat-card>
+
+                        <mat-card>
+                            <mat-card-subtitle>Imagen desktop</mat-card-subtitle>
+                            <mat-card-content>
+                                <div class="preview" [style.background-image]="'url(' + imagenDesktopUrl + ')'"></div>
+                            </mat-card-content>
+                                <mat-card-actions>
+                                    <app-file-upload-button
+                                    #uploadButtonDesktop
+                                    fxFlex="100"
+                                    mat-raised-button
+                                    color="primary"
+                                    [label]="'Elegir archivo'"
+                                    (change)="alElegirImagenDesktop()"
+                                ></app-file-upload-button>
+                            </mat-card-actions>
+                        </mat-card>
+                    </div>
+
+                    <button fxFlex="100" class="submit-button" mat-raised-button color="primary" type="submit" (click)="submit()" >Guardar cambios</button>
+
+                </form>
+            </mat-card-content>
+
+        </mat-card>
+    </contenido>
+</app-layout-general>
+

@@ -1,0 +1,20 @@
+<div class="container">
+    <div class="top-bar"></div>
+    <div class="icon">
+        <img [src]="'/assets/images/financiacion/' + icon +'.svg'" alt="">
+    </div>
+    <div class="title">
+        <span>{{title}}</span>
+    </div>
+
+    <div class="text">
+        <span class="negrita" *ngIf="subtitle">{{subtitle}}</span>
+        <span [innerHTML]="message"></span>
+    </div>
+
+    <div class="options" class="options">
+        <button mat-button class="borderRadius"        color="primary" (click)="clickClose()"  >{{ closeButtonText   }}</button>
+        <button mat-raised-button class="borderRadius" color="primary" (click)="clickConfirm()">{{ confirmButtonText }}</button>
+    </div>
+    
+</div>

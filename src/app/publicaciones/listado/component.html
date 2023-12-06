@@ -1,0 +1,48 @@
+
+<div *ngIf="deviceService.isDesktop" class="ordenar" [matMenuTriggerFor]="menu">
+    <span class="ordernarPor">Ordenar por</span>
+    <span class="ordenarText">{{ordenarText}} <svg width="17" height="10" viewBox="0 0 17 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M1 1L8 8.5L11.75 4.75L15.5 1" stroke="#0A3066" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+    </span>
+</div>
+
+<div *ngIf="showErrorMessage" class="errorMessage">
+    <span style="font-size: 20px;">Ups! No tenemos lo que estás buscando.</span>
+    <span style="font-size: 20px;">Revisá los filtros seleccionados y probá con una nueva búsqueda!</span>
+
+</div>
+
+<a class="wrapper-link"
+    *ngFor = "let row of publicaciones"
+
+    [routerLink]="patronRuta.replace('$', row.id)">
+    <publicaciones-card
+        *ngIf="!actualizando"
+        (createMenuItems) ="onCreateMenuItems($event)"
+        (clickMeInteresa) = "notificarClickMeInteresa($event)"
+        [publicacion]     = row
+        [anio]            = row.anio
+        [cantidadCuotas]  = row.cantidadCuotas
+        [cuota]           = row.cuota
+        [entrega]         = row.entrega
+        [es_oportunidad]  = row.es_oportunidad
+        [financiacion]    = row.financiacion
+        [kilometros]      = row.kilometros
+        [marca]           = row.marca
+        [modelo]          = row.modelo
+        [multimedia]      = row.multimedia
+        [precio]          = row.precio
+        [showOportunidad] = showOportunidad
+        [ubicacion]       = row.ubicacion
+        [mostrarFlechasCarousel]= mostrarFlechasCarousel
+        [user]            = user
+    ></publicaciones-card>
+</a>
+
+<mat-menu #menu="matMenu" [xPosition]="'before'">
+    <ng-template matMenuContent let-data="data">
+        <button mat-menu-item *ngFor="let opcion of ordenarOpciones; let i = index" (click)="selectOrdenarOpcion(i)">{{opcion.text}}</button>
+    </ng-template>
+</mat-menu>
+

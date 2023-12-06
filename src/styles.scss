@@ -1,0 +1,230 @@
+/* You can add global styles to this file, and also import other style files */
+@import url('https://fonts.googleapis.com/css?family=Open+Sans');
+@import url('https://fonts.googleapis.com/css?family=Roboto');
+
+@import "~@angular/material/theming";
+@import './assets/scss/theme.scss';
+@import "/src/assets/scss/variables.scss";
+
+.color{
+    color: mat-color($decreditos-app-primary);
+}
+
+.background{
+    background: mat-color($decreditos-app-primary);
+}
+
+.backgroundTab .mat-tab-label-active{
+    background: mat-color($decreditos-app-primary);
+}
+
+
+html, body { height: 100%; }
+body {
+    margin: 0;
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+.mat-button, .mat-raised-button {
+    font-size: 18px;
+    font-weight: 600;
+}
+
+
+.mat-typography h2,
+.mat-checkbox,
+.mat-body-strong {
+    color: #4F4E53;
+}
+
+
+input[readonly]{
+    color:#666
+}
+
+a:visited{
+    color: #0A3066;
+}
+
+a{
+    text-decoration: none;
+    color: #0A3066;
+}
+
+.mat-form-field {
+    line-height: 1.3;
+
+}
+
+.spacer {
+    flex: 1 1;
+}
+
+.sidenav-container {
+    min-height: 1000px;
+}
+
+.mat-tooltip {
+    white-space: pre-line;
+}
+
+@media only screen and (min-width: $responsive-desktop) {
+    [ mobile   ] { display: none    !important; }
+    [ nomobile ] { display: inherit !important; }
+}
+
+@media only screen and (max-width: $responsive-mobile) {
+    [ mobile   ] { display: inherit !important; }
+    [ nomobile ] { display: none    !important; }
+}
+
+.full-width-table{
+    width: 100%;
+}
+
+[lienzo] {
+    max-width: 1290px;
+    display: block;
+    margin: 0 auto;
+    width: 100%;
+}
+
+@media only screen and (min-width: 768px) {
+    .mat-drawer {
+        //background-color: transparent;
+        //border-right: none;
+    }
+}
+
+
+.table-sticky-wrapper {
+    width      : 100%;
+    overflow-x : auto;
+    overflow-y : auto;
+
+    [mat-table] {
+        min-width: 800px !important;
+    }
+}
+@media screen and (max-width: 599px) {
+    .mat-table-sticky {
+        box-shadow    : -1px 2px 4px #cdcdcd;
+        z-index       : 10;
+        padding-left  : 10px !important;
+        padding-right : 15px !important;
+    }
+}
+
+.mat-table {
+    .mat-header-row {
+        .mat-header-cell {
+            color: #47494F;
+            font-weight: 600;
+        }
+    }
+
+    .mat-row:nth-child(odd) {
+        background-color: whitesmoke;
+    }
+}
+
+.success {
+    color: green;
+}
+
+
+
+//Esto es para que los inputs de tipo number no muestren las flechas
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
+//------------
+
+/**
+ * Esta clase es de los mat input, es un wrapper del input
+ * Le elimino el ancho porque afectaba al poner dos campos muy angostos en un contenedor.
+ * Ej, formulario de carga de publicaciones en modo mobile.
+ * No quitar, si genera problemas, avisar así revisamos.
+ **/
+.mat-form-field-infix {
+    width: unset !important;
+}
+
+/**
+ * Me cansé de renegar con que no se puede setear arbitrariamente un mensaje de error
+ **/
+.mat-form-field.error .mat-form-field-outline > * {
+    border-color: #FF0000;
+    border-width: 2px;
+}
+
+.mat-form-field.error .mat-form-field-label {
+    color: #FF0000;
+}
+
+button:hover .gavel-hit {
+    animation: gavel-hit 1s ease;
+    animation-iteration-count: 1;
+}
+@keyframes gavel-hit {
+    25% {
+        transform: rotate(10deg);
+        transform-origin: bottom right;
+    }
+    50% {
+        transform: rotate(-30deg);
+        transform-origin: bottom right;
+    }
+    75% {
+        transform: rotate(0deg);
+        transform-origin: bottom right;
+    }
+}
+
+//Esta clase debe estar en todos los botones de la plataforma
+.borderRadius{
+    border-radius: 10px !important;
+}
+
+mat-form-field.prefixed {
+    .mat-form-field-infix {
+        display: flex;
+        flex-direction: row;
+        align-content: center;
+        align-items: center;
+        gap: 10px;
+
+        .custom-prefix {
+            height: 19px;
+        }
+    }
+
+    label {
+        margin-left: 50px;
+    }
+
+    &.mat-form-field-appearance-outline.mat-form-field-can-float.mat-form-field-should-float .mat-form-field-label {
+        transform: translateX(-50px) translateY(-1.59373em) scale(0.75);
+    }
+    //Fix de label teléfono
+    .mat-form-field-outline-start{
+        width: 5px !important;
+    }
+}
+
+//Permite ajustar los dropbox de manera personalizada
+.panelClass{
+    position: fixed;
+}
+
+.mat-select-panel {
+    top: 34px;
+    position: fixed;
+}

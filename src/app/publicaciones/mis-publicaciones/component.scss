@@ -1,0 +1,80 @@
+@import "/src/assets/scss/variables.scss";
+
+.listado {
+    @media(min-width: $responsive-desktop) {
+        min-height : 1900px;
+    }
+    padding-bottom: 30px;
+}
+
+/* @todo: BORRAR ESTO. ES MOMENTANEO YA QUE NO HAY FILTROS */
+@media only screen and (min-width: $responsive-desktop) {
+    app-layout-listado ::ng-deep mat-drawer {
+        background: none;
+        border: none;
+    }
+    ::ng-deep panel-secundario .filtros-wrapper {
+        padding: 16px 0 !important;
+    }
+}
+
+::ng-deep .mat-form-field-appearance-outline .mat-form-field-outline {
+    background-color: white;
+}
+
+
+.filtros p {
+    font-weight: 500;
+    color: rgba(0, 0, 0, 0.87);
+}
+
+[anio] {
+    display         : flex;
+    flex-direction  : row;
+    flex-wrap       : wrap;
+    align-content   : flex-start;
+    justify-content : space-between;
+    align-items     : baseline;
+    column-gap      : 16px;
+
+    app-select-input {
+        display   : flex;
+        flex-grow : 1;
+    }
+}
+
+.buttons{
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 35px;
+    margin-right: 14px;
+    margin-bottom: -15px;
+}
+
+.buttonText{
+    font-family: Poppins;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 16px;
+    /* identical to box height, or 89% */
+
+    text-align: center;
+    letter-spacing: 1.25px;
+    height: 41px;
+    width: 313px;
+    background: linear-gradient(90deg, #46B090 0%, #1E97C6 100%);
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.buttonMobile{
+    position: fixed;
+    z-index: 999;
+    bottom: 20px;
+    right: 20px;
+}
+
+.compartirMobile {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 15px;
+}
